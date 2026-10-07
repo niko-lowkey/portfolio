@@ -125,7 +125,7 @@ html { -webkit-tap-highlight-color: transparent; }
     background: var(--brands-chip-bg);
     box-shadow:
       inset 0 0 0 1px var(--brands-chip-border),
-      0 4px 10px -6px rgba(11, 30, 63, 0.35);
+      0 4px 10px -6px rgba(27,43,56, 0.35);
   }
   .home .tools-marquee__icon,
   .home .tools-marquee__img { width: 26px; height: 26px; }

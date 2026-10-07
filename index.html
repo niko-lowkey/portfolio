@@ -14,7 +14,7 @@
     <!-- The browser bar takes the page colour (--cream per theme); the inline
          theme script below and lib/theme.ts keep it in step with the toggle.
          Literal hex here only because this runs before any stylesheet loads. -->
-    <meta name="theme-color" content="#F4F4ED" />
+    <meta name="theme-color" content="#FBFDFE" />
     <!-- <link rel="canonical" href="https://yoursite.com/" /> -->
 
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
@@ -51,7 +51,7 @@
         }
         if (document.documentElement.dataset.theme === 'dark') {
           var bar = document.querySelector('meta[name="theme-color"]');
-          if (bar) bar.setAttribute('content', '#070B14');
+          if (bar) bar.setAttribute('content', '#1B2B38');
         }
       })();
     </script>

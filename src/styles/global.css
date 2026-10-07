@@ -195,7 +195,7 @@ main > * {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 50% 55%, rgba(255, 122, 26, 0.08), transparent 55%),
+    radial-gradient(circle at 50% 55%, rgba(var(--accent-rgb), 0.08), transparent 55%),
     var(--navy-ink);
 }
 
@@ -330,7 +330,7 @@ main > * {
   object-fit: contain;
   background: var(--white);
   padding: 8px;
-  box-shadow: 0 12px 32px -14px rgba(6, 12, 26, 0.5);
+  box-shadow: 0 12px 32px -14px rgba(18,29,38, 0.5);
   opacity: 0;
   animation: intro-mark 450ms cubic-bezier(0.34, 1.56, 0.64, 1) 1300ms forwards;
 }
@@ -380,7 +380,7 @@ main > * {
   height: 220vmax;
   margin: -110vmax 0 0 -110vmax;
   border-radius: 50%;
-  /* Burnt orange, not the bright accent: a full-viewport flash of #FF7A1A is
+  /* Burnt orange, not the bright accent: a full-viewport flash of var(--accent) is
      an eye-strain / photosensitivity risk, so the flood uses the darker ink
      tone and lets the accents stay bright at small sizes only. */
   background: var(--orange-ink);

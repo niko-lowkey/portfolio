@@ -58,7 +58,7 @@
   color: var(--navy);
   font-weight: 600;
   text-decoration: none;
-  box-shadow: inset 0 -1px 0 rgba(255, 122, 26, 0.55);
+  box-shadow: inset 0 -1px 0 rgba(var(--accent-rgb), 0.55);
   transition: box-shadow 200ms var(--ease-out), color 200ms var(--ease-out);
 }
 .agrid__link:hover { color: var(--orange-ink); box-shadow: inset 0 -2px 0 var(--orange); }
@@ -107,7 +107,7 @@
   background: var(--white);
   box-shadow:
     inset 0 0 0 1px var(--line-strong),
-    0 2px 6px -3px rgba(6, 12, 26, 0.35);
+    0 2px 6px -3px rgba(18,29,38, 0.35);
   /* Descending, so later marks sit UNDER earlier ones and the stack reads
      left to right the way the eye scans it. */
   z-index: var(--i);
@@ -138,7 +138,7 @@
   color: var(--line-strong);
   transition: color 220ms var(--ease-out);
 }
-.agrid__cap:hover .agrid__cap-index { color: var(--orange); }
+.agrid__cap:hover .agrid__cap-index { color: var(--orange-ink); }
 
 /* ---------- The credential bar ----------
    Loose pills read as separate components fighting for the same line. This
@@ -153,7 +153,7 @@
   box-shadow:
     inset 0 0 0 1px var(--line-strong),
     inset 0 1px 0 rgba(255, 255, 255, 0.6),
-    0 14px 34px -26px rgba(6, 12, 26, 0.45);
+    0 14px 34px -26px rgba(18,29,38, 0.45);
   overflow: hidden;
   flex: 0 0 auto;
 }
@@ -180,7 +180,7 @@
   color: var(--line-strong);
   transition: color 220ms var(--ease-out), transform 220ms var(--ease-out);
 }
-.agrid__cell--wide:hover .agrid__cell-go { color: var(--orange); transform: translate(2px, -2px); }
+.agrid__cell--wide:hover .agrid__cell-go { color: var(--orange-ink); transform: translate(2px, -2px); }
 .agrid__cell-mark {
   display: grid;
   place-items: center;
@@ -188,9 +188,9 @@
   width: clamp(30px, 2.3vw, 38px);
   height: clamp(30px, 2.3vw, 38px);
   border-radius: 10px;
-  color: var(--orange);
-  background: rgba(255, 122, 26, 0.10);
-  box-shadow: inset 0 0 0 1px rgba(255, 122, 26, 0.22);
+  color: var(--orange-ink);
+  background: rgba(var(--accent-rgb), 0.10);
+  box-shadow: inset 0 0 0 1px rgba(var(--accent-rgb), 0.22);
 }
 .agrid__cell-mark--img { background: var(--white); box-shadow: inset 0 0 0 1px var(--line-strong); }
 /* The HLA mark is a full-bleed gradient logo - an orange wash behind it reads
@@ -214,7 +214,7 @@
   color: var(--muted);
 }
 
-[data-theme='dark'] .agrid__cell-mark--img { background: #F4F4ED; }
+[data-theme='dark'] .agrid__cell-mark--img { background: #FBFDFE; }
 
 /* Between the rail breakpoint and a wide desktop the bar has ~500px for two
    facts, so the cells tighten to keep their titles short. */
@@ -228,7 +228,7 @@
    drawn for light backgrounds and several of these are monochrome black, so
    inverting the tile would erase them. */
 [data-theme='dark'] .agrid__mark {
-  background: #F4F4ED;
+  background: #FBFDFE;
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.14),
     0 2px 6px -3px rgba(0, 0, 0, 0.6);

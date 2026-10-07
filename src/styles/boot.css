@@ -91,7 +91,7 @@
   --n8n-border: #5E5F63;
   --n8n-cable: #6B6D73;
   --n8n-ok: #3DBA74;
-  --n8n-ink: #EDF0F6;
+  --n8n-ink: #FBFDFE;
 }
 
 .boot__cables {
@@ -132,7 +132,7 @@
   background: var(--n8n-node);
   border: 1.5px solid var(--n8n-border);
   color: var(--n8n-ink);
-  box-shadow: 0 6px 14px -8px rgba(6, 12, 26, 0.35);
+  box-shadow: 0 6px 14px -8px rgba(18,29,38, 0.35);
   transition: border-color 260ms var(--ease-out);
 }
 /* n8n's trigger tile: rounded on the input side, square on the output side. */

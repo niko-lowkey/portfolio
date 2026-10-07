@@ -271,7 +271,7 @@ export default function Autopilot({ compact = false, maxScale = 1 }: AutopilotPr
         const sig = document.createElementNS(SVGNS, 'circle')
         sig.setAttribute('r', dashed ? '3.2' : '4.4')
         sig.style.fill = 'var(--ap-loop)'
-        sig.setAttribute('filter', 'drop-shadow(0 0 5px rgba(255,122,26,.9))')
+        sig.setAttribute('filter', 'drop-shadow(0 0 5px rgba(126,175,208,.9))')
         sigSvg.appendChild(sig)
         const len = path.getTotalLength ? path.getTotalLength() : 360
         const dur = Math.min(7, Math.max(2.4, len / 95))

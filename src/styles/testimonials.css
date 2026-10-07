@@ -51,7 +51,7 @@
 .review-card__stars {
   display: inline-flex;
   gap: 3px;
-  color: var(--orange);
+  color: var(--orange-ink);
 }
 .review-card__body {
   font-size: 14.5px;
