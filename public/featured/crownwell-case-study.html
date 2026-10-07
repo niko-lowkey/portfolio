@@ -7,15 +7,15 @@
 <meta name="description" content="A portfolio case study: two funnels, a booking calendar, a five stage pipeline, twelve tags and four connected workflows, built inside GoHighLevel.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#F5F3EB;--ink:#1B2236;--text:#4A5163;--muted:#7C8294;--orange:#F27A21;--orange-soft:#FDEBDD;
-  --line:#E3DFD2;--card:#FFFFFF;--green:#1E8E5A;--green-soft:#E3F3EA;--blue:#2F6FDE;--purple:#6D5BD0;--amber:#C98A12;--teal:#0E8FA3;--pink:#C2427A;
-  --panel:#FAF8F2;--soft:#FCFBF7;--code:#F1EFE6;--nest:#FFFFFF;--dash:#C9C2AE;--g-soft:#E3F3EA;--g-line:#BFE3CE;--o-soft:#FDEBDD;--o-line:#F8D3B5;--trig:#FFF8F2;
-  --font:"Plus Jakarta Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --bg:#FBFDFE;--ink:#1B2B38;--text:#3F5363;--muted:#556877;--orange:#2F6F9A;--oink:#2A6590;--orange-soft:#E4EEF5;
+  --line:#DCE5EC;--card:#FFFFFF;--green:#1E8E5A;--green-soft:#E3F3EA;--blue:#2F6F9A;--purple:#6D5BD0;--amber:#C98A12;--teal:#0E8FA3;--pink:#C2427A;
+  --panel:#F3F7FA;--soft:#F7FAFC;--code:#EAF1F6;--nest:#FFFFFF;--dash:#B8C7D3;--g-soft:#E3F3EA;--g-line:#BFE3CE;--o-soft:#E4EEF5;--o-line:#BDD4E4;--trig:#F3F8FB;
+  --font:"Figtree",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
 }
-html[data-theme='dark']{--bg:#00201D;--ink:#EAF4F2;--text:#B7CDC9;--muted:#86A8A2;--card:rgba(8,48,43,.86);--line:rgba(160,210,200,.22);--panel:rgba(255,255,255,.05);--soft:rgba(255,255,255,.035);--code:rgba(255,255,255,.09);--nest:rgba(255,255,255,.06);--dash:rgba(160,210,200,.3);--g-soft:rgba(30,142,90,.2);--g-line:rgba(30,142,90,.45);--o-soft:rgba(242,122,33,.18);--o-line:rgba(242,122,33,.45);--trig:rgba(242,122,33,.14);color-scheme:dark}
+html[data-theme='dark']{--bg:#1B2B38;--ink:#FBFDFE;--text:#C5D3DD;--muted:#93A6B5;--card:rgba(34,50,63,.92);--line:rgba(255,255,255,.12);--panel:rgba(255,255,255,.05);--soft:rgba(255,255,255,.035);--code:rgba(255,255,255,.09);--nest:rgba(255,255,255,.06);--dash:rgba(255,255,255,.2);--g-soft:rgba(30,142,90,.2);--g-line:rgba(30,142,90,.45);--o-soft:rgba(126,175,208,.16);--o-line:rgba(126,175,208,.4);--trig:rgba(126,175,208,.12);--orange:#7EAFD0;--oink:#7EAFD0;color-scheme:dark}
 html{background:var(--bg)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -32,7 +32,7 @@ h1,h2,h3{color:var(--ink);font-weight:800;letter-spacing:-.02em;line-height:1.12
 header{position:sticky;top:0;z-index:40;background:color-mix(in oklab,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .hb{max-width:1000px;margin:0 auto;padding:12px clamp(18px,4vw,28px);display:flex;align-items:center;justify-content:space-between;gap:16px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:.95rem;color:var(--ink);text-decoration:none}
-.brand i{width:26px;height:26px;border-radius:8px;background:#1B2236;display:grid;place-items:center;color:var(--orange);font-style:normal;font-size:.8rem}
+.brand i{width:26px;height:26px;border-radius:8px;background:#1B2B38;display:grid;place-items:center;color:var(--orange);font-style:normal;font-size:.8rem}
 nav{display:flex;gap:6px}
 nav a{font-size:.78rem;font-weight:600;color:var(--text);text-decoration:none;padding:7px 12px;border-radius:999px;transition:all .2s}
 nav a:hover,nav a.on{background:var(--card);color:var(--ink);box-shadow:0 1px 0 var(--line)}
@@ -40,7 +40,7 @@ nav a:hover,nav a.on{background:var(--card);color:var(--ink);box-shadow:0 1px 0 
 
 /* hero */
 .hero{padding:clamp(48px,8vw,84px) 0 40px;text-align:center}
-.pill{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);background:var(--orange-soft);border:1px solid #F8D3B5;border-radius:999px;padding:7px 16px}
+.pill{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);background:var(--orange-soft);border:1px solid #BDD4E4;border-radius:999px;padding:7px 16px}
 .hero h1{margin:22px auto 0;font-size:clamp(2.3rem,6vw,3.6rem);max-width:17ch}
 .hero p.sub{margin:22px auto 0;max-width:600px;font-size:1.04rem}
 .stats{margin:34px auto 0;display:inline-flex;flex-wrap:wrap;justify-content:center;background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 24px -16px rgba(27,34,54,.25)}
@@ -60,12 +60,12 @@ section h2{margin-top:14px;text-align:center;font-size:clamp(1.7rem,4vw,2.2rem)}
 .intro{margin:16px auto 0;max-width:640px;text-align:center;font-size:.98rem}
 .intro b{color:var(--ink)}
 .card{margin-top:30px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:clamp(18px,3vw,28px);box-shadow:0 10px 30px -22px rgba(27,34,54,.3)}
-.card.dia{background:#fff;border-color:#E3DFD2}
+.card.dia{background:#fff;border-color:#DCE5EC}
 .card.flush{padding:0;overflow:hidden}
 .note{margin-top:22px;display:flex;gap:16px;align-items:flex-start;border-radius:14px;padding:16px 20px;font-size:.9rem;line-height:1.6}
 .note .lab{flex:none;font-size:.62rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding-top:3px}
 .note.g{background:var(--g-soft);border:1px solid var(--g-line)}.note.g .lab{color:var(--green)}
-.note.o{background:var(--o-soft);border:1px solid var(--o-line)}.note.o .lab{color:#C75B0B}
+.note.o{background:var(--o-soft);border:1px solid var(--o-line)}.note.o .lab{color:var(--oink)}
 .note b{color:var(--ink)}
 @media(max-width:560px){.note{flex-direction:column;gap:6px}}
 
@@ -75,7 +75,7 @@ table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
 th{text-align:left;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:0 14px 12px}
 td{padding:14px;border-top:1px solid var(--line);vertical-align:top}
 td b{color:var(--ink)}
-.stage{display:inline-block;font-weight:700;font-size:.8rem;color:#1B2236;border-radius:8px;padding:5px 11px;white-space:nowrap}
+.stage{display:inline-block;font-weight:700;font-size:.8rem;color:#1B2B38;border-radius:8px;padding:5px 11px;white-space:nowrap}
 .s1{background:#F7D2BF}.s2{background:#C5D3F3}.s3{background:#BDE3D6}.s4{background:#F2C3C3}.s5{background:#D5D8DE}
 code,.tag{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.78rem;background:var(--code);border:1px solid var(--line);border-radius:6px;padding:2px 7px;color:var(--ink);white-space:nowrap}
 .tags{display:flex;flex-wrap:wrap;gap:6px}
@@ -198,7 +198,7 @@ footer b{color:var(--ink)}
 .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
 .tabbtn{font:inherit;font-size:.78rem;font-weight:700;color:var(--text);background:var(--nest);border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer;transition:all .2s}
 .tabbtn.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-html[data-theme='dark'] .tabbtn.on{color:#00201D}
+html[data-theme='dark'] .tabbtn.on{color:#121D26}
 .mail{margin-top:14px;background:var(--nest);border:1px solid var(--line);border-radius:14px;padding:20px 24px;font-size:.92rem;line-height:1.7;color:var(--text)}
 .mail .mh{display:grid;gap:2px;padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--line);font-size:.8rem;color:var(--muted)}
 .mail .mh b{color:var(--ink);font-size:.95rem}
@@ -207,8 +207,45 @@ html[data-theme='dark'] .tabbtn.on{color:#00201D}
 .mail .sg{margin-top:16px}
 .mail .sg b{color:var(--ink)}
 .mail a{color:var(--blue);text-decoration:underline}
+.mail .wh{font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+.mail .ph{background:rgba(47,111,222,.1);border-radius:4px;padding:0 5px;font-size:.88em;white-space:nowrap}
+.mail .ad{margin-bottom:10px;padding-left:12px;border-left:2px solid var(--line)}
+.tabbtn.grp{font-size:.8rem}
+/* email viewer: brand accent */
+html[data-theme='dark'] .hs .n,html[data-theme='dark'] .wn{color:#121D26}
+:root{--cy:#2F6F9A;--cy-soft:rgba(47,111,154,.09);--cy-line:rgba(47,111,154,.3)}
+html[data-theme='dark']{--cy:#7EAFD0;--cy-soft:rgba(126,175,208,.14);--cy-line:rgba(126,175,208,.36)}
+#mailgroups{display:flex;flex-wrap:wrap;gap:4px;padding:4px;background:var(--panel);border:1px solid var(--line);border-radius:16px;width:fit-content;max-width:100%}
+#mailgroups .tabbtn.grp{border:0;background:transparent;color:var(--text);padding:9px 18px;font-size:.8rem}
+#mailgroups .tabbtn.grp:hover{color:var(--cy)}
+#mailgroups .tabbtn.grp.on{background:var(--cy);color:#fff;box-shadow:0 6px 14px -8px var(--cy)}
+html[data-theme='dark'] #mailgroups .tabbtn.grp.on{color:#121D26}
+#mailtabs .tabbtn{background:transparent}
+#mailtabs .tabbtn:hover{border-color:var(--cy-line);color:var(--cy)}
+#mailtabs .tabbtn.on{background:var(--cy-soft);color:var(--cy);border-color:var(--cy)}
+html[data-theme='dark'] #mailtabs .tabbtn.on{color:var(--cy)}
+.mail{padding:0;overflow:hidden;border-radius:16px;background:var(--card);box-shadow:0 18px 40px -28px rgba(27,43,56,.35)}
+.mail .mbar{display:flex;align-items:center;gap:6px;padding:11px 18px;background:var(--cy);color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+html[data-theme='dark'] .mail .mbar{color:#121D26}
+.mail .mbar i{width:8px;height:8px;border-radius:50%;background:currentColor;opacity:.45}
+.mail .mbar span{margin-left:10px;opacity:.85}
+.mail .mh{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;padding:18px 24px;margin:0;background:var(--panel);border-bottom:1px solid var(--line)}
+.mail .mh .av{flex:none;width:40px;height:40px;border-radius:50%;background:var(--cy-soft);border:1px solid var(--cy-line);color:var(--cy);display:grid;place-items:center;font-weight:800}
+.mail .mh .mi{display:grid;gap:2px;min-width:0;flex:1 1 240px}
+.mail .mh .mi b{font-size:1rem;color:var(--ink);line-height:1.35}
+.mail .mh .mi span{font-size:.78rem;color:var(--muted)}
+.mail .mh .wh{margin-left:auto;background:var(--cy-soft);border:1px solid var(--cy-line);color:var(--cy);border-radius:999px;padding:5px 12px;font-size:.66rem;white-space:nowrap}
+.mail .mb{padding:24px 28px 26px}
+.mail a{color:var(--cy);font-weight:700;text-decoration:none;border-bottom:1.5px solid var(--cy)}
+.mail .ph{background:var(--cy-soft);color:var(--cy);border:1px dashed var(--cy-line)}
+.mail .ad{border-left:3px solid var(--cy-line);padding:2px 0 2px 14px}
+.mail .sg{margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}
+.mail .sg b{color:var(--cy)}
+.chip.p{background:var(--cy-soft);color:var(--cy);border:1px solid var(--cy-line)}
+@media(max-width:640px){.mail .mh .wh{margin-left:54px}.mail .mb{padding:20px}}
+
 .chip{display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border-radius:6px;padding:3px 8px}
-.chip.b{background:var(--o-soft);color:#C75B0B;border:1px solid var(--o-line)}
+.chip.b{background:var(--o-soft);color:var(--oink);border:1px solid var(--o-line)}
 .chip.p{background:var(--panel);color:var(--muted);border:1px solid var(--line)}
 .pdfv{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:28px;align-items:center}
 @media(max-width:760px){.pdfv{grid-template-columns:1fr}}
@@ -244,7 +281,7 @@ html[data-theme='dark'] .tabbtn.on{color:#00201D}
   <div class="stats">
     <div><b>2</b><span>Funnels</span></div><div><b>5</b><span>Pipeline stages</span></div><div><b>4</b><span>Workflows</span></div><div><b>12</b><span>Tags</span></div><div><b>5</b><span>Services</span></div>
   </div>
-  <div class="chips"><span>GoHighLevel</span><span>Funnels</span><span>Booking calendar</span><span>CRM pipeline</span><span>Workflow automation</span><span>Branded and plain text emails</span></div>
+  <div class="chips"><span>GoHighLevel</span><span>Funnels</span><span>Booking calendar</span><span>CRM pipeline</span><span>Workflow automation</span><span>Branded and personal emails</span></div>
 </div>
 
 <!-- HOW IT WORKS -->
@@ -253,39 +290,39 @@ html[data-theme='dark'] .tabbtn.on{color:#00201D}
   <p class="intro">Every person who enters the system gets <b>one opportunity</b> in the <b>Patient Journey</b> pipeline. Workflows move that opportunity from stage to stage when something happens: a form is submitted, a booking is confirmed, or staff mark a visit as showed, cancelled or no show. <b>Tags</b> remember who the person is, so the next workflow knows what to do.</p></div>
   <div class="card rv dia">
     <svg viewBox="0 0 1000 420" role="img" aria-label="Patient journey flow diagram" font-family="Plus Jakarta Sans, Arial, sans-serif">
-      <defs><marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0L8 4.5L0 9z" fill="#1B2236"/></marker><marker id="ar2" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0L8 4.5L0 9z" fill="#8B91A3"/></marker></defs>
+      <defs><marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0L8 4.5L0 9z" fill="#1B2B38"/></marker><marker id="ar2" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0 0L8 4.5L0 9z" fill="#8B91A3"/></marker></defs>
       <!-- entry -->
-      <rect x="20" y="40" width="160" height="56" rx="12" fill="#fff" stroke="#E3DFD2"/><text x="100" y="64" text-anchor="middle" font-size="13" font-weight="700" fill="#1B2236">Free guide funnel</text><text x="100" y="82" text-anchor="middle" font-size="11" fill="#7C8294">opt in + thank you</text>
-      <rect x="20" y="170" width="160" height="56" rx="12" fill="#fff" stroke="#E3DFD2"/><text x="100" y="194" text-anchor="middle" font-size="13" font-weight="700" fill="#1B2236">Appointment funnel</text><text x="100" y="212" text-anchor="middle" font-size="11" fill="#7C8294">landing + booking calendar</text>
+      <rect x="20" y="40" width="160" height="56" rx="12" fill="#fff" stroke="#DCE5EC"/><text x="100" y="64" text-anchor="middle" font-size="13" font-weight="700" fill="#1B2B38">Free guide funnel</text><text x="100" y="82" text-anchor="middle" font-size="11" fill="#556877">opt in + thank you</text>
+      <rect x="20" y="170" width="160" height="56" rx="12" fill="#fff" stroke="#DCE5EC"/><text x="100" y="194" text-anchor="middle" font-size="13" font-weight="700" fill="#1B2B38">Appointment funnel</text><text x="100" y="212" text-anchor="middle" font-size="11" fill="#556877">landing + booking calendar</text>
       <!-- arrows entry -> stage -->
-      <path d="M180 68 H300" stroke="#1B2236" stroke-width="2" fill="none" marker-end="url(#ar)"/>
-      <rect x="204" y="52" width="72" height="22" rx="11" fill="#FDEBDD" stroke="#F27A21"/><text x="240" y="67" text-anchor="middle" font-size="11" font-weight="800" fill="#C75B0B">Workflow 1</text>
-      <path d="M180 198 H300" stroke="#1B2236" stroke-width="2" fill="none" marker-end="url(#ar)"/>
-      <rect x="204" y="182" width="72" height="22" rx="11" fill="#FDEBDD" stroke="#F27A21"/><text x="240" y="197" text-anchor="middle" font-size="11" font-weight="800" fill="#C75B0B">Workflow 2</text>
+      <path d="M180 68 H300" stroke="#1B2B38" stroke-width="2" fill="none" marker-end="url(#ar)"/>
+      <rect x="204" y="52" width="72" height="22" rx="11" fill="#E4EEF5" stroke="#3F82B0"/><text x="240" y="67" text-anchor="middle" font-size="11" font-weight="800" fill="#2A6590">Workflow 1</text>
+      <path d="M180 198 H300" stroke="#1B2B38" stroke-width="2" fill="none" marker-end="url(#ar)"/>
+      <rect x="204" y="182" width="72" height="22" rx="11" fill="#E4EEF5" stroke="#3F82B0"/><text x="240" y="197" text-anchor="middle" font-size="11" font-weight="800" fill="#2A6590">Workflow 2</text>
       <!-- stages -->
-      <rect x="300" y="40" width="150" height="56" rx="12" fill="#F7D2BF"/><text x="375" y="73" text-anchor="middle" font-size="14" font-weight="800" fill="#1B2236">New Lead</text>
-      <rect x="300" y="170" width="150" height="56" rx="12" fill="#C5D3F3"/><text x="375" y="196" text-anchor="middle" font-size="13" font-weight="800" fill="#1B2236">Appointment</text><text x="375" y="214" text-anchor="middle" font-size="13" font-weight="800" fill="#1B2236">Booked</text>
-      <path d="M375 96 V168" stroke="#8B91A3" stroke-width="2" stroke-dasharray="5 5" fill="none" marker-end="url(#ar2)"/><text x="386" y="136" font-size="11" fill="#7C8294">books</text>
+      <rect x="300" y="40" width="150" height="56" rx="12" fill="#F7D2BF"/><text x="375" y="73" text-anchor="middle" font-size="14" font-weight="800" fill="#1B2B38">New Lead</text>
+      <rect x="300" y="170" width="150" height="56" rx="12" fill="#C5D3F3"/><text x="375" y="196" text-anchor="middle" font-size="13" font-weight="800" fill="#1B2B38">Appointment</text><text x="375" y="214" text-anchor="middle" font-size="13" font-weight="800" fill="#1B2B38">Booked</text>
+      <path d="M375 96 V168" stroke="#8B91A3" stroke-width="2" stroke-dasharray="5 5" fill="none" marker-end="url(#ar2)"/><text x="386" y="136" font-size="11" fill="#556877">books</text>
       <!-- status diamond -->
-      <path d="M450 198 H520" stroke="#1B2236" stroke-width="2" fill="none" marker-end="url(#ar)"/>
-      <path d="M580 156 L650 198 L580 240 L510 198 Z" fill="#FCFBF7" stroke="#1B2236" stroke-width="1.6"/><text x="580" y="193" text-anchor="middle" font-size="11" font-weight="800" fill="#1B2236">Staff set</text><text x="580" y="208" text-anchor="middle" font-size="11" font-weight="800" fill="#1B2236">status</text>
+      <path d="M450 198 H520" stroke="#1B2B38" stroke-width="2" fill="none" marker-end="url(#ar)"/>
+      <path d="M580 156 L650 198 L580 240 L510 198 Z" fill="#F7FAFC" stroke="#1B2B38" stroke-width="1.6"/><text x="580" y="193" text-anchor="middle" font-size="11" font-weight="800" fill="#1B2B38">Staff set</text><text x="580" y="208" text-anchor="middle" font-size="11" font-weight="800" fill="#1B2B38">status</text>
       <!-- completed -->
-      <path d="M650 198 H800" stroke="#1B2236" stroke-width="2" fill="none" marker-end="url(#ar)"/>
-      <text x="725" y="188" text-anchor="middle" font-size="11" fill="#7C8294">showed</text>
-      <rect x="690" y="206" width="72" height="22" rx="11" fill="#FDEBDD" stroke="#F27A21"/><text x="726" y="221" text-anchor="middle" font-size="11" font-weight="800" fill="#C75B0B">Workflow 3</text>
-      <rect x="800" y="170" width="150" height="56" rx="12" fill="#BDE3D6"/><text x="875" y="196" text-anchor="middle" font-size="13" font-weight="800" fill="#1B2236">Appointment</text><text x="875" y="214" text-anchor="middle" font-size="13" font-weight="800" fill="#1B2236">Completed</text>
+      <path d="M650 198 H800" stroke="#1B2B38" stroke-width="2" fill="none" marker-end="url(#ar)"/>
+      <text x="725" y="188" text-anchor="middle" font-size="11" fill="#556877">showed</text>
+      <rect x="690" y="206" width="72" height="22" rx="11" fill="#E4EEF5" stroke="#3F82B0"/><text x="726" y="221" text-anchor="middle" font-size="11" font-weight="800" fill="#2A6590">Workflow 3</text>
+      <rect x="800" y="170" width="150" height="56" rx="12" fill="#BDE3D6"/><text x="875" y="196" text-anchor="middle" font-size="13" font-weight="800" fill="#1B2B38">Appointment</text><text x="875" y="214" text-anchor="middle" font-size="13" font-weight="800" fill="#1B2B38">Completed</text>
       <!-- cancelled / no show -->
-      <path d="M580 240 V300" stroke="#1B2236" stroke-width="2" fill="none" marker-end="url(#ar)"/>
-      <text x="594" y="262" font-size="11" fill="#7C8294">cancelled or no show</text>
-      <rect x="544" y="270" width="72" height="22" rx="11" fill="#FDEBDD" stroke="#F27A21" transform="translate(-100 0)"/><text x="480" y="285" text-anchor="middle" font-size="11" font-weight="800" fill="#C75B0B">Workflow 4</text>
-      <rect x="505" y="300" width="150" height="56" rx="12" fill="#F2C3C3"/><text x="580" y="326" text-anchor="middle" font-size="13" font-weight="800" fill="#1B2236">Cancelled /</text><text x="580" y="344" text-anchor="middle" font-size="13" font-weight="800" fill="#1B2236">No Show</text>
-      <path d="M655 328 H800" stroke="#1B2236" stroke-width="2" fill="none" marker-end="url(#ar)"/><text x="728" y="318" text-anchor="middle" font-size="11" fill="#7C8294">3 follow up emails</text>
-      <rect x="800" y="300" width="150" height="56" rx="12" fill="#D5D8DE"/><text x="875" y="325" text-anchor="middle" font-size="13" font-weight="800" fill="#1B2236">Lead Nurture</text><text x="875" y="343" text-anchor="middle" font-size="13" font-weight="800" fill="#1B2236">Completed</text>
+      <path d="M580 240 V300" stroke="#1B2B38" stroke-width="2" fill="none" marker-end="url(#ar)"/>
+      <text x="594" y="262" font-size="11" fill="#556877">cancelled or no show</text>
+      <rect x="544" y="270" width="72" height="22" rx="11" fill="#E4EEF5" stroke="#3F82B0" transform="translate(-100 0)"/><text x="480" y="285" text-anchor="middle" font-size="11" font-weight="800" fill="#2A6590">Workflow 4</text>
+      <rect x="505" y="300" width="150" height="56" rx="12" fill="#F2C3C3"/><text x="580" y="326" text-anchor="middle" font-size="13" font-weight="800" fill="#1B2B38">Cancelled /</text><text x="580" y="344" text-anchor="middle" font-size="13" font-weight="800" fill="#1B2B38">No Show</text>
+      <path d="M655 328 H800" stroke="#1B2B38" stroke-width="2" fill="none" marker-end="url(#ar)"/><text x="728" y="318" text-anchor="middle" font-size="11" fill="#556877">3 follow up emails</text>
+      <rect x="800" y="300" width="150" height="56" rx="12" fill="#D5D8DE"/><text x="875" y="325" text-anchor="middle" font-size="13" font-weight="800" fill="#1B2B38">Lead Nurture</text><text x="875" y="343" text-anchor="middle" font-size="13" font-weight="800" fill="#1B2B38">Completed</text>
       <!-- new lead nurture ends -->
-      <path d="M450 68 H975 V328 H950" stroke="#8B91A3" stroke-width="2" stroke-dasharray="5 5" fill="none" marker-end="url(#ar2)"/><text x="712" y="60" text-anchor="middle" font-size="11" fill="#7C8294">guide emails end without a booking</text>
+      <path d="M450 68 H975 V328 H950" stroke="#8B91A3" stroke-width="2" stroke-dasharray="5 5" fill="none" marker-end="url(#ar2)"/><text x="712" y="60" text-anchor="middle" font-size="11" fill="#556877">guide emails end without a booking</text>
       <!-- rebook -->
-      <path d="M505 328 H375 V228" stroke="#8B91A3" stroke-width="2" stroke-dasharray="5 5" fill="none" marker-end="url(#ar2)"/><text x="440" y="348" text-anchor="middle" font-size="11" fill="#7C8294">rebooks</text>
-      <text x="20" y="400" font-size="11" fill="#7C8294">Orange pills are workflows. Dashed lines are optional paths. Tags track each person along the way.</text>
+      <path d="M505 328 H375 V228" stroke="#8B91A3" stroke-width="2" stroke-dasharray="5 5" fill="none" marker-end="url(#ar2)"/><text x="440" y="348" text-anchor="middle" font-size="11" fill="#556877">rebooks</text>
+      <text x="20" y="400" font-size="11" fill="#556877">Orange pills are workflows. Dashed lines are optional paths. Tags track each person along the way.</text>
     </svg>
   </div>
   <p class="hint">Scroll sideways on small screens</p>
@@ -398,7 +435,7 @@ html[data-theme='dark'] .tabbtn.on{color:#00201D}
 <!-- EMAILS -->
 <section id="emails"><div class="wrap">
   <div class="rv"><span class="eye">Step <b>6</b> &middot; The communication</span><h2>Branded where it counts, personal everywhere else</h2>
-  <p class="intro">Not every email needs a template. Four moments get a <b>branded design</b> to catch the lead's attention: the guide, the appointment confirmation, the thank you after a visit and the review request. Everything else is <b>plain text</b>, so it reads like a note from a person, not a newsletter.</p></div>
+  <p class="intro">Not every email needs a template. Four moments get a <b>branded design</b> to catch the lead's attention: the guide, the appointment confirmation, the thank you after a visit and the review request. Everything else is a <b>clean, personal note</b>, so it reads like a message from the clinic, not a newsletter.</p></div>
   <div class="gal rv">
     <figure><div class="shot" data-zoom="em_guide" data-title="Guide delivery email"><img data-img="em_guide" alt="Branded guide delivery email" loading="lazy"></div><figcaption><b>1. The guide</b>Delivers the PDF right after the form.</figcaption></figure>
     <figure><div class="shot" data-zoom="em_confirm" data-title="Appointment confirmation email"><img data-img="em_confirm" alt="Branded appointment confirmation email" loading="lazy"></div><figcaption><b>2. The confirmation</b>Time, service and place, plus what happens next.</figcaption></figure>
@@ -407,10 +444,12 @@ html[data-theme='dark'] .tabbtn.on{color:#00201D}
   </div>
   <p class="cap2">Click an email to enlarge it. Screenshots use a test contact.</p>
 
-  <div class="rv" style="margin-top:46px"><h3 style="text-align:center;font-size:1.25rem">The plain text emails</h3>
-  <p class="intro" style="margin-top:10px">Reminders, cancellation and no show emails, and the follow up series have no logo and no layout, on purpose. Here is the guide follow up series, as the lead sees it.</p></div>
+  <div class="rv" style="margin-top:46px"><h3 style="text-align:center;font-size:1.25rem">The personal follow up emails</h3>
+  <p class="intro" style="margin-top:10px">Thirteen emails are written as clean, personal notes from the clinic, with no template or heavy design, so they read like a message from a person. Pick a group, then an email, to read each one as the lead sees it. Highlighted brackets are details GoHighLevel fills in for each contact.</p></div>
   <div class="card rv" style="margin-top:22px">
-    <div class="tabs" id="mailtabs"></div>
+    <div class="tabs" id="mailgroups" style="margin-top:0"></div>
+    <p class="cap2" id="mailnote" style="text-align:left;margin-top:12px"></p>
+    <div class="tabs" id="mailtabs" style="margin-top:8px"></div>
     <div class="mail" id="mailbody"></div>
   </div>
 
@@ -418,15 +457,15 @@ html[data-theme='dark'] .tabbtn.on{color:#00201D}
     <thead><tr><th>Email</th><th>Workflow</th><th>Style</th></tr></thead>
     <tbody>
       <tr><td><b>Guide delivery</b></td><td>1</td><td><span class="chip b">Branded</span></td></tr>
-      <tr><td><b>Follow up series</b> (3 emails)</td><td>1</td><td><span class="chip p">Plain text</span></td></tr>
+      <tr><td><b>Follow up series</b> (3 emails)</td><td>1</td><td><span class="chip p">Personal</span></td></tr>
       <tr><td><b>Appointment details</b></td><td>2</td><td><span class="chip b">Branded</span></td></tr>
-      <tr><td><b>Reminders</b> (1 day and 2 hours before)</td><td>2</td><td><span class="chip p">Plain text</span></td></tr>
+      <tr><td><b>Reschedule notice and reminders</b> (1 day and 2 hours before)</td><td>2</td><td><span class="chip p">Personal</span></td></tr>
       <tr><td><b>Thank you after the visit</b></td><td>3</td><td><span class="chip b">Branded</span></td></tr>
       <tr><td><b>Check in and review request</b></td><td>3</td><td><span class="chip b">Branded</span></td></tr>
-      <tr><td><b>Cancellation and no show emails</b></td><td>4</td><td><span class="chip p">Plain text</span></td></tr>
-      <tr><td><b>Missed visit follow up series</b> (3 emails)</td><td>4</td><td><span class="chip p">Plain text</span></td></tr>
+      <tr><td><b>Cancellation and no show emails</b> (standard and emergency)</td><td>4</td><td><span class="chip p">Personal</span></td></tr>
+      <tr><td><b>Missed visit follow up series</b> (3 emails)</td><td>4</td><td><span class="chip p">Personal</span></td></tr>
     </tbody></table></div>
-  <div class="note o rv"><span class="lab">The thinking</span><span><b>Design where attention matters, plain where trust matters.</b> A branded email stands out at the moments a lead is paying attention. A plain text email feels like it was written for them, which suits reminders and gentle follow up.</span></div>
+  <div class="note o rv"><span class="lab">The thinking</span><span><b>Design where attention matters, keep it personal where trust matters.</b> A branded email stands out at the moments a lead is paying attention. A personal, text-first email feels like it was written for them, which suits reminders and gentle follow up.</span></div>
 </div></section>
 
 <!-- WORKFLOWS -->
@@ -465,7 +504,7 @@ html[data-theme='dark'] .tabbtn.on{color:#00201D}
     <div class="hl rv"><span class="no">04</span><b>Twelve tags</b><span>Lead source, patient type, appointment status and outcome.</span></div>
     <div class="hl rv"><span class="no">05</span><b>Four connected workflows</b><span>Guide delivery, booking and reminders, after the visit, and cancellations.</span></div>
     <div class="hl rv"><span class="no">06</span><b>Conditional logic</b><span>Reschedules, patient types and emergency visits each take their own path.</span></div>
-    <div class="hl rv"><span class="no">07</span><b>Branded and personal emails</b><span>Designed emails for the key moments, plain text where it should feel personal.</span></div>
+    <div class="hl rv"><span class="no">07</span><b>Branded and personal emails</b><span>Designed emails for the key moments, simple, personal notes where trust matters.</span></div>
     <div class="hl rv"><span class="no">08</span><b>Team alerts</b><span>The clinic is told about new requests, bookings and status updates.</span></div>
   </div>
 </div></section>
@@ -510,12 +549,12 @@ function render(steps){
 }
 var WF=[
 {n:'Workflow 1',t:'Guide delivery and follow up',d:'From a form submission to a finished follow up sequence.',img:'wf1',
- facts:[['Trigger','The "Dental PDF Guide" form is submitted'],['Logic','Looks for an existing opportunity, then updates or creates it'],['Communication','A branded guide email, a team alert and three plain text follow up emails'],['Outcome','The lead gets the guide at once and is followed up for about 23 days, stopping the moment they book']],
+ facts:[['Trigger','The "Dental PDF Guide" form is submitted'],['Logic','Looks for an existing opportunity, then updates or creates it'],['Communication','A branded guide email, a team alert and three personal follow up emails'],['Outcome','The lead gets the guide at once and is followed up for about 23 days, stopping the moment they book']],
  flow:[{k:'trigger',t:'Form "Dental PDF Guide" is submitted'},{k:'tag',t:'Add tag lead-guide'},{k:'email',t:'Send the guide (branded email)'},{k:'notify',t:'Alert the team: new potential patient, guide request'},
  {k:'branch',t:'Does the person already have an opportunity?',b:[{l:'Yes',s:[{k:'crm',t:'Update opportunity: New Lead'}]},{l:'No',s:[{k:'crm',t:'Create opportunity: New Lead'}]}]},
- {k:'wait',t:'Wait 3 days'},{k:'email',t:'Follow up email 1 (plain text)'},{k:'wait',t:'Wait 5 days'},{k:'email',t:'Follow up email 2 (plain text)'},{k:'wait',t:'Wait 10 days'},{k:'email',t:'Follow up email 3 (plain text)'},{k:'wait',t:'Wait 5 days'},{k:'tag',t:'Add tag nurture-completed'},{k:'crm',t:'Move opportunity to Lead Nurture Completed'},{k:'goal',t:'Goal: if the lead gets the tag booked at any point, the sequence ends'}]},
+ {k:'wait',t:'Wait 3 days'},{k:'email',t:'Follow up email 1 (personal)'},{k:'wait',t:'Wait 5 days'},{k:'email',t:'Follow up email 2 (personal)'},{k:'wait',t:'Wait 10 days'},{k:'email',t:'Follow up email 3 (personal)'},{k:'wait',t:'Wait 5 days'},{k:'tag',t:'Add tag nurture-completed'},{k:'crm',t:'Move opportunity to Lead Nurture Completed'},{k:'goal',t:'Goal: if the lead gets the tag booked at any point, the sequence ends'}]},
 {n:'Workflow 2',t:'Booking, confirmation, reminders and reschedule',d:'The busiest workflow: it recognises the patient and keeps the visit on track.',img:'wf2',
- facts:[['Trigger','An appointment is confirmed'],['Logic','Reschedule or new booking, then new, returning or VIP patient'],['Communication','A branded appointment confirmation, two plain text reminders and team alerts'],['Outcome','Every booking is confirmed, tagged, tracked and reminded, and the team is told']],
+ facts:[['Trigger','An appointment is confirmed'],['Logic','Reschedule or new booking, then new, returning or VIP patient'],['Communication','A branded appointment confirmation, two personal reminders and team alerts'],['Outcome','Every booking is confirmed, tagged, tracked and reminded, and the team is told']],
  flow:[{k:'trigger',t:'Appointment status is Confirmed'},{k:'tag',t:'Remove tags lead-guide, nurture-completed and won'},{k:'tag',t:'Add tag booked'},
  {k:'branch',t:'Is this a reschedule?',b:[
   {l:'Reschedule',s:[{k:'tag',t:'Add tag rescheduled'},{k:'email',t:'Send the reschedule details'},{k:'notify',t:'Alert the team'},{k:'crm',t:'Update or create opportunity: Appointment Booked'}]},
@@ -524,22 +563,22 @@ var WF=[
      {l:'Already new',s:[{k:'tag',t:'Add tag returning-patient'},{k:'tag',t:'Remove tag new-patient'}]},
      {l:'Already returning',s:[{k:'tag',t:'Add tag vip-patient'},{k:'tag',t:'Remove tag returning-patient'}]}]},
     {k:'email',t:'Send the appointment details (branded email)'},{k:'notify',t:'Alert the team'},{k:'crm',t:'Update or create opportunity: Appointment Booked'}]}]},
- {k:'wait',t:'Wait until 1 day before the appointment'},{k:'email',t:'Reminder email (plain text)'},{k:'wait',t:'Wait until 2 hours before'},{k:'email',t:'Reminder email (plain text)'},{k:'wait',t:'Wait until the appointment time'},{k:'notify',t:'Remind the team to update the appointment status'},{k:'end',t:'End'}]},
+ {k:'wait',t:'Wait until 1 day before the appointment'},{k:'email',t:'Reminder email (personal)'},{k:'wait',t:'Wait until 2 hours before'},{k:'email',t:'Reminder email (personal)'},{k:'wait',t:'Wait until the appointment time'},{k:'notify',t:'Remind the team to update the appointment status'},{k:'end',t:'End'}]},
 {n:'Workflow 3',t:'After the visit: follow up and review request',d:'Closes the loop on a completed visit.',img:'wf3',
  facts:[['Trigger','Appointment status is set to Showed'],['Logic','Finds the opportunity from the booking, ends if none is found'],['Communication','A branded thank you after 1 hour, then a branded check in and review request after 1 day'],['Outcome','The visit is recorded correctly and the patient hears from the clinic the same day']],
  flow:[{k:'trigger',t:'Appointment status is Showed'},{k:'cond',t:'Remove the person from the booking workflow (stops reminders)'},{k:'tag',t:'Remove tags from the previous journey'},{k:'tag',t:'Add tag won'},
  {k:'branch',t:'Is the booking opportunity found?',b:[{l:'Yes',s:[{k:'crm',t:'Move opportunity to Appointment Completed'},{k:'wait',t:'Wait 1 hour'},{k:'email',t:'Thank you after the visit (branded email)'},{k:'wait',t:'Wait 1 day'},{k:'email',t:'Check in and review request (branded email)'}]},{l:'No',s:[{k:'end',t:'End'}]}]}]},
 {n:'Workflow 4',t:'Cancelled or no show, and follow up',d:'Recovers visits that did not go to plan, with separate handling for emergencies.',img:'wf4',
- facts:[['Triggers','Cancelled, No show, and the same two for the Emergency Dental Visit service'],['Logic','Which situation happened, then which patient type'],['Communication','Plain text cancellation or no show email, three plain text follow up emails and a team alert'],['Outcome','The record stays accurate and the patient is invited back over about 18 days']],
+ facts:[['Triggers','Cancelled, No show, and the same two for the Emergency Dental Visit service'],['Logic','Which situation happened, then which patient type'],['Communication','Personal cancellation or no show email, three personal follow up emails and a team alert'],['Outcome','The record stays accurate and the patient is invited back over about 18 days']],
  flow:[{k:'trigger',t:'Status set to Cancelled or No show (standard or emergency)'},{k:'cond',t:'Remove the person from the booking workflow (stops reminders)'},{k:'tag',t:'Remove tag booked'},
  {k:'branch',t:'Which situation?',b:[
-  {l:'Cancelled',s:[{k:'tag',t:'Add tag cancelled'},{k:'email',t:'Cancellation email (plain text)'}]},
-  {l:'No show',s:[{k:'tag',t:'Add tag no-show'},{k:'email',t:'No show email (plain text)'}]},
-  {l:'Emergency cancelled',s:[{k:'tag',t:'Add emergency cancelled tag'},{k:'email',t:'Emergency email (plain text)'}]},
-  {l:'Emergency no show',s:[{k:'tag',t:'Add emergency no show tag'},{k:'email',t:'Emergency email (plain text)'}]}]},
+  {l:'Cancelled',s:[{k:'tag',t:'Add tag cancelled'},{k:'email',t:'Cancellation email (personal)'}]},
+  {l:'No show',s:[{k:'tag',t:'Add tag no-show'},{k:'email',t:'No show email (personal)'}]},
+  {l:'Emergency cancelled',s:[{k:'tag',t:'Add emergency cancelled tag'},{k:'email',t:'Emergency email (personal)'}]},
+  {l:'Emergency no show',s:[{k:'tag',t:'Add emergency no show tag'},{k:'email',t:'Emergency email (personal)'}]}]},
  {k:'crm',t:'Move opportunity to Cancelled / No Show'},
  {k:'branch',t:'Patient type steps back one level',b:[{l:'VIP',s:[{k:'tag',t:'Becomes returning-patient'}]},{l:'Returning',s:[{k:'tag',t:'Becomes new-patient'}]},{l:'New',s:[{k:'tag',t:'Stays new-patient'}]}]},
- {k:'wait',t:'Wait 3 days'},{k:'email',t:'Follow up email (plain text)'},{k:'wait',t:'Wait 5 days'},{k:'email',t:'Follow up email (plain text)'},{k:'wait',t:'Wait 7 days'},{k:'email',t:'Follow up email (plain text)'},{k:'wait',t:'Wait 3 days'},{k:'notify',t:'Alert the team: follow up complete'},{k:'tag',t:'Add tag nurture-completed'},{k:'crm',t:'Move opportunity to Lead Nurture Completed'},{k:'goal',t:'Goal: if the patient rebooks (tag booked), the sequence ends'}]}
+ {k:'wait',t:'Wait 3 days'},{k:'email',t:'Follow up email (personal)'},{k:'wait',t:'Wait 5 days'},{k:'email',t:'Follow up email (personal)'},{k:'wait',t:'Wait 7 days'},{k:'email',t:'Follow up email (personal)'},{k:'wait',t:'Wait 3 days'},{k:'notify',t:'Alert the team: follow up complete'},{k:'tag',t:'Add tag nurture-completed'},{k:'crm',t:'Move opportunity to Lead Nurture Completed'},{k:'goal',t:'Goal: if the patient rebooks (tag booked), the sequence ends'}]}
 ];
 var host=document.getElementById('wfs');
 host.innerHTML=WF.map(function(w,i){
@@ -548,7 +587,7 @@ host.innerHTML=WF.map(function(w,i){
    '<p class="flowhead">The flow</p>'+render(w.flow)+
    '<button class="btn" data-zoom="'+w.img+'" data-title="'+w.n+' in GoHighLevel">View the real workflow screenshot &rarr;</button></div></details>';
 }).join('');
-var lg=[['trigger','#F27A21'],['cond','#6D5BD0'],['tag','#2F6FDE'],['email','#1E8E5A'],['notify','#C98A12'],['crm','#0E8FA3'],['wait','#8B91A3'],['goal','#C2427A']];
+var lg=[['trigger','#3F82B0'],['cond','#6D5BD0'],['tag','#C0743A'],['email','#1E8E5A'],['notify','#C98A12'],['crm','#0E8FA3'],['wait','#8B91A3'],['goal','#C2427A']];
 document.getElementById('legend').innerHTML=lg.map(function(x){return '<span><i style="background:'+x[1]+'"></i>'+LABEL[x[0]]+'</span>'}).join('');
 
 
@@ -560,18 +599,52 @@ document.getElementById('legend').innerHTML=lg.map(function(x){return '<span><i 
   function show(i){cur=i;img.src=IM['pdf'+i].src;main.setAttribute('data-zoom','pdf'+i);ct.textContent='Page '+i+' of '+n;[].slice.call(th.children).forEach(function(b,k){b.classList.toggle('on',k===i-1)})}
   show(1);
 })();
-/* plain text email tabs */
+/* personal email viewer */
 (function(){
-  var M=[
-   {tab:'Day 3',subj:'A quick reminder about your dental care',body:'<p>Hi [first name],</p><p>We hope you had a chance to look through our Dental Checkup Guide.</p><p>Regular dental visits can help identify common dental concerns early and keep your smile healthy. During a routine visit, your dental team can check your teeth and gums, answer your questions, and recommend care based on your needs.</p><p>If you haven&rsquo;t scheduled your visit yet, you can book a convenient appointment with Crownwell Dental Clinic.</p><p>Schedule Your Appointment:<br><a>Book Here</a></p>'},
-   {tab:'Day 8',subj:'When was your last dental checkup?',body:'<p>Hi [first name],</p><p>Just checking in. Have you had your dental checkup recently?</p><p>A routine dental visit can include a professional cleaning and examination to help maintain your oral health and identify common dental concerns. If you have been putting off your appointment, there&rsquo;s no need to wait until you have a dental problem.</p><p>You can also use your next visit to ask questions such as:</p><ul><li>What did you find during my examination?</li><li>Do I need any treatment?</li><li>Are there other treatment options?</li><li>What should I expect after treatment?</li><li>When should I schedule my next visit?</li></ul><p>Whenever you&rsquo;re ready, we&rsquo;re here to help.</p><p>Schedule Your Appointment:<br><a>Book Here</a></p>'},
-   {tab:'Day 18',subj:'We\'re here when you\'re ready',body:'<p>Hi [first name],</p><p>We wanted to send one last reminder about your dental care.</p><p>Whether you&rsquo;re due for a routine checkup, interested in improving your smile, or have a dental concern you&rsquo;d like to discuss, our team can help you understand your options.</p><p>And if you&rsquo;ve been experiencing significant or persistent tooth pain, swelling, a broken or knocked-out tooth, or another urgent dental concern, the Dental Checkup Guide recommends contacting a dental professional promptly.</p><p>Whenever you&rsquo;re ready, you can choose a time that works for you:<br><a>Book Here</a></p><p>We hope to see you soon!</p>'}
+  function ph(t){return '<span class="ph">['+t+']</span>'}
+  function det(head){return '<p class="ad"><b>Appointment Details</b><br>'+head+': '+ph('date, time, timezone')+'<br>Location: '+ph('clinic location')+'</p><p class="ad"><b>Service Details</b><br>&bull; '+ph('service')+' | '+ph('duration')+' | Price: '+ph('price')+'</p>'}
+  var HI='<p>Hi '+ph('first name')+',</p>';
+  var CTA1='<p>Schedule Your Appointment:<br><a>Book Here</a></p>';
+  var BOOK='<p>Booking Link: <a>Book Here</a></p>';
+  var G=[
+   {g:'Guide follow up',note:'Workflow 1 \u00b7 Starts after the Dental Checkup Guide is delivered. Three emails, each sent after a wait.',e:[
+    {tab:'Wait 3 days',when:'3 days after the guide',subj:'A quick reminder about your dental care',body:HI+'<p>We hope you had a chance to look through our Dental Checkup Guide.</p><p>Regular dental visits can help identify common dental concerns early and keep your smile healthy. During a routine visit, your dental team can check your teeth and gums, answer your questions, and recommend care based on your needs.</p><p>If you haven&rsquo;t scheduled your visit yet, you can book a convenient appointment with Crownwell Dental Clinic.</p>'+CTA1},
+    {tab:'Wait 5 days',when:'5 days after the first reminder',subj:'Just checking in &mdash; have you had your dental checkup recently?',body:HI+'<p>Just checking in &mdash; have you had your dental checkup recently?</p><p>A routine dental visit can include a professional cleaning and examination to help maintain your oral health and identify common dental concerns. If you have been putting off your appointment, there&rsquo;s no need to wait until you have a dental problem.</p><p>You can also use your next visit to ask questions such as:</p><ul><li>What did you find during my examination?</li><li>Do I need any treatment?</li><li>Are there other treatment options?</li><li>What should I expect after treatment?</li><li>When should I schedule my next visit?</li></ul><p>Whenever you&rsquo;re ready, we&rsquo;re here to help.</p>'+CTA1},
+    {tab:'Wait 10 days',when:'10 days after the second reminder',subj:'We wanted to send one last reminder about your dental care.',body:HI+'<p>We wanted to send one last reminder about your dental care.</p><p>Whether you&rsquo;re due for a routine checkup, interested in improving your smile, or have a dental concern you&rsquo;d like to discuss, our team can help you understand your options.</p><p>And if you&rsquo;ve been experiencing significant or persistent tooth pain, swelling, a broken or knocked-out tooth, or another urgent dental concern, the Dental Checkup Guide recommends contacting a dental professional promptly.</p><p>Whenever you&rsquo;re ready, you can choose a time that works for you:<br><a>Book Here</a></p><p>We hope to see you soon!</p>'}
+   ]},
+   {g:'Reschedule and reminders',note:'Workflow 2 \u00b7 Appointment details are pulled from the booking, so every email shows the right time, place and service.',e:[
+    {tab:'Rescheduled',when:'When an appointment is rescheduled',subj:'Dental Appointment Reschedule Request',body:HI+'<p>Your appointment has been rescheduled. Please find the updated details below:</p>'+det('New Date &amp; Time')+'<p>See you soon!</p>'},
+    {tab:'1 day before',when:'1 day before the appointment',subj:'Your Dental Appointment Is Tomorrow',body:HI+'<p>This is a friendly reminder about your upcoming dental appointment tomorrow.</p>'+det('Date &amp; Time')+'<p>We look forward to seeing you and taking care of your dental needs. If you need to reschedule or have any questions, please contact us at 650-431-2830.</p><p>See you tomorrow,</p>',nosig:'Crownwell Dental Clinic'},
+    {tab:'2 hours before',when:'2 hours before the appointment',subj:'Your appointment at Crownwell Dental Clinic is in 2 hours',body:HI+'<p>This is a quick reminder that your dental appointment is coming up in about 2 hours.</p>'+det('Date &amp; Time')+'<p>A few quick tips before you arrive:</p><ul><li>Please arrive 10 minutes early so we can get you checked in.</li><li>Bring a valid ID and your insurance card, if applicable.</li><li>Brush and floss before your visit if you can.</li></ul><p>If you have any questions, please contact us at 650-431-2830.</p><p>See you soon,</p>',nosig:'Crownwell Dental Clinic'}
+   ]},
+   {g:'Cancelled and no show',note:'Workflow 4 \u00b7 One email for each status, with a separate version for emergency appointments.',e:[
+    {tab:'Cancelled',when:'When the status changes to Cancelled',subj:'Your Dental Appointment Has Been Cancelled',body:HI+'<p>Your appointment with Crownwell Dental has been cancelled as requested.</p><p>If you would like to schedule a new appointment, you can choose an available date and time that works best for you.</p>'+BOOK+'<p>We look forward to helping you keep your smile healthy!</p>'},
+    {tab:'No show',when:'When the status changes to No Show',subj:'We Missed You at Your Dental Appointment',body:HI+'<p>We noticed that you weren&rsquo;t able to make it to your scheduled appointment with Crownwell Dental.</p><p>We understand that plans can change. If you&rsquo;d like to reschedule, you can choose a new appointment date and time that works best for you.</p>'+BOOK+'<p>We look forward to seeing you and helping you maintain a healthy smile!</p>'},
+    {tab:'Emergency cancelled',when:'Cancelled emergency appointment',subj:'Your Dental Appointment Has Been Cancelled',body:HI+'<p>Your emergency dental appointment with Crownwell Dental has been cancelled as requested.</p><p>If you&rsquo;re still experiencing dental pain, swelling, a broken tooth, or another urgent dental concern, please contact our dental team promptly to arrange a new appointment.</p><p>If you&rsquo;re experiencing severe swelling that affects breathing or swallowing, or a serious facial injury, seek emergency medical care immediately.</p><p>We look forward to helping you keep your smile healthy!</p>'},
+    {tab:'Emergency no show',when:'Emergency appointment marked No Show',subj:'We Missed You at Your Dental Appointment',body:HI+'<p>We noticed that you weren&rsquo;t able to make it to your scheduled appointment with Crownwell Dental.</p><p>We understand that plans can change. If you&rsquo;d like to reschedule, you can choose a new appointment date and time that works best for you.</p>'+BOOK+'<p>We look forward to helping you keep your smile healthy!</p>'}
+   ]},
+   {g:'Missed visit follow up',note:'Workflow 4 \u00b7 A three email nurture series that starts after a cancellation or no show.',e:[
+    {tab:'Wait 3 days',when:'3 days after the cancellation or no show email',subj:'Still Need to See the Dentist?',body:HI+'<p>Just checking in &mdash; we wanted to make sure you&rsquo;re still able to take care of your dental needs.</p><p>Whether you&rsquo;re due for a routine checkup, need a cleaning, or have a dental concern you&rsquo;ve been putting off, Crownwell Dental is here to help.</p><p>When you&rsquo;re ready, choose an appointment date and time that works best for you.</p><p>Book Your Appointment:<br><a>Book Here</a></p><p>We look forward to seeing you and helping you keep your smile healthy!</p>'},
+    {tab:'Wait 5 days',when:'5 days after the first follow up',subj:'Remember Your Smile',body:HI+'<p>Just checking in from Crownwell Dental.</p><p>If you originally booked because you had a concern with your teeth or gums &mdash; or simply wanted to stay on top of your dental health &mdash; we&rsquo;d be happy to help.</p><p>A routine visit can give your dental team a chance to examine your teeth and gums, discuss your concerns, and recommend the right next steps for your smile.</p><p>Ready to book an appointment again?<br><a>Book Here</a></p>'},
+    {tab:'Wait 7 days',when:'7 days after the second follow up',subj:'Leave the Door Open',body:HI+'<p>One last check-in from Crownwell Dental.</p><p>We know life gets busy, so we wanted to make sure you still have an opportunity to take care of your dental needs.</p><p>Whether you&rsquo;re due for a cleaning and checkup, interested in improving your smile, or have a dental concern you&rsquo;d like to discuss, you can choose a new appointment time here:</p><p>Book Your Appointment: <a>Book Here</a></p><p>If the timing isn&rsquo;t right, that&rsquo;s completely okay. Whenever you&rsquo;re ready, Crownwell Dental is here for you.</p>'}
+   ]}
   ];
-  var tabs=document.getElementById('mailtabs'),body=document.getElementById('mailbody');
-  function show(i){[].slice.call(tabs.children).forEach(function(b,k){b.classList.toggle('on',k===i)});var m=M[i];body.innerHTML='<div class="mh"><span>From: Crownwell Dental Clinic</span><b>'+m.subj.replace(/</g,'&lt;')+'</b></div>'+m.body+'<div class="sg"><b>Crownwell Dental Clinic</b><br><i>Healthy Smiles. Confident You.</i></div>'}
-  M.forEach(function(m,i){var b=document.createElement('button');b.className='tabbtn';b.textContent='Email '+(i+1)+' \u00b7 '+m.tab;b.addEventListener('click',function(){show(i)});tabs.appendChild(b)});
-  show(0);
+  var gt=document.getElementById('mailgroups'),tabs=document.getElementById('mailtabs'),body=document.getElementById('mailbody'),note=document.getElementById('mailnote'),cg=0,ce=0;
+  function render(){
+    var g=G[cg],m=g.e[ce];
+    [].slice.call(gt.children).forEach(function(b,k){b.classList.toggle('on',k===cg)});
+    [].slice.call(tabs.children).forEach(function(b,k){b.classList.toggle('on',k===ce)});
+    note.textContent=g.note;
+    body.innerHTML='<div class="mbar"><i></i><i></i><i></i><span>Inbox</span></div><div class="mh"><div class="av">C</div><div class="mi"><b>'+m.subj+'</b><span>Crownwell Dental Clinic &middot; to '+ph('first name')+'</span></div><span class="wh">'+m.when+'</span></div><div class="mb">'+m.body+'<div class="sg"><b>Crownwell Dental Clinic</b>'+(m.nosig?'':'<br><i>Healthy Smiles. Confident You.</i>')+'</div></div>';
+  }
+  function tabsFor(){
+    tabs.innerHTML='';
+    G[cg].e.forEach(function(m,i){var b=document.createElement('button');b.className='tabbtn';b.textContent=(i+1)+' \u00b7 '+m.tab;b.addEventListener('click',function(){ce=i;render()});tabs.appendChild(b)});
+  }
+  G.forEach(function(g,i){var b=document.createElement('button');b.className='tabbtn grp';b.textContent=g.g;b.addEventListener('click',function(){cg=i;ce=0;tabsFor();render()});gt.appendChild(b)});
+  tabsFor();render();
 })();
+
 
 /* reveal + nav highlight */
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
