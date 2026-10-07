@@ -196,6 +196,16 @@
   transition: transform var(--dur-med) var(--ease-spring), border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
 }
 .bento__card--build:hover .bento__build-arrow { transform: translate(2px, -2px); border-color: var(--orange); color: var(--orange-ink); }
+/* One featured build left: a full-width banner under the two work cards. */
+.bento__stack--solo { grid-template-rows: none; grid-column: 1 / -1; }
+@media (min-width: 1100px) {
+  .bento__stack--solo .bento__card--build { grid-template-columns: 54px minmax(0, 1fr) 32px; column-gap: 18px; padding: clamp(14px, 2vh, 22px) clamp(18px, 1.8vw, 30px); border-radius: 20px; }
+  .bento__stack--solo .bento__build-plate { width: 54px; height: 54px; border-radius: 15px; }
+  .bento__stack--solo .bento__kicker { font-size: 10.5px; }
+  .bento__stack--solo .bento__build-title { font-size: clamp(16px, 1.15vw, 20px); }
+  .bento__stack--solo .bento__build-desc { font-size: clamp(12px, 0.8vw, 14px); }
+  .bento__stack--solo .bento__build-arrow { width: 32px; height: 32px; }
+}
 @media (max-width: 1099px) {
   .bento__stack { grid-template-rows: none; }
   .bento__card--build { min-height: 84px; }
@@ -551,4 +561,62 @@
   .bento__doc-flow i { font-size: 11px; }
   .bento__kicker { font-size: 10.5px; }
   .bento__build-desc { font-size: 12px; }
+}
+
+/* ---------- Featured banner (one featured build left) ----------
+   Text on the left, a picture on the right that fades into the card. */
+.bento__feature {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  padding: 0;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.bento__feature-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  flex: 0 0 52%;
+  min-width: 0;
+  padding: clamp(18px, 2.4vh, 30px) clamp(18px, 2vw, 32px);
+}
+.bento__feature-top { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
+.bento__feature-tile {
+  display: grid; place-items: center;
+  width: 38px; height: 38px; border-radius: 11px;
+  background: var(--white); border: 1px solid var(--line-strong); color: var(--on-accent);
+}
+.bento__feature-tile img { display: block; width: 22px; height: 22px; object-fit: contain; }
+.bento__feature-kicker {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+}
+.bento__feature-title { font-size: clamp(20px, 1.8vw, 30px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.12; color: var(--navy); }
+.bento__feature-sub { font-size: clamp(14px, 1.05vw, 17px); color: var(--navy); }
+.bento__feature-desc {
+  font-size: clamp(12.5px, 0.85vw, 14.5px); line-height: 1.55; color: var(--muted); max-width: 46ch;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.bento__feature-cta {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 10px;
+  font-size: 15px; font-weight: 700; color: var(--orange-ink);
+  transition: gap var(--dur-fast) var(--ease-out);
+}
+.bento__feature:hover .bento__feature-cta { gap: 12px; }
+.bento__feature-media { position: absolute; top: 0; right: 0; bottom: 0; width: 56%; }
+.bento__feature-media img { width: 100%; height: 100%; object-fit: cover; object-position: left top; display: block; }
+.bento__feature-media::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, var(--paper) 0%, rgba(255,255,255,0) 38%);
+}
+@media (max-width: 1099px) {
+  .bento__feature { flex-direction: column; }
+  .bento__feature-body { flex: none; }
+  .bento__feature-media { position: relative; width: 100%; height: 170px; }
+  .bento__feature-media::after { background: linear-gradient(180deg, var(--paper) 0%, rgba(255,255,255,0) 40%); }
 }

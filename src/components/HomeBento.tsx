@@ -17,7 +17,7 @@ import {
 } from '@/components/slab'
 import { websiteFunnel, type Funnel } from '@/data/funnels'
 import { aiStack, type StackNode } from '@/data/ai-stack'
-import { sections, credentials } from '@/data/profile'
+import { sections, credentials, hidden } from '@/data/profile'
 
 /**
  * Home's showcase: one card per rail view, each an index of what that view
@@ -88,7 +88,7 @@ export default function HomeBento() {
 
   return (
     <nav
-      className={`bento${sections.testimonials ? '' : ' bento--no-quotes'}${sections.credentials ? '' : ' bento--no-creds'}`}
+      className={`bento${sections.testimonials ? '' : ' bento--no-quotes'}${sections.credentials ? '' : ' bento--no-creds'}${hidden.aiBuilds ? ' bento--no-ai' : ''}`}
       aria-label="Explore the portfolio"
     >
       {/* Projects: the funnel thumbnails drift upward on a looped track. */}
@@ -119,6 +119,7 @@ export default function HomeBento() {
 
       {/* AI builds: the systems from the Projects tree, two chip rows
           scrolling against each other. */}
+      {!hidden.aiBuilds && (
       <Link to="/projects" className="bento__card bento__card--ai">
         <CardHead Icon={Robot} title="AI Builds" desc="PLACEHOLDER - one line on your AI or side builds." />
         <div className="bento__media bento__chips" aria-hidden="true">
@@ -136,6 +137,7 @@ export default function HomeBento() {
           ))}
         </div>
       </Link>
+      )}
 
       {/* Credentials: the badge that matters, on its plate. Hidden while
           sections.credentials is false (src/data/profile.ts). */}

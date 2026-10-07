@@ -28,6 +28,13 @@
       "projects projects services services"
       "ai       ai       about    about";
   }
+  /* AI Builds hidden (hidden.aiBuilds in src/data/profile.ts): Projects across
+     the top, Services (left) and About (right) underneath. */
+  .bento:not(.bento--projects).bento--no-ai {
+    grid-template-areas:
+      "projects projects projects projects"
+      "services services about    about";
+  }
   .bento__card--projects { grid-area: projects; }
   .bento__card--ai       { grid-area: ai; }
   .bento__card--services { grid-area: services; }

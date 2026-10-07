@@ -7,6 +7,7 @@ import { websiteFunnel, type Funnel } from '@/data/funnels'
 import { mobileApps } from '@/data/projects'
 import { aiStack, type StackNode } from '@/data/ai-stack'
 import { useIsPhone } from '@/hooks/useMediaQuery'
+import { hidden } from '@/data/profile'
 
 /**
  * Projects, as one viewport in Home's bento language: a glass panel of six
@@ -28,6 +29,9 @@ type Project = {
   span?: 2
   /** Open Builds style: a small orange kicker above the title. */
   kicker?: string
+  /** Featured banner: a line under the title, and the picture on the right. */
+  subtitle?: string
+  image?: string
   /** Real marks of what the work was built in; replaces the icon tile. */
   logos?: string[]
   Preview: ComponentType
@@ -78,14 +82,14 @@ const APP_SHOTS = [
   '/placeholders/extension-2.jpg',
 ]
 
-const CROWNWELL_DESC = 'A patient journey system built in GoHighLevel: two funnels, a booking calendar, a five stage pipeline and four connected workflows that confirm, remind and follow up automatically. A portfolio demonstration, shown end to end.'
+const CROWNWELL_DESC = 'Two funnels, a booking calendar, a five stage pipeline and four connected workflows that confirm, remind and follow up automatically. A portfolio demonstration.'
 
 const BUILD_DESC = 'PLACEHOLDER - tell me what to put here: two lines on what this project is and the result it got.'
 
 /** The three featured builds: each its own card in the stack, each its own
  *  pop-up. */
 const BUILDS: Project[] = [
-  { id: 'ticketing', cat: 'work', index: '03', kicker: 'GoHighLevel automation', title: 'Crownwell Dental Clinic', desc: CROWNWELL_DESC, Icon: () => <Ticket size={20} weight="duotone" />, logos: [GHL], eyebrow: 'Featured build', Section: TicketingPanel, Preview: () => null },
+  { id: 'ticketing', cat: 'work', index: '03', kicker: 'GoHighLevel automation', title: 'Crownwell Dental Clinic', subtitle: 'Booking, reminders and follow-up automation', image: '/featured/crownwell-card.jpg', desc: CROWNWELL_DESC, Icon: () => <Ticket size={20} weight="duotone" />, logos: [GHL], eyebrow: 'Featured build', Section: TicketingPanel, Preview: () => null },
   { id: 'framework', cat: 'ai', index: '04', kicker: 'Placeholder category', title: 'Featured Project Two', desc: BUILD_DESC, Icon: () => <Robot size={20} weight="duotone" />, logos: [CLAUDE_CODE], eyebrow: 'Featured build', Section: FrameworkPanel, Preview: () => null },
   { id: 'workflow', cat: 'ai', index: '05', kicker: 'Placeholder category', title: 'Featured Project Three', desc: BUILD_DESC, Icon: () => <FlowArrow size={20} weight="duotone" />, logos: [CLAUDE_CODE, CODEX, HERMES], eyebrow: 'Featured build', Section: WorkflowPanel, Preview: () => null },
 ]
@@ -252,10 +256,17 @@ export default function ProjectsGrid() {
   const [open, setOpen] = useState<Project | null>(null)
   const phone = useIsPhone()
   const [cat, setCat] = useState<Cat | 'all'>('all')
-  const keep = (p: Project) => !phone || cat === 'all' || p.cat === cat
+  const shown = (p: Project) => !hidden.projects.includes(p.id)
+  const keep = (p: Project) => shown(p) && (!phone || cat === 'all' || p.cat === cat)
   const projects = PROJECTS.filter(keep)
   const builds = BUILDS.filter(keep)
+  const visibleCats = new Set([...PROJECTS, ...BUILDS].filter(shown).map((p) => p.cat))
+  const filters = FILTERS.filter((f) => f.key === 'all' || visibleCats.has(f.key))
   const triggerRef = useRef<HTMLElement | null>(null)
+  /* With the placeholder cards hidden, the two real work cards share the top
+     row at equal width and the featured build runs full width underneath. */
+  const pair = projects.length === 2 && builds.length > 0
+  const wide = (p: Project) => p.span === 2 || pair
 
   const show = useCallback((p: Project, el: HTMLElement) => {
     triggerRef.current = el
@@ -267,9 +278,38 @@ export default function ProjectsGrid() {
   }, [])
 
   const stack = builds.length > 0 ? (
-    <div className="bento__stack">
+    <div className={`bento__stack${builds.length === 1 ? ' bento__stack--solo' : ''}`}>
 
-        {builds.map((b) => (
+        {builds.map((b) => builds.length === 1 ? (
+          <button
+            key={b.id}
+            type="button"
+            className="bento__card bento__card--btn bento__feature"
+            onClick={(e) => show(b, e.currentTarget)}
+            aria-haspopup="dialog"
+          >
+            <span className="bento__feature-body">
+              <span className="bento__feature-top">
+                <span className="bento__feature-tile">
+                  {b.logos?.length ? <img src={b.logos[0]} alt="" width={22} height={22} /> : <b.Icon />}
+                </span>
+                <span className="bento__feature-kicker">Featured project</span>
+              </span>
+              <span className="bento__feature-title">{b.title}</span>
+              {b.subtitle && <span className="bento__feature-sub">{b.subtitle}</span>}
+              <span className="bento__feature-desc">{b.desc}</span>
+              <span className="bento__feature-cta">
+                View project
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </span>
+            </span>
+            {b.image && (
+              <span className="bento__feature-media" aria-hidden="true">
+                <img src={b.image} alt="" loading="lazy" decoding="async" />
+              </span>
+            )}
+          </button>
+        ) : (
 
           <button
 
@@ -326,7 +366,7 @@ export default function ProjectsGrid() {
 
       {phone && (
         <div className="pfilter" role="group" aria-label="Filter projects">
-          {FILTERS.map((f) => (
+          {filters.map((f) => (
             <button
               key={f.key}
               type="button"
@@ -352,7 +392,7 @@ export default function ProjectsGrid() {
             <Fragment key={p.id}>
             <button
               type="button"
-              className={`bento__card bento__card--btn${p.span === 2 ? ' bento__card--wide' : ''}`}
+              className={`bento__card bento__card--btn${wide(p) ? ' bento__card--wide' : ''}`}
               data-id={p.id}
               onClick={(e) => show(p, e.currentTarget)}
               aria-haspopup="dialog"

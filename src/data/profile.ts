@@ -91,6 +91,18 @@ export const profile: Profile = {
  * Home and the certificate cells on About; the list itself is `credentials`
  * below.)
  */
+/**
+ * Placeholder items hidden for now. Remove an id (or set aiBuilds to false)
+ * to bring it back. Nothing is deleted, only not shown.
+ *   Projects page ids: 'plan' (Sample Document), 'ai' (Your systems title
+ *   here), 'apps' (Apps and tools), 'framework' (Featured Project Two),
+ *   'workflow' (Featured Project Three).
+ */
+export const hidden = {
+  aiBuilds: true,
+  projects: ['plan', 'ai', 'apps', 'framework', 'workflow'] as string[],
+}
+
 export const sections = {
   showcase: false,
   testimonials: false,
