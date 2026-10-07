@@ -3,24 +3,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Figtree:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Brand palette: "Combo 04" - Cyprus + Sand.
-     Variable names are unchanged so every stylesheet keeps working.
-       --navy  = Cyprus (text, dark surfaces)   --cream = Sand (page)
-       --orange = the accent slot, now a brighter Cyprus green */
-  --navy:       #004741;   /* Cyprus - primary text, card surface, dark accents */
-  --navy-ink:   #002B27;   /* deep Cyprus - dark section base */
-  --cream:      #F0EDE4;   /* Sand - page bg */
+  /* Brand palette */
+  --navy:       #0B1E3F;   /* primary text, card surface, dark accents */
+  --navy-ink:   #060C1A;   /* matches shader dark base for .dark-section */
+  --cream:      #F4F4ED;   /* matches shader light base, page bg */
   --white:      #FFFFFF;
-  --orange:     #0A6B5F;   /* accent: CTA, accent bar, active dot (white text 6:1) */
-  --orange-hover: #1F8E7F; /* CTA hover state */
-  --orange-ink: #004741;   /* accent TEXT on light bg - Cyprus on Sand, ~9:1 */
-  --muted:      #4F6F6A;
-  --divider:    rgba(0, 71, 65, 0.14);
-  --success:    #2E9E6B;
-  --error:      #D9544F;
+  --orange:     #FF7A1A;   /* CTA, accent bar, active dot */
+  --orange-hover: #FFA155; /* CTA hover state */
+  --orange-ink: #B4490A;   /* accessible orange TEXT on light bg - 4.88:1 on cream, 5.39:1 on white (WCAG AA) */
+  --muted:      #5A6479;
+  --divider:    rgba(11, 30, 63, 0.12);
+  --success:    #2E9E6B;   /* form status ok - clears 4.5:1 on navy-ink */
+  --error:      #D9544F;   /* form status error - clears 4.5:1 on navy-ink */
 
-  --brands-chip-bg:     #F8F6EF;
-  --brands-chip-border: rgba(0, 71, 65, 0.12);
+  /* Brands section - neutral logo plate so client marks read as framed logos,
+     not site UI (esp. an orange logo vs the --orange accent) */
+  --brands-chip-bg:     #FBFBF7;                  /* cool near-white, lifts off cream */
+  --brands-chip-border: rgba(11, 30, 63, 0.10);   /* hairline frame on the logo medallion */
 
   /* Type */
   --font-display: 'Figtree', system-ui, -apple-system, sans-serif;
@@ -45,9 +44,9 @@
   --radius-circle: 50%;
 
   /* Shadows */
-  --shadow-soft: 0 20px 60px -20px rgba(0, 71, 65, 0.28);
-  --shadow-card: 0 40px 120px -30px rgba(0, 43, 39, 0.38);
-  --shadow-btn: 0 8px 24px -8px rgba(0, 71, 65, 0.3);
+  --shadow-soft: 0 20px 60px -20px rgba(11, 30, 63, 0.25);
+  --shadow-card: 0 40px 120px -30px rgba(6, 12, 26, 0.35);
+  --shadow-btn: 0 8px 24px -8px rgba(11, 30, 63, 0.25);
 
   /* Motion */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -93,6 +92,7 @@
 /* Sidebar name and card titles: plain Figtree bold */
 :root .rail__name { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; text-transform: none; }
 
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -103,26 +103,37 @@
 
 /* ============================================
    SHELL + THEME (rail redesign)
+   The page shell is fixed to the viewport: a left profile rail plus one
+   scrolling panel. --rail-w is 0 until the rail actually renders at 1100px,
+   so every `calc(100% - var(--rail-w))` stays correct on mobile.
    ============================================ */
 :root {
   --rail-w: 0px;
   --panel-x: clamp(20px, 4vw, 64px);
 
-  --paper:      #F8F6EF;   /* raised card on Sand */
-  --line:       rgba(0, 71, 65, 0.16);
-  --line-strong:rgba(0, 71, 65, 0.30);
-  --tint:       rgba(0, 71, 65, 0.05);
-  --tint-strong:rgba(0, 71, 65, 0.09);
-  --glass:      rgba(248, 246, 239, 0.72);
-  /* Light plate for brand logos - constant in both themes */
-  --plate:      #F0EDE4;
-  /* Opaque dark ground for the white-on-dark sections; same in both themes */
-  --panel-dark: #002B27;
+  /* Surfaces. These are the tokens that had to exist for the theme to flip
+     without rewriting the section stylesheets. */
+  --paper:      #FBFBF7;   /* raised card on cream */
+  --line:       rgba(11, 30, 63, 0.14);
+  --line-strong:rgba(11, 30, 63, 0.28);
+  --tint:       rgba(11, 30, 63, 0.05);
+  --tint-strong:rgba(11, 30, 63, 0.09);
+  --glass:      rgba(251, 251, 247, 0.72);
+  /* A plate that stays light in BOTH themes. Brand marks are external
+     identifiers and need a constant backdrop to read against. */
+  --plate:      #F4F4ED;
+  /* The opaque fill for sections that were written as white-on-navy back when
+     the shader inverted on scroll. It no longer does, so they carry their own
+     ground. Same navy in both themes: their type is light either way. */
+  --panel-dark: #060C1A;
 
-  /* Verified badge - platform blue, not brand */
+  /* Verified badge - Facebook blue, not the site accent. It is a platform
+     signal, not brand furniture, so it does not follow --orange. */
   --verified:   #0866FF;
 
-  --plate-ink:  #004741;
+  /* Ink for anything sitting on --plate. Both are constant across themes:
+     a brand mark on a light plate must not invert with the page. */
+  --plate-ink:  #0B1E3F;
 }
 
 @media (min-width: 1100px) {
@@ -130,50 +141,27 @@
 }
 
 /* ---------- Dark theme ----------
-   Deep Cyprus ground, Sand ink, mint accent. */
+   Redefined at the root, not per component: every existing rule keeps reading
+   --cream (page), --navy (ink), --white (card surface) and flips with it.
+   Orange stays the single accent in both modes. */
 [data-theme='dark'] {
-  --cream:        #00201D;
-  --paper:        #00302B;
-  --white:        #003832;
-  --navy:         #F0EDE4;
-  --navy-ink:     #001512;
-  --muted:        rgba(240, 237, 228, 0.62);
-  --divider:      rgba(240, 237, 228, 0.12);
-  --line:         rgba(240, 237, 228, 0.10);
-  --line-strong:  rgba(240, 237, 228, 0.22);
-  --tint:         rgba(240, 237, 228, 0.05);
-  --tint-strong:  rgba(240, 237, 228, 0.09);
-  --glass:        rgba(0, 48, 43, 0.72);
-  --orange:       #5FD3B8;
-  --orange-hover: #8AE3CD;
-  --orange-ink:   #7FE0C6;
-  --panel-dark:   #00302B;
-  --brands-chip-bg:     #F0EDE4;
-  --brands-chip-border: rgba(240, 237, 228, 0.16);
+  --cream:        #070B14;
+  --paper:        #0B1120;
+  --white:        #0E1626;
+  --navy:         #EDF0F6;
+  --navy-ink:     #04070F;
+  --muted:        rgba(237, 240, 246, 0.60);
+  --divider:      rgba(255, 255, 255, 0.10);
+  --line:         rgba(255, 255, 255, 0.09);
+  --line-strong:  rgba(255, 255, 255, 0.20);
+  --tint:         rgba(255, 255, 255, 0.05);
+  --tint-strong:  rgba(255, 255, 255, 0.09);
+  --glass:        rgba(14, 22, 38, 0.72);
+  --orange-ink:   #FF9A4D;
+  --panel-dark:   #0B1120;
+  --brands-chip-bg:     #F4F4ED;
+  --brands-chip-border: rgba(255, 255, 255, 0.14);
   --shadow-soft:  0 20px 60px -20px rgba(0, 0, 0, 0.75);
   --shadow-card:  0 40px 120px -30px rgba(0, 0, 0, 0.85);
   --shadow-btn:   0 8px 24px -8px rgba(0, 0, 0, 0.7);
-}
-
-/* ---------- Home plate ----------
-   The template tints this panel blue toward the right. Swapped for a Sand to
-   pale-green sweep so nothing on the page leaves the palette. Selectors are
-   one step more specific than home.css / apple.css so this file wins. */
-:root .home__glass {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 38%),
-    linear-gradient(100deg,
-      rgba(250, 248, 242, 0.97) 0%,
-      rgba(248, 246, 239, 0.94) 45%,
-      rgba(226, 236, 228, 0.95) 78%,
-      rgba(207, 224, 214, 0.96) 100%);
-}
-:root[data-theme='dark'] .home__glass {
-  background:
-    linear-gradient(180deg, rgba(240, 237, 228, 0.05), rgba(240, 237, 228, 0) 38%),
-    linear-gradient(100deg,
-      rgba(0, 40, 36, 0.96) 0%,
-      rgba(0, 46, 41, 0.95) 45%,
-      rgba(0, 62, 55, 0.94) 78%,
-      rgba(0, 82, 72, 0.93) 100%);
 }

@@ -17,6 +17,8 @@ import * as THREE from 'three'
  * drop-in replacement at the App.tsx import site.
  */
 
+// 3D simplex noise: Copyright (c) 2011 Ashima Arts / Ian McEwan. MIT License.
+// https://github.com/ashima/webgl-noise - this block stays MIT, not PolyForm.
 const noiseGLSL = `
   vec3 mod289(vec3 x){return x-floor(x*(1./289.))*289.;}
   vec4 mod289(vec4 x){return x-floor(x*(1./289.))*289.;}

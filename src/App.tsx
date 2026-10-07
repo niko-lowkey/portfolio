@@ -1,4 +1,4 @@
-import { Suspense, useState, useEffect, useLayoutEffect, useRef } from 'react'
+import { lazy, Suspense, useState, useEffect, useLayoutEffect, useRef } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import TabBar from '@/components/TabBar'
 import QuickMenu from '@/components/QuickMenu'
@@ -6,14 +6,17 @@ import Rail from '@/components/Rail'
 import IntroOverlay from '@/components/IntroOverlay'
 import CursorRing from '@/components/CursorRing'
 import AccessMenu from '@/components/AccessMenu'
-import VideoBackground from '@/components/VideoBackground'
 import { motionReduced } from '@/lib/a11y'
 import { useLenis, SCROLLER_ID } from '@/hooks/useLenis'
 import { useIsPhone } from '@/hooks/useMediaQuery'
 import { getPerfTier, watchFrameHealth, PERF_TIER_EVENT } from '@/lib/perf'
 
-// The page background is a looping video (VideoBackground). Low-perf and
-// reduced-motion visitors fall back to the cream colour / the poster frame.
+// Lazy-load HeroCanvas so the 118KB Three.js bundle is fetched only
+// when actually needed. Mobile + reduced-motion users skip the import
+// entirely - the .hero-canvas CSS fallback (background:var(--cream))
+// handles the visual baseline. PageSpeed showed Three.js had 76.6 KiB
+// of unused JS; not loading it at all on mobile is the cleaner fix.
+const HeroCanvas = lazy(() => import('@/components/HeroCanvasV2'))
 
 /**
  * The shell. It owns everything that outlives a route change: the contour
@@ -55,7 +58,7 @@ export default function App() {
   // The page measures its own frame health once the intro clears and steps
   // the design down if it cannot hold it - see lib/perf.ts. `low` is the tier
   // where the shader itself has to go.
-  const [perfTier, setPerfTier] = useState(getPerfTier)
+  const [, setPerfTier] = useState(getPerfTier)
   useEffect(() => {
     const onTier = (e: Event) => setPerfTier((e as CustomEvent).detail)
     window.addEventListener(PERF_TIER_EVENT, onTier)
@@ -94,8 +97,10 @@ export default function App() {
       <IntroOverlay />
       <CursorRing />
       <a href={`#${SCROLLER_ID}`} className="skip-link">Skip to main content</a>
-      {shouldLoadCanvas && perfTier !== 'low' && (
-        <VideoBackground />
+      {shouldLoadCanvas && (
+        <Suspense fallback={null}>
+          <HeroCanvas />
+        </Suspense>
       )}
       {phone && pathname !== '/' && <QuickMenu className="qmenu--float" />}
       <div className="shell">

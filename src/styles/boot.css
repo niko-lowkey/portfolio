@@ -107,9 +107,9 @@
   stroke-linecap: round;
   opacity: 0;
 }
-/* The loading line is blue (it was the theme's green accent). */
-.boot { --boot-line: #2563EB; --boot-line-glow: 37, 99, 235; }
-[data-theme='dark'] .boot { --boot-line: #60A5FA; --boot-line-glow: 96, 165, 250; }
+/* The loading line follows the theme accent (orange). */
+.boot { --boot-line: var(--orange); --boot-line-glow: 255, 122, 26; }
+[data-theme='dark'] .boot { --boot-line: var(--orange); --boot-line-glow: 255, 122, 26; }
 .boot__cable--live {
   stroke: var(--boot-line);
   opacity: 1;
