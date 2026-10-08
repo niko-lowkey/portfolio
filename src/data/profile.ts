@@ -51,7 +51,7 @@ export const profile: Profile = {
   name: 'Angelo Alob',
   firstName: 'Angelo',
   handle: '@angeloalob',
-  role: 'PLACEHOLDER - your title',
+  role: 'GHL Specialist (CRM Automation, Funnel & Website Builder)',
   avatarSrc: '/avatar.png',
   aboutPortraitSrc: '/about/portrait.png',
   verifiedLabel: 'PLACEHOLDER - what the tick means (e.g. a certification)',

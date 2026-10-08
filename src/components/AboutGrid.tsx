@@ -14,20 +14,14 @@ import { profile } from '@/data/profile'
  * visual. Swap the marks below for your own (any square SVG/PNG in public/).
  */
 
-const N8N = { src: '/icons/ai/n8n.svg', name: 'n8n' }
+const GHL = { src: '/icons/gohighlevel.png', name: 'GoHighLevel' }
+const MAKE = { src: '/icons/make.png', name: 'Make.com' }
 const ZAPIER = { src: '/icons/ai/zapier.svg', name: 'Zapier' }
-const DOCKER = { src: '/icons/ai/docker.svg', name: 'Docker' }
 const CLAUDE = { src: '/icons/ai/claude-color.svg', name: 'Claude' }
-const CODEX = { src: '/icons/ai/codex.svg', name: 'Codex' }
-const GLM = { src: '/icons/ai/zhipu.svg', name: 'GLM' }
-const QWEN = { src: '/icons/ai/qwen.svg', name: 'Qwen' }
-const HERMES = { src: '/icons/ai/hermes.svg', name: 'Hermes' }
-const NAMECHEAP = { src: '/icons/ai/namecheap.svg', name: 'Namecheap' }
-const CLOUDFLARE = { src: '/icons/ai/cloudflare.svg', name: 'Cloudflare' }
-const GITHUB = { src: '/icons/ai/github.svg', name: 'GitHub' }
+const OPENAI = { src: '/icons/openai.svg', name: 'ChatGPT' }
 const GWS = { src: '/icons/googleworkspace.svg', name: 'Google Workspace' }
+const APPS_SCRIPT = { src: '/icons/googleappsscript.svg', name: 'Google Apps Script' }
 const SLACK = { src: '/icons/ai/slack-color.svg', name: 'Slack' }
-const FIREFLIES = { src: '/icons/ai/fireflies.png', name: 'Fireflies' }
 
 type Capability = {
   index: string
@@ -38,23 +32,23 @@ type Capability = {
 const CAPABILITIES: Capability[] = [
   {
     index: '01',
-    title: 'Your role 1',
-    marks: [N8N, ZAPIER, DOCKER],
+    title: 'GHL CRM & Automation',
+    marks: [GHL, MAKE, ZAPIER],
   },
   {
     index: '02',
-    title: 'Your role 2',
-    marks: [CLAUDE, CODEX, GLM, QWEN, HERMES],
+    title: 'Funnel Builder',
+    marks: [GHL, CLAUDE, OPENAI],
   },
   {
     index: '03',
-    title: 'Your role 3',
-    marks: [CLAUDE, CODEX, NAMECHEAP, CLOUDFLARE, GITHUB],
+    title: 'Website Builder',
+    marks: [GHL, CLAUDE],
   },
   {
     index: '04',
-    title: 'Your role 4',
-    marks: [GWS, SLACK, FIREFLIES],
+    title: 'Ops & Admin Support',
+    marks: [GWS, APPS_SCRIPT, SLACK],
   },
 ]
 

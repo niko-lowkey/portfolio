@@ -196,7 +196,7 @@
   transition: transform var(--dur-med) var(--ease-spring), border-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
 }
 .bento__card--build:hover .bento__build-arrow { transform: translate(2px, -2px); border-color: var(--orange); color: var(--orange-ink); }
-/* One featured build left: a full-width banner under the two work cards. */
+/* One featured build left: a full-width banner above the two work cards. */
 .bento__stack--solo { grid-template-rows: none; grid-column: 1 / -1; }
 @media (min-width: 1100px) {
   .bento__stack--solo .bento__card--build { grid-template-columns: 54px minmax(0, 1fr) 32px; column-gap: 18px; padding: clamp(14px, 2vh, 22px) clamp(18px, 1.8vw, 30px); border-radius: 20px; }

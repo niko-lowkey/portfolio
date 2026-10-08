@@ -263,8 +263,8 @@ export default function ProjectsGrid() {
   const visibleCats = new Set([...PROJECTS, ...BUILDS].filter(shown).map((p) => p.cat))
   const filters = FILTERS.filter((f) => f.key === 'all' || visibleCats.has(f.key))
   const triggerRef = useRef<HTMLElement | null>(null)
-  /* With the placeholder cards hidden, the two real work cards share the top
-     row at equal width and the featured build runs full width underneath. */
+  /* With the placeholder cards hidden, the featured build runs full width on top
+     and the two real work cards share the row underneath at equal width. */
   const pair = projects.length === 2 && builds.length > 0
   const wide = (p: Project) => p.span === 2 || pair
 
@@ -388,6 +388,7 @@ export default function ProjectsGrid() {
           Click a card to open it
         </span>
         <div className="bento bento--projects">
+          {stack}
           {projects.map((p) => (
             <Fragment key={p.id}>
             <button
@@ -405,10 +406,8 @@ export default function ProjectsGrid() {
               </span>
               <p.Preview />
             </button>
-            {p.id === 'plan' && stack}
             </Fragment>
           ))}
-          {!projects.some((p) => p.id === 'plan') && stack}
         </div>
       </div>
 

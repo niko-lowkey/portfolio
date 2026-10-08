@@ -27,7 +27,7 @@
   color: var(--cream);
   border: 1px solid color-mix(in srgb, var(--cream) 14%, transparent);
   border-radius: var(--radius-circle);
-  box-shadow: 0 16px 38px -16px rgba(18,29,38, 0.6);
+  box-shadow: 0 16px 38px -16px rgba(35,35,35, 0.6);
   cursor: pointer;
   transition:
     transform var(--dur-med) var(--ease-spring),
@@ -36,7 +36,7 @@
 @media (hover: hover) and (pointer: fine) {
   .a11y__button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 22px 48px -18px rgba(18,29,38, 0.7);
+    box-shadow: 0 22px 48px -18px rgba(35,35,35, 0.7);
   }
 }
 .a11y__button:focus-visible,
@@ -62,7 +62,7 @@
   color: var(--cream);
   border: 1px solid color-mix(in srgb, var(--cream) 14%, transparent);
   border-radius: 18px;
-  box-shadow: 0 30px 60px -20px rgba(18,29,38, 0.7);
+  box-shadow: 0 30px 60px -20px rgba(35,35,35, 0.7);
   opacity: 0;
   transform: translateY(8px) scale(0.98);
   transform-origin: bottom left;
@@ -220,17 +220,17 @@
 :root[data-a11y-text='xl'] .shell__panel > * { zoom: 1.25; }
 :root[data-a11y-text] .shell__panel[data-fixed='true'] { overflow-y: auto; }
 :root[data-a11y-text] .home__showcase > .bento { height: auto; }
-
+  
 /* High contrast: the muted grey climbs to near-ink and hairlines darken. */
 :root[data-a11y-contrast='true'] {
   --muted: #2A3550;
-  --line: rgba(27,43,56, 0.4);
+  --line: rgba(46,46,46, 0.4);
   --orange-ink: #9A3D06;
 }
 :root[data-a11y-contrast='true'][data-theme='dark'] {
   --muted: rgba(237, 240, 246, 0.88);
   --line: rgba(255, 255, 255, 0.3);
-  --orange-ink: rgba(var(--accent-rgb),0.4);
+  --orange-ink: #FFF98F;
 }
 
 /* Reduce motion: every animation and transition stops; drifting tracks hold. */

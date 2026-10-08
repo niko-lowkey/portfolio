@@ -1,7 +1,7 @@
 /* ============================================
    SERVICES - one glass sheet
    Head, then the glass with three bands: the three-step method on a dark plate,
-   the five service cards with their marks, and the booking workflow scaled
+   the four service cards with their marks, and the booking workflow scaled
    below. The page scrolls: every card shows all of its bullets.
    ============================================ */
 /* The workflow section carries data-reveal for the scrolling views; nothing
@@ -34,7 +34,7 @@
   --ink-eyebrow: var(--orange-ink);
   position: relative;
   display: grid;
-  grid-template-columns: minmax(200px, 0.7fr) minmax(0, 2.6fr);
+  grid-template-columns: minmax(min-content, 0.7fr) minmax(0, 2.6fr);
   gap: clamp(18px, 2vw, 36px);
   padding: clamp(14px, 1.8vh, 20px) clamp(16px, 1.6vw, 24px);
   border-radius: 20px;
@@ -88,6 +88,11 @@
   color: var(--ink);
 }
 .sgrid__method-title span { color: var(--ink-muted); font-weight: 600; }
+/* Keep each line whole ("Capture. Connect. Convert.") on desktop; the left
+   column grows to fit it. Stacked layouts below 1100px can wrap freely. */
+@media (min-width: 1100px) {
+  .sgrid__method-title { white-space: nowrap; }
+}
 .sgrid__method-sub {
   max-width: 34ch;
   font-size: clamp(12.5px, 0.8vw, 14px);
@@ -228,14 +233,22 @@
   font-size: clamp(12px, 0.8vw, 14px);
   color: var(--muted);
 }
+/* Four equal cards that span the whole sheet. The extra .sgrid prefix beats
+   the base .bento rule (4 columns x 2 fixed rows) whatever the file order. */
 @media (min-width: 1100px) {
-  .sgrid__services {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+  .sgrid .sgrid__services {
+    width: 100%;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-template-rows: none;
+    grid-auto-rows: auto;
+    align-items: stretch;
   }
 }
+@media (min-width: 640px) and (max-width: 1099px) {
+  .sgrid .sgrid__services { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; }
+}
 .sgrid__service { list-style: none; }
-/* Every row lines up across the five cards: the description and each bullet
+/* Every row lines up across the four cards: the description and each bullet
    reserve two lines whether they need them or not. */
 .sgrid__service .bento__desc { min-height: calc(2 * 1.4em); }
 .sgrid__service-top {

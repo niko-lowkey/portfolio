@@ -11,8 +11,7 @@ import {
   FunnelSimple,
   Gear,
   AddressBook,
-  Globe,
-  AppWindow,
+  ShoppingCart,
   SealCheck,
 } from '@/components/slab'
 import { websiteFunnel, type Funnel } from '@/data/funnels'
@@ -38,11 +37,10 @@ const REAL_PAGES = websiteFunnel.filter((f) => !f.file.startsWith('placeholder-'
 const PROJECT_SHOTS = (REAL_PAGES.length ? REAL_PAGES : websiteFunnel).slice(0, 4)
 
 const OFFERS = [
-  { Icon: FunnelSimple, title: 'Service One', note: 'PLACEHOLDER one-liner' },
-  { Icon: Gear, title: 'Service Two', note: 'PLACEHOLDER one-liner' },
-  { Icon: AddressBook, title: 'Service Three', note: 'PLACEHOLDER one-liner' },
-  { Icon: Globe, title: 'Service Four', note: 'PLACEHOLDER one-liner' },
-  { Icon: AppWindow, title: 'Service Five', note: 'PLACEHOLDER one-liner' },
+  { Icon: FunnelSimple, title: 'AI-Assisted Funnels', note: 'Funnels designed to turn visitors into leads.' },
+  { Icon: Gear, title: 'GHL Automation', note: 'Follow-up that runs on its own.' },
+  { Icon: AddressBook, title: 'GHL CRM Setup', note: 'A CRM built around your business.' },
+  { Icon: ShoppingCart, title: 'GHL Ecommerce', note: 'Turn your GHL account into a selling system.' },
 ] as const
 
 const CLIENTS = [
@@ -166,9 +164,9 @@ export default function HomeBento() {
         </Link>
       )}
 
-      {/* Services: the five offers as a compact index. */}
+      {/* Services: the four offers as a compact index. */}
       <Link to="/services" className="bento__card bento__card--services">
-        <CardHead Icon={Stack} title="Services" desc="PLACEHOLDER - what you offer, and to whom." />
+        <CardHead Icon={Stack} title="Services" desc="GoHighLevel systems built for your business." />
         <ul className="bento__media bento__offers" role="list">
           {OFFERS.map(({ Icon, title, note }, i) => (
             <li key={title} className="bento__offer" style={{ '--i': i } as React.CSSProperties}>
