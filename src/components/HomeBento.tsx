@@ -17,7 +17,7 @@ import {
 } from '@/components/slab'
 import { websiteFunnel, type Funnel } from '@/data/funnels'
 import { aiStack, type StackNode } from '@/data/ai-stack'
-import { sections, credentials, hidden } from '@/data/profile'
+import { sections, credentials } from '@/data/profile'
 
 /**
  * Home's showcase: one card per rail view, each an index of what that view
@@ -59,6 +59,10 @@ const leaves = (n: StackNode): StackNode[] =>
   n.children?.length ? n.children.flatMap(leaves) : [n]
 const AI_BUILDS = leaves(aiStack)
 
+// Home shows Projects on the left and Services + About on the right. Flip this
+// back to true to bring the AI Builds card back (it needs a grid area again).
+const SHOW_AI_BUILDS = false
+
 function CardHead({
   Icon,
   title,
@@ -88,7 +92,7 @@ export default function HomeBento() {
 
   return (
     <nav
-      className={`bento${sections.testimonials ? '' : ' bento--no-quotes'}${sections.credentials ? '' : ' bento--no-creds'}${hidden.aiBuilds ? ' bento--no-ai' : ''}`}
+      className={`bento${sections.testimonials ? '' : ' bento--no-quotes'}${sections.credentials ? '' : ' bento--no-creds'}`}
       aria-label="Explore the portfolio"
     >
       {/* Projects: the funnel thumbnails drift upward on a looped track. */}
@@ -117,26 +121,28 @@ export default function HomeBento() {
         </div>
       </Link>
 
-      {/* AI builds: the systems from the Projects tree, two chip rows
-          scrolling against each other. */}
-      {!hidden.aiBuilds && (
-      <Link to="/projects" className="bento__card bento__card--ai">
-        <CardHead Icon={Robot} title="AI Builds" desc="PLACEHOLDER - one line on your AI or side builds." />
-        <div className="bento__media bento__chips" aria-hidden="true">
-          {toolRows.map((row, r) => (
-            <div key={r} className="bento__chip-row" data-dir={r ? 'right' : 'left'}>
-              <div className="bento__chip-track">
-                {[...row, ...row].map((n, i) => (
-                  <span key={`${n.id}-${i}`} className="bento__chip" data-status={n.status}>
-                    <n.Icon size={15} weight="duotone" />
-                    {n.name}
-                  </span>
-                ))}
+      {SHOW_AI_BUILDS && (
+        <>
+        {/* AI builds: the systems from the Projects tree, two chip rows
+            scrolling against each other. */}
+        <Link to="/projects" className="bento__card bento__card--ai">
+          <CardHead Icon={Robot} title="AI Builds" desc="PLACEHOLDER - one line on your AI or side builds." />
+          <div className="bento__media bento__chips" aria-hidden="true">
+            {toolRows.map((row, r) => (
+              <div key={r} className="bento__chip-row" data-dir={r ? 'right' : 'left'}>
+                <div className="bento__chip-track">
+                  {[...row, ...row].map((n, i) => (
+                    <span key={`${n.id}-${i}`} className="bento__chip" data-status={n.status}>
+                      <n.Icon size={15} weight="duotone" />
+                      {n.name}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </Link>
+            ))}
+          </div>
+        </Link>
+        </>
       )}
 
       {/* Credentials: the badge that matters, on its plate. Hidden while

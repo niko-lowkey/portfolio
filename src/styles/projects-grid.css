@@ -620,3 +620,17 @@
   .bento__feature-media { position: relative; width: 100%; height: 170px; }
   .bento__feature-media::after { background: linear-gradient(180deg, var(--paper) 0%, rgba(255,255,255,0) 40%); }
 }
+
+/* Funnels and sites card: bigger fan of page thumbnails, less empty space.
+   Sized from the fan's own width (cqw) and capped by viewport height, so it
+   fills its half of the card without overflowing a short one. */
+.bento--projects .bento__card[data-id='funnels'] .bento__fan { container-type: inline-size; align-self: stretch; min-height: 0; }
+.bento--projects .bento__card[data-id='funnels'] .bento__photo {
+  width: min(56cqw, 21vh, 230px);
+  min-width: 110px;
+  border-radius: 14px;
+  transform: rotate(calc((var(--i) - 1) * 8deg)) translateX(calc((var(--i) - 1) * 15cqw));
+}
+.bento--projects .bento__card[data-id='funnels']:hover .bento__photo {
+  transform: rotate(calc((var(--i) - 1) * 12deg)) translateX(calc((var(--i) - 1) * 20cqw)) translateY(-6px);
+}
