@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { SealCheck, CaretRight, Play, Stack, Coffee } from '@/components/slab'
+import { SealCheck, CaretRight, Play, Coffee } from '@/components/slab'
 import { profile, sections } from '@/data/profile'
 import QuickMenu from './QuickMenu'
 
@@ -47,18 +47,14 @@ export function HomeStats() {
 }
 
 const ALL_TILES = [
-  { n: '01', label: 'Projects', to: '/projects', title: 'PLACEHOLDER - projects headline', desc: 'Tell me what to put here.', img: '/placeholders/project-1.jpg' },
-  { n: '02', label: 'Services', to: '/services', title: 'GoHighLevel Systems Built for Your Business', desc: 'Automation, CRM, funnels, websites, and e-commerce.', Icon: Stack },
-  { n: '03', label: 'Showcase', to: '/showcase', title: 'PLACEHOLDER - your flagship', desc: 'Tell me what to put here.', Icon: Coffee, accent: true },
-  { n: '04', label: 'Testimonials', to: '/testimonials', title: 'PLACEHOLDER - testimonials headline', desc: 'Tell me what to put here.', img: '/placeholders/testimonial-1.jpg' },
-  { n: '05', label: 'About', to: '/about', title: `Hi, I'm ${profile.firstName}.`, desc: 'The person behind the systems', img: profile.avatarSrc },
+  { label: 'Showcase', to: '/showcase', title: 'PLACEHOLDER - your flagship', desc: 'Tell me what to put here.', Icon: Coffee, accent: true },
+  { label: 'Featured Project 1', to: '/projects', title: 'Crownwell Dental Clinic', desc: 'Booking, reminders and follow-up automation.', img: '/featured/crownwell-card.jpg' },
+  { label: 'Automations', to: '/projects', title: 'GoHighLevel Workflows', desc: 'Real screenshots from the workflows I build.', img: '/automations/workflow-1.jpg' },
+  { label: 'Services', to: '/services', title: 'GoHighLevel Systems Built for Your Business', desc: 'Automation, CRM, funnels, websites, and e-commerce.', img: '/icons/gohighlevel.png', logo: true },
+  { label: 'About', to: '/about', title: `Hi, I'm ${profile.firstName}.`, desc: 'The person behind the systems', img: '/about/avatar-illustration.png', avatar: true },
 ] as const
 
-const TILES = ALL_TILES.filter(
-  (t) =>
-    (t.to !== '/showcase' || sections.showcase) &&
-    (t.to !== '/testimonials' || sections.testimonials),
-)
+const TILES = ALL_TILES.filter((t) => t.to !== '/showcase' || sections.showcase)
 
 export function HomeExplore() {
   return (
@@ -68,10 +64,10 @@ export function HomeExplore() {
       </div>
       <ul className="htiles" role="list">
         {TILES.map((t, i) => (
-          <li key={t.to}>
+          <li key={t.label}>
             <Link to={t.to} className={`htile${'accent' in t && t.accent ? ' htile--accent' : ''}`}>
               {'img' in t ? (
-                <span className="htile__media"><img className="htile__img" src={t.img} alt="" loading="lazy" /></span>
+                <span className="htile__media"><img className={`htile__img${'logo' in t && t.logo ? ' htile__img--logo' : ''}${'avatar' in t && t.avatar ? ' htile__img--avatar' : ''}`} src={t.img} alt="" loading="lazy" /></span>
               ) : (
                 <span className="htile__media htile__glyph"><t.Icon size={52} weight="duotone" aria-hidden="true" /></span>
               )}

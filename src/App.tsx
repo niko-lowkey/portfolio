@@ -71,8 +71,7 @@ export default function App() {
     if (typeof window === 'undefined') return
     const reduced =
       window.matchMedia('(prefers-reduced-motion: reduce)').matches || motionReduced()
-    const isMobile = window.matchMedia('(pointer: coarse) and (hover: none)').matches
-    if (reduced || isMobile) return
+    if (reduced) return
     // Defer the Three.js fetch to idle time so it does not compete with
     // initial render / LCP. Falls back to setTimeout if requestIdleCallback
     // is unavailable (Safari).

@@ -405,6 +405,10 @@
     pointer-events: none;
   }
   .htile__img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  /* A logo, not a screenshot: show all of it, centred, never cropped. */
+  .htile__img--logo { object-fit: contain; object-position: center; padding: 28px 40px; box-sizing: border-box; }
+  /* Illustrated avatar: fill the tile, keep the face and monitor in frame. */
+  .htile__img--avatar { object-fit: cover; object-position: 50% 30%; }
   .htile__glyph {
     display: grid;
     place-items: center;
@@ -510,6 +514,26 @@
   .bento--projects .bento__card { padding: 12px; }
   .bento--projects .bento__card--wide .bento__media { height: 150px; }
   .bento--projects .bento__card:not(.bento__card--wide) .bento__media { max-height: 118px; }
+
+  /* Funnels card: the fan was sized for the desktop card (up to 230px wide,
+     so ~300px tall) and spilled up over the description. Give it its own
+     fixed slot below the text and size the pages to fit inside it. */
+  /* Full width: in the Sites filter it is the only card, and half a row left
+     the pages clipped beside an empty column. */
+  .bento--projects .bento__card[data-id='funnels'] { grid-column: span 2; }
+  .bento--projects .bento__card[data-id='funnels'] .bento__media.bento__fan {
+    flex: none;
+    height: 208px;
+    max-height: none;
+    margin-top: 18px;
+    overflow: hidden;
+    align-self: auto;
+  }
+  .bento--projects .bento__card[data-id='funnels'] .bento__media.bento__fan .bento__photo {
+    width: 124px;
+    min-width: 0;
+    transform: rotate(calc((var(--i) - 1) * 8deg)) translateX(calc((var(--i) - 1) * 62px));
+  }
 
   /* ---------- Contact: the form first, submit within reach ---------- */
   .cgrid__glass { flex-direction: column; }

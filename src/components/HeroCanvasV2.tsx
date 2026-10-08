@@ -143,11 +143,7 @@ export default function HeroCanvasV2() {
     if (!el) return
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const isTouch =
-      'ontouchstart' in window ||
-      (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) ||
-      navigator.maxTouchPoints > 0
-    if (reduced || isTouch) return
+    if (reduced) return
 
     const scene = new THREE.Scene()
     const cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 10)
@@ -205,7 +201,7 @@ export default function HeroCanvasV2() {
     const mesh = new THREE.Mesh(geo, mat)
     scene.add(mesh)
 
-    let tgt = { x: 0, y: 0 }, cur = { x: 0, y: 0 }
+    const tgt = { x: 0, y: 0 }, cur = { x: 0, y: 0 }
     const onMove = (e: MouseEvent) => {
       tgt.x = (e.clientX / window.innerWidth) * 2 - 1
       tgt.y = -(e.clientY / window.innerHeight) * 2 + 1

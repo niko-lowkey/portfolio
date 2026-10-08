@@ -55,11 +55,8 @@ const STAGES: Stage[] = [
 
 // Example tool marks from /public/icons. Swap for the tools you actually use.
 const GHL = '/icons/gohighlevel.png'
-const N8N = '/icons/ai/n8n.svg'
 const OPENAI = '/icons/openai.svg'
-const GWS = '/icons/googleworkspace.svg'
 const CLAUDE = '/icons/ai/claude-color.svg'
-const APPS_SCRIPT = '/icons/googleappsscript.svg'
 
 type Service = {
   index: string
@@ -84,7 +81,7 @@ const SERVICES: Service[] = [
     title: 'GHL Automation',
     description: 'Follow-up that runs on its own.',
     chip: 'Runs 24/7',
-    logos: [GHL, APPS_SCRIPT, N8N],
+    logos: [GHL],
     bullets: ['Lead follow-up', 'Automated workflows', 'Notifications & task automation'],
   },
   {
@@ -92,7 +89,7 @@ const SERVICES: Service[] = [
     title: 'GHL CRM Setup',
     description: 'A CRM built around your business.',
     chip: 'Easy to manage',
-    logos: [GHL, GWS],
+    logos: [GHL],
     bullets: ['Pipelines & stages', 'Tags & contact organization', 'Lead & customer tracking'],
   },
   {

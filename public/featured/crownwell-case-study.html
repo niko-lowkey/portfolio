@@ -252,7 +252,17 @@ html[data-theme='dark'] .mail .mbar{color:#121D26}
 .mail .sg{margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}
 .mail .sg b{color:var(--cy)}
 .chip.p{background:var(--cy-soft);color:var(--cy);border:1px solid var(--cy-line)}
-@media(max-width:640px){.mail .mh .wh{margin-left:54px}.mail .mb{padding:20px}}
+@media(max-width:640px){
+  .mail .mh{padding:12px 16px;gap:8px 12px}
+  .mail .mh .mi{flex:1 1 calc(100% - 50px)}
+  .mail .mh .wh{margin:2px auto 0;white-space:normal;max-width:100%;text-align:center;line-height:1.35;padding:5px 12px}
+  .mail .mb{padding:16px 16px 18px}
+  .mail .mbar{padding:9px 14px}
+  .mail a,.mail .ph{overflow-wrap:anywhere}
+  .mail .ph{white-space:normal}
+  #mailgroups{width:100%}
+  #mailgroups .tabbtn.grp{flex:1 1 auto;text-align:center}
+}
 
 .chip{display:inline-block;font-size:0.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:3px 8px}
 .chip.b{background:var(--o-soft);color:var(--oink);border:1px solid var(--o-line)}
@@ -423,8 +433,32 @@ html[data-theme='dark'] .wln{color:#121D26}
 .wlt{flex:1;font-weight:700;font-size:0.98rem;line-height:1.35}
 .wlp{flex:none;font-size:0.9rem;font-weight:700;color:var(--green);background:var(--g-soft);border:1px solid var(--g-line);border-radius:999px;padding:3px 12px}
 .wla{flex:none;font-size:1.4rem;color:var(--muted);line-height:1}
+/* Workflow cards on phones: the badge sits on top with the chevron on the
+   same row, and the title and description take the full width beneath. */
+@media (max-width:640px){
+  details.wf summary{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"wn plus" "wt wt";align-items:center;gap:14px 12px;padding:18px}
+  details.wf summary .wn{grid-area:wn;justify-self:start}
+  details.wf summary .plus{grid-area:plus}
+  details.wf summary .wt{grid-area:wt;min-width:0}
+  .wt b{font-size:1.02rem;line-height:1.3}
+  .wt span{margin-top:6px;line-height:1.55}
+  .wb{padding-left:18px;padding-right:18px}
+}
 @media (max-width:600px){.wlrow{flex-wrap:wrap}.wlt{flex-basis:calc(100% - 50px)}.wlp{margin-left:44px}.wla{display:none}}
 #sprog{position:fixed;top:0;left:0;height:4px;width:100%;z-index:100;background:rgba(120,140,155,.18);pointer-events:none}#sprog i{display:block;height:100%;width:100%;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .12s linear}#sprog b{position:fixed;top:10px;right:12px;font:700 .8rem/1 var(--font);color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 9px;box-shadow:var(--sh-sm)}
+/* Phones: hero side padding (the .hero shorthand zeroed the .wrap gutters),
+   a centred eyebrow pill, and a centred signature row above the footer. */
+@media (max-width:640px){
+  .wrap.hero{padding-left:clamp(18px,5vw,28px);padding-right:clamp(18px,5vw,28px);padding-top:40px}
+  .hero .pill{display:inline-block;max-width:100%;padding:8px 16px;font-size:0.68rem;letter-spacing:.12em;line-height:1.5;text-align:center}
+  .hero .pill::before{display:inline-block;vertical-align:middle;margin:-2px 8px 0 0}
+  .hero h1{margin-top:28px}
+  .hero p.sub{margin-top:22px;line-height:1.65}
+  .sig{margin-top:44px;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;line-height:1.55}
+  .sig span:first-child{display:block}
+  .sig span:first-child::before{display:none}
+  footer{padding:36px 0 48px}
+}
 </style>
 </head>
 <body>
@@ -829,7 +863,7 @@ window.addEventListener('scroll',onScroll,{passive:true});onScroll();
 (function(){
 var cv=document.getElementById('bgv');if(!cv)return;
 var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches,touch='ontouchstart' in window||matchMedia('(pointer: coarse)').matches||navigator.maxTouchPoints>0;
-if(reduced||touch)return;
+if(reduced)return;
 var gl=cv.getContext('webgl2',{antialias:false});if(!gl)return;
 var VS='#version 300 es\nin vec2 p;out vec2 vUv;void main(){vUv=p*.5+.5;gl_Position=vec4(p,0.,1.);}';
 var FS=`#version 300 es
