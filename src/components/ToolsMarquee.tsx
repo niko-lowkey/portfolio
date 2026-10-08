@@ -41,6 +41,8 @@ export const tools: Tool[] = [
   { name: 'Google Workspace', iconPath: '/icons/googleworkspace.svg' },
   { name: 'Google Apps Script', iconPath: '/icons/googleappsscript.svg' },
   { name: 'GoHighLevel',      iconPath: '/icons/gohighlevel.png' },
+  { name: 'Make.com',         iconPath: '/icons/make.png' },
+  { name: 'Zapier',           iconPath: '/icons/ai/zapier.svg' },
   { name: 'Telegram',         iconPath: '/icons/ai/telegram.svg' },
   { name: 'Slack',            iconPath: '/icons/slack.svg',          color: '#611F69' },
   { name: 'Microsoft Teams',  iconPath: '/icons/teams.svg' },

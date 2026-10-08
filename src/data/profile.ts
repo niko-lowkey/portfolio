@@ -55,7 +55,7 @@ export const profile: Profile = {
   avatarSrc: '/avatar.png',
   aboutPortraitSrc: '/about/portrait.png',
   verifiedLabel: 'PLACEHOLDER - what the tick means (e.g. a certification)',
-  email: 'you@example.com',
+  email: 'nikzalob@gmail.com',
   location: 'Based in the Philippines',
   // Pick any icon from https://phosphoricons.com and import it above.
   stats: [

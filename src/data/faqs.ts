@@ -8,23 +8,23 @@ export type QA = { q: string; a: string }
  */
 export const FAQS: QA[] = [
   {
-    q: 'What do you do?',
-    a: 'PLACEHOLDER - tell me what to put here: the kinds of work you take on, and who it is usually for.',
+    q: "What do you do?",
+    a: "I build GoHighLevel systems that help businesses stop losing leads to manual follow-up: appointment booking funnels, automated follow-ups, CRM setups, and GHL ecommerce stores, with basic Zapier and Make integrations when needed.",
   },
   {
-    q: 'How fast can you start?',
-    a: 'PLACEHOLDER - tell me what to put here: your usual lead time for small fixes vs. larger projects, and your working hours.',
+    q: "How fast can you start?",
+    a: "Small tasks usually start within the week. Bigger projects begin with a kickoff call within two days of approval. I’m in GMT+8 and can work around US and European hours.",
   },
   {
-    q: 'How much do you charge?',
-    a: 'PLACEHOLDER - tell me what to put here: how you price (hourly, per project, retainer) and how a quote is put together.',
+    q: "Do I need to already have GoHighLevel?",
+    a: "No. I can build everything inside a GoHighLevel account, whether you already have one or are starting from scratch.",
   },
   {
-    q: 'Where are you based?',
-    a: 'PLACEHOLDER - tell me what to put here: your location or timezone, and which client timezones you overlap with.',
+    q: "How much do you charge?",
+    a: "Every business is different. We start with a quick discovery call to see what’s actually needed, then I send a clear proposal with the scope and price. No unnecessary extras.",
   },
   {
-    q: 'What happens after I write?',
-    a: 'PLACEHOLDER - tell me what to put here: how fast you reply and what the next step looks like.',
+    q: "What happens after I write?",
+    a: "I review inquiries the same day and reply within one business day. You’ll get a clear plan if I can help, or a straight answer if I can’t.",
   },
 ]

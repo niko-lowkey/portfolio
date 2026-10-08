@@ -33,7 +33,7 @@ const STAGES: Stage[] = [
     label: 'Capture',
     body: 'Every inquiry is captured. No opportunity gets lost.',
     Icon: MagnetStraight,
-    chips: ['Forms', 'Funnels', 'Ads', 'Websites'],
+    chips: ['Forms', 'Funnels', 'Websites'],
   },
   {
     index: '02',
@@ -47,7 +47,7 @@ const STAGES: Stage[] = [
     label: 'Convert',
     body: 'Turn leads into appointments, customers, and sales.',
     Icon: Trophy,
-    chips: ['Calendars', 'E-commerce', 'Payments', 'Opportunities'],
+    chips: ['Calendars', 'Inbox', 'Opportunities'],
   },
 ]
 

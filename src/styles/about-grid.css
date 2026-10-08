@@ -34,7 +34,7 @@
    is what the eye lands on after the page title. The second sentence is a
    span rather than its own paragraph so the two always break as one block. */
 .agrid__lead {
-  margin: 0;
+  margin: clamp(10px, 2.5vh, 28px) 0 clamp(10px, 2.5vh, 28px);
   max-width: 54ch;
   font-size: clamp(16px, min(1.38vw, 2.7vh), 26px);
   font-weight: 700;
