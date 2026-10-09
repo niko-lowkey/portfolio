@@ -128,11 +128,11 @@ export default function ContactGrid() {
                 <CheckCircle size={30} weight="fill" />
               </span>
               <h2 className="cgrid__done-title">
-                {status.via === 'webhook' ? 'Got it.' : 'Your mail app has it.'}
+                {status.via === 'webhook' ? 'Got it!' : 'Your mail app has it.'}
               </h2>
               <p className="cgrid__done-body">
                 {status.via === 'webhook'
-                  ? 'It is in my inbox and on my phone. You will hear back within one business day.'
+                  ? 'I\'ve received your inquiry. Please check your inbox or spam folder for my booking link to schedule a discovery call.'
                   : 'The message is laid out and addressed. Press send there and you will hear back within one business day.'}
               </p>
               <button type="button" className="cgrid__again" onClick={() => setStatus({ kind: 'idle' })}>

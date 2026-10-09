@@ -25,6 +25,6 @@ export const FAQS: QA[] = [
   },
   {
     q: "What happens after I write?",
-    a: "I review inquiries the same day and reply within one business day. You’ll get a clear plan if I can help, or a straight answer if I can’t.",
+    a: "I’ll review your inquiry and reply within one business day. You’ll receive a booking link by email to schedule a discovery call. You’ll get a clear plan if I can help, or a straight answer if I can’t.",
   },
 ]
