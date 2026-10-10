@@ -87,6 +87,26 @@ export function useLenis() {
         touchMultiplier: 1.5,
       })
 
+      // Lenis only re-measures when the `content` element it was given at
+      // construction resizes. That element is the first page that was mounted;
+      // after a route change it is detached, so Lenis kept the first page's
+      // scroll limit and the mouse wheel could not scroll taller pages like
+      // Services. Watch whichever page is mounted now and re-measure.
+      let pageObserver: ResizeObserver | undefined
+      let routeObserver: MutationObserver | undefined
+      if (usesPanel && panel) {
+        pageObserver = new ResizeObserver(() => lenis.resize())
+        const watchPage = () => {
+          pageObserver?.disconnect()
+          const page = panel.firstElementChild
+          if (page) pageObserver?.observe(page)
+          lenis.resize()
+        }
+        watchPage()
+        routeObserver = new MutationObserver(watchPage)
+        routeObserver.observe(panel, { childList: true })
+      }
+
       // Hand every Lenis scroll update to ScrollTrigger.
       lenis.on('scroll', ScrollTrigger.update)
 
@@ -125,6 +145,8 @@ export function useLenis() {
       document.addEventListener('click', onAnchorClick)
 
       cleanup = () => {
+        pageObserver?.disconnect()
+        routeObserver?.disconnect()
         document.removeEventListener('click', onAnchorClick)
         gsap.ticker.remove(tick)
         lenis.destroy()

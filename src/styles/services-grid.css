@@ -4,6 +4,16 @@
    the four service cards with their marks, and the booking workflow scaled
    below. The page scrolls: every card shows all of its bullets.
    ============================================ */
+/* ---- SPACING KNOBS: change these to tighten or loosen the page ---- */
+.sgrid {
+  --sgrid-band-gap: clamp(14px, 2.2vh, 26px);   /* between method / cards / live flow */
+  --sgrid-flow-height: clamp(320px, 42vh, 460px); /* height of the live automation window */
+  --sgrid-offers-gap: clamp(8px, 1.2vh, 12px);  /* "Need something built?" to the cards */
+  --sgrid-flow-gap: clamp(10px, 1.4vh, 16px);   /* flow heading to the automation window */
+  --sgrid-offers-top: clamp(24px, 4vh, 48px);   /* extra space above "Need something built?" */
+  --sgrid-flow-top: clamp(28px, 5vh, 56px);     /* extra space above "Live automation" */
+}
+
 /* The workflow section carries data-reveal for the scrolling views; nothing
    observes it here, so it would sit at opacity 0 forever. */
 .sgrid [data-reveal] { opacity: 1 !important; transform: none !important; }
@@ -14,12 +24,12 @@
   .sgrid .pgrid__lede { font-size: clamp(13px, 0.9vw, 16px); }
   .sgrid { height: auto; }
   .sgrid__glass { height: auto; grid-template-rows: auto auto auto; }
-  .sgrid__flow-main { height: clamp(380px, 50vh, 540px); }
+  .sgrid__flow-main { height: var(--sgrid-flow-height); }
 }
 /* The bands need more air than the Home sheet's default gap - each one is
    its own object (a dark plate, a card row, a window) and at the default
    spacing they read as one stack. */
-.sgrid__glass { min-height: 0; gap: clamp(26px, 3.6vh, 48px); }
+.sgrid__glass { min-height: 0; gap: var(--sgrid-band-gap); }
 .sgrid__stages, .sgrid__stage-chips, .sgrid__services, .sgrid__bullets { list-style: none; margin: 0; padding-left: 0; }
 
 /* ---------- The method ---------- */
@@ -212,7 +222,8 @@
 .sgrid__offers {
   display: flex;
   flex-direction: column;
-  gap: clamp(8px, 1.2vh, 12px);
+  gap: var(--sgrid-offers-gap);
+  padding-top: var(--sgrid-offers-top);
   min-width: 0;
 }
 .sgrid__offers-head {
@@ -239,7 +250,13 @@
   .sgrid .sgrid__services {
     width: 100%;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    grid-template-rows: none;
+    /* FIX for the big empty gap under the cards: Home's bento rule
+       (.bento:not(.bento--projects):not(...):not(...)) is more specific than
+       this selector, so it still applied its 3 named rows of minmax(0,1fr)
+       and 3 grid areas. Only row 1 holds cards; rows 2 and 3 stayed empty
+       but each stretched to the card height. !important beats that rule. */
+    grid-template-rows: none !important;
+    grid-template-areas: none !important;
     grid-auto-rows: auto;
     align-items: stretch;
   }
@@ -297,7 +314,8 @@
 .sgrid__flow {
   display: flex;
   flex-direction: column;
-  gap: clamp(12px, 1.6vh, 18px);
+  gap: var(--sgrid-flow-gap);
+  padding-top: var(--sgrid-flow-top);
   min-height: 0;
   min-width: 0;
 }

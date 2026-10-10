@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio Lead Automation: from contact form to follow-up, built on free tools</title>
+<meta name="description" content="A portfolio project: two Make.com scenarios, a Google Sheet CRM, Cal.com booking, Telegram alerts and a nurture sequence that track every inquiry without checking email by hand.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBFDFE;--ink:#1B2B38;--text:#3F5363;--muted:#556877;--orange:#2F6F9A;--oink:#2A6590;--orange-soft:#E4EEF5;
+  --line:#DCE5EC;--card:#FFFFFF;--green:#1E8E5A;--green-soft:#E3F3EA;--blue:#2F6F9A;--purple:#6D5BD0;--amber:#C98A12;--teal:#0E8FA3;--pink:#C2427A;
+  --panel:#F3F7FA;--soft:#F7FAFC;--code:#EAF1F6;--nest:#FFFFFF;--dash:#B8C7D3;--g-soft:#E3F3EA;--g-line:#BFE3CE;--o-soft:#E4EEF5;--o-line:#BDD4E4;--trig:#F3F8FB;
+  --font:"Figtree",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+html[data-theme='dark']{--bg:#1B2B38;--ink:#FBFDFE;--text:#C5D3DD;--muted:#93A6B5;--card:rgba(34,50,63,.92);--line:rgba(255,255,255,.12);--panel:rgba(255,255,255,.05);--soft:rgba(255,255,255,.035);--code:rgba(255,255,255,.09);--nest:rgba(255,255,255,.06);--dash:rgba(255,255,255,.2);--g-soft:rgba(30,142,90,.2);--g-line:rgba(30,142,90,.45);--o-soft:rgba(126,175,208,.16);--o-line:rgba(126,175,208,.4);--trig:rgba(126,175,208,.12);--orange:#7EAFD0;--oink:#7EAFD0;color-scheme:dark}
+html{background:var(--bg)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;font-size:106.25%}
+body{font-family:var(--font);color:var(--text);background:transparent;line-height:1.65;font-size:1rem;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.bgv{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;pointer-events:none}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{color:var(--ink);font-weight:800;letter-spacing:-.02em;line-height:1.12}
+.wrap{max-width:880px;margin:0 auto;padding:0 clamp(18px,4vw,28px)}
+.c{text-align:center}
+.orange{color:var(--orange)}
+
+/* header */
+header{position:sticky;top:0;z-index:40;background:color-mix(in oklab,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hb{max-width:1000px;margin:0 auto;padding:12px clamp(18px,4vw,28px);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:0.95rem;color:var(--ink);text-decoration:none}
+.brand i{width:26px;height:26px;border-radius:8px;background:#1B2B38;display:grid;place-items:center;color:var(--orange);font-style:normal;font-size:0.9rem}
+nav{display:flex;gap:6px}
+nav a{font-size:0.9rem;font-weight:600;color:var(--text);text-decoration:none;padding:7px 12px;border-radius:999px;transition:all .2s}
+nav a:hover,nav a.on{background:var(--card);color:var(--ink);box-shadow:0 1px 0 var(--line)}
+@media(max-width:760px){nav{display:none}.hint{display:block}}
+
+/* hero */
+.hero{padding:clamp(48px,8vw,84px) 0 40px;text-align:center}
+.pill{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--oink);background:var(--orange-soft);border:1px solid #BDD4E4;border-radius:999px;padding:7px 16px}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--orange)}
+.hero h1{margin:26px auto 0;font-size:clamp(2.4rem,6.6vw,4rem);font-weight:800;letter-spacing:-.035em;line-height:1.04;max-width:14ch}
+.hero p.sub{margin:26px auto 0;max-width:540px;font-size:1rem;line-height:1.7;color:var(--muted)}
+.stats{margin:34px auto 0;display:inline-flex;flex-wrap:wrap;justify-content:center;background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 24px -16px rgba(27,34,54,.25)}
+.stats div{padding:16px 28px;text-align:center;border-right:1px solid var(--line)}
+.stats div:last-child{border-right:0}
+.stats b{display:block;font-size:1.35rem;font-weight:800;color:var(--ink);line-height:1}
+.stats div:last-child b{color:var(--oink)}
+.stats span{display:block;margin-top:7px;font-size:0.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.chips{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.chips span{font-size:0.9rem;font-weight:600;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px}
+@media(max-width:560px){.stats div{padding:14px 16px;flex:1 1 33%;border-bottom:1px solid var(--line)}}
+
+/* built inside */
+.built{margin-top:30px;display:flex;align-items:center;justify-content:center;gap:12px}
+.built span{font-size:0.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.built b img{display:block;height:26px;width:auto}
+.built b{display:inline-flex;align-items:center;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 18px;box-shadow:var(--sh-sm)}
+
+/* sections */
+section{padding:clamp(46px,7vw,72px) 0;scroll-margin-top:64px}
+.eye{display:block;text-align:center;font-size:0.9rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.eye b{color:var(--orange);font-weight:700}
+section h2{margin-top:14px;text-align:center;font-size:clamp(1.6rem,3.6vw,2rem)}
+.intro{margin:16px auto 0;max-width:640px;text-align:center;font-size:0.98rem}
+.intro b{color:var(--ink)}
+.card{margin-top:30px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:clamp(18px,3vw,28px);box-shadow:0 10px 30px -22px rgba(27,34,54,.3)}
+.card.dia{background:#fff;border-color:#DCE5EC}
+.card.flush{padding:0;overflow:hidden}
+.note{margin-top:22px;display:flex;gap:16px;align-items:flex-start;border-radius:14px;padding:16px 20px;font-size:0.96rem;line-height:1.6}
+.note .lab{flex:none;font-size:0.9rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding-top:3px}
+.note.g{background:var(--g-soft);border:1px solid var(--g-line)}.note.g .lab{color:var(--green)}
+.note.o{background:var(--o-soft);border:1px solid var(--o-line)}.note.o .lab{color:var(--oink)}
+.note b{color:var(--ink)}
+@media(max-width:560px){.note{flex-direction:column;gap:6px}}
+
+/* tables */
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:0.94rem;min-width:520px}
+th{text-align:left;font-size:0.9rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:0 14px 12px}
+td{padding:14px;border-top:1px solid var(--line);vertical-align:top}
+td b{color:var(--ink)}
+.stage{display:inline-block;font-weight:700;font-size:0.9rem;color:#1B2B38;border-radius:8px;padding:5px 11px;white-space:nowrap}
+.s1{background:#F7D2BF}.s2{background:#C5D3F3}.s3{background:#BDE3D6}.s4{background:#F2C3C3}.s5{background:#D5D8DE}
+code,.tag{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:0.9rem;background:var(--code);border:1px solid var(--line);border-radius:6px;padding:2px 7px;color:var(--ink);white-space:nowrap}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+
+/* diagram */
+.dia{overflow-x:auto}
+.dia svg{display:block;min-width:760px;width:100%;height:auto}
+.hint{display:none;margin-top:10px;text-align:right;font-size:0.9rem;font-weight:600;color:var(--muted)}
+
+/* two cols */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}
+@media(max-width:700px){.two{grid-template-columns:1fr}}
+.two .card{margin-top:0}
+.card h3{font-size:1.05rem}
+.card .sm{margin-top:6px;font-size:0.94rem}
+.steps{list-style:none;margin-top:14px;display:grid;gap:8px}
+.steps li{position:relative;display:block;padding-left:18px;font-size:0.94rem}
+.steps li b{color:var(--ink)}
+.steps li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--orange)}
+
+/* shots */
+.shot{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;cursor:zoom-in;position:relative}
+.shot img{width:100%;height:auto}
+.shot.scroll{max-height:440px;overflow-y:auto}
+.shot .cap{position:absolute;left:10px;bottom:10px;font-size:0.9rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(27,34,54,.82);color:#fff;border-radius:999px;padding:5px 11px;pointer-events:none}
+.cap2{margin-top:8px;font-size:0.82rem;color:var(--muted);text-align:center}
+
+/* steps list (human step) */
+.hs{margin-top:30px;display:grid;gap:12px}
+.hs .row{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;align-items:flex-start}
+.hs .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--orange);color:#fff;font-weight:800;font-size:0.9rem;display:grid;place-items:center}
+.hs b{color:var(--ink);display:block}
+.hs span{font-size:0.94rem}
+
+/* email */
+.emailbox{display:grid;grid-template-columns:260px 1fr;gap:26px;align-items:start}
+.emailbox .shot{cursor:zoom-in;max-height:520px;overflow:hidden}
+@media(max-width:700px){.emailbox{grid-template-columns:1fr}.emailbox .shot{max-width:300px;margin:0 auto}}
+.msg{margin-top:12px;display:grid;gap:10px}
+.msg div{font-size:0.94rem;border-left:3px solid var(--orange);padding:4px 0 4px 12px}
+.msg b{color:var(--ink)}
+
+/* workflows */
+details.wf{margin-top:18px;background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 30px -24px rgba(27,34,54,.3);overflow:hidden}
+details.wf summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:20px clamp(16px,3vw,26px)}
+details.wf summary::-webkit-details-marker{display:none}
+.wn{flex:none;font-size:0.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--orange);border-radius:999px;padding:6px 11px}
+.wt{flex:1}
+.wt b{display:block;color:var(--ink);font-size:0.95rem;line-height:1.25}
+.wt span{display:block;font-size:0.82rem;margin-top:3px}
+.plus{flex:none;width:28px;height:28px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;font-size:1.1rem;color:var(--muted);transition:transform .3s cubic-bezier(.32,.72,0,1)}
+details[open] .plus{transform:rotate(180deg)}
+details.wf.closing .plus{transform:none}
+details.wf{will-change:height}
+.wb{padding:0 clamp(16px,3vw,26px) 26px;border-top:1px solid var(--line)}
+.facts{margin-top:20px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(max-width:640px){.facts{grid-template-columns:1fr}}
+.fact{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 14px;font-size:0.86rem}
+.fact i{display:block;font-style:normal;font-size:0.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:4px}
+.flowhead{margin:26px 0 10px;font-size:0.9rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font:inherit;font-size:0.9rem;font-weight:700;color:var(--ink);background:var(--nest);border:1px solid var(--line);border-radius:999px;padding:9px 16px;cursor:pointer;transition:all .2s}
+.btn:hover{border-color:var(--ink);transform:translateY(-1px)}
+
+/* flow renderer */
+.flow{display:grid;gap:0}
+.st{position:relative;display:flex;align-items:center;gap:12px;background:var(--nest);border:1px solid var(--line);border-radius:11px;padding:9px 14px;font-size:0.92rem}
+.st + .st,.st + .br,.br + .st,.br + .br{margin-top:14px}
+.st + .st::before,.st + .br::before,.br + .st::before,.br + .br::before{content:"";position:absolute;left:30px;top:-14px;width:2px;height:14px;background:var(--line)}
+.bd{flex:none;min-width:78px;text-align:center;font-size:0.9rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#fff;border-radius:6px;padding:4px 8px}
+.k-trigger .bd{background:var(--orange)}.k-trigger{border-color:var(--o-line);background:var(--trig)}
+.k-cond .bd{background:var(--purple)}
+.k-tag .bd{background:var(--blue)}
+.k-email .bd{background:var(--green)}
+.k-notify .bd{background:var(--amber)}
+.k-crm .bd{background:var(--teal)}
+.k-wait .bd{background:#8B91A3}
+.k-goal .bd{background:var(--pink)}
+.k-end .bd{background:var(--ink)}
+.br{position:relative;border:1px dashed var(--dash);border-radius:14px;padding:14px;background:var(--soft)}
+.br > .bt{display:inline-block;font-size:0.9rem;font-weight:700;color:var(--purple);margin-bottom:10px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.col{background:var(--nest);border:1px solid var(--line);border-radius:12px;padding:10px}
+.col > .cl{display:block;font-size:0.9rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);margin-bottom:10px}
+.col .flow .st{font-size:0.9rem;padding:8px 10px;gap:8px}
+.col .bd{min-width:64px}
+.col .st + .st::before{left:24px}
+.legend{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px 14px;font-size:0.9rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+/* highlights */
+.grid3{margin-top:30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.hl{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+.hl b{display:block;color:var(--ink);font-size:0.98rem;margin-bottom:6px}
+.hl span{font-size:0.92rem;line-height:1.55;display:block}
+.hl .no{display:block;font-size:0.9rem;font-weight:800;letter-spacing:.16em;color:var(--orange);margin-bottom:10px}
+
+footer{padding:50px 0 60px;text-align:center;border-top:1px solid var(--line)}
+footer p{font-size:0.9rem;color:var(--muted);max-width:560px;margin:0 auto}
+footer b{color:var(--ink)}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(18,22,36,.88);display:none;overflow:auto;padding:30px 16px}
+.lb.on{display:block}
+.lb img{margin:0 auto;display:block;max-width:min(1500px,100%);height:auto;border-radius:10px;background:#fff}
+.lb .x{position:fixed;top:14px;right:18px;width:42px;height:42px;border-radius:50%;background:#fff;border:0;font-size:1.3rem;cursor:pointer;color:var(--ink);z-index:2}
+.lb .t{position:sticky;top:0;text-align:center;color:#fff;font-size:0.9rem;font-weight:600;margin-bottom:14px;opacity:.85}
+
+.rv{opacity:0;transform:translateY(18px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+.rv.on{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1;transform:none;transition:none}}
+.framed header{display:none}.framed .hero{padding-top:34px}.framed section{scroll-margin-top:12px}
+
+/* gallery + mail + pdf */
+.gal{margin-top:30px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:start}
+@media(max-width:900px){.gal{grid-template-columns:repeat(2,1fr)}}
+.gal figure{margin:0}
+.gal .shot{max-height:440px;overflow:hidden}
+.gal .shot::after{content:"";position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(to bottom,rgba(255,255,255,0),#fff);pointer-events:none}
+.gal figcaption{margin-top:10px;font-size:0.9rem;line-height:1.45}
+.gal figcaption b{display:block;color:var(--ink);font-size:0.92rem}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.tabbtn{font:inherit;font-size:0.8rem;font-weight:700;color:var(--text);background:var(--nest);border:1px solid var(--line);border-radius:999px;padding:6px 13px;cursor:pointer;transition:all .2s}
+.tabbtn.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+html[data-theme='dark'] .tabbtn.on{color:#121D26}
+.mail{margin-top:14px;background:var(--nest);border:1px solid var(--line);border-radius:14px;padding:20px 24px;font-size:0.92rem;line-height:1.7;color:var(--text)}
+.mail .mh{display:grid;gap:2px;padding-bottom:12px;margin-bottom:14px;border-bottom:1px solid var(--line);font-size:0.9rem;color:var(--muted)}
+.mail .mh b{color:var(--ink);font-size:0.95rem}
+.mail p{margin-bottom:12px}
+.mail ul{margin:0 0 12px 18px}
+.mail .sg{margin-top:16px}
+.mail .sg b{color:var(--ink)}
+.mail a{color:var(--blue);text-decoration:underline}
+.mail .wh{font-size:0.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+.mail .ph{background:rgba(47,111,222,.1);border-radius:4px;padding:0 5px;font-size:.88em;white-space:nowrap}
+.mail .ad{margin-bottom:10px;padding-left:12px;border-left:2px solid var(--line)}
+.tabbtn.grp{font-size:0.9rem}
+/* email viewer: brand accent */
+html[data-theme='dark'] .hs .n,html[data-theme='dark'] .wn{color:#121D26}
+:root{--cy:#2F6F9A;--cy-soft:rgba(47,111,154,.09);--cy-line:rgba(47,111,154,.3)}
+html[data-theme='dark']{--cy:#7EAFD0;--cy-soft:rgba(126,175,208,.14);--cy-line:rgba(126,175,208,.36)}
+#mailgroups{display:flex;flex-wrap:wrap;gap:4px;padding:4px;background:var(--panel);border:1px solid var(--line);border-radius:16px;width:fit-content;max-width:100%}
+#mailgroups .tabbtn.grp{border:0;background:transparent;color:var(--text);padding:7px 14px;font-size:0.8rem}
+#mailgroups .tabbtn.grp:hover{color:var(--cy)}
+#mailgroups .tabbtn.grp.on{background:var(--cy);color:#fff;box-shadow:0 6px 14px -8px var(--cy)}
+html[data-theme='dark'] #mailgroups .tabbtn.grp.on{color:#121D26}
+#mailtabs .tabbtn{background:transparent}
+#mailtabs .tabbtn:hover{border-color:var(--cy-line);color:var(--cy)}
+#mailtabs .tabbtn.on{background:var(--cy-soft);color:var(--cy);border-color:var(--cy)}
+html[data-theme='dark'] #mailtabs .tabbtn.on{color:var(--cy)}
+.mail{padding:0;overflow:hidden;border-radius:16px;background:var(--card);box-shadow:0 18px 40px -28px rgba(27,43,56,.35)}
+.mail .mbar{display:flex;align-items:center;gap:6px;padding:9px 18px;background:var(--cy);color:#fff;font-size:0.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+html[data-theme='dark'] .mail .mbar{color:#121D26}
+.mail .mbar i{width:8px;height:8px;border-radius:50%;background:currentColor;opacity:.45}
+.mail .mbar span{margin-left:10px;opacity:.85}
+.mail .mh{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;padding:14px 22px;margin:0;background:var(--panel);border-bottom:1px solid var(--line)}
+.mail .mh .av{flex:none;width:34px;height:34px;border-radius:50%;background:var(--cy-soft);border:1px solid var(--cy-line);color:var(--cy);display:grid;place-items:center;font-weight:800}
+.mail .mh .mi{display:grid;gap:2px;min-width:0;flex:1 1 240px}
+.mail .mh .mi b{font-size:0.92rem;color:var(--ink);line-height:1.35}
+.mail .mh .mi span{font-size:0.8rem;color:var(--muted)}
+.mail .mh .wh{margin-left:auto;background:var(--cy-soft);border:1px solid var(--cy-line);color:var(--cy);border-radius:999px;padding:4px 10px;font-size:0.68rem;white-space:nowrap}
+.mail .mb{padding:20px 26px 22px}
+.mail a{color:var(--cy);font-weight:700;text-decoration:none;border-bottom:1.5px solid var(--cy)}
+.mail .ph{background:var(--cy-soft);color:var(--cy);border:1px dashed var(--cy-line)}
+.mail .ad{border-left:3px solid var(--cy-line);padding:2px 0 2px 14px}
+.mail .sg{margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}
+.mail .sg b{color:var(--cy)}
+.chip.p{background:var(--cy-soft);color:var(--cy);border:1px solid var(--cy-line)}
+@media(max-width:640px){
+  .mail .mh{padding:12px 16px;gap:8px 12px}
+  .mail .mh .mi{flex:1 1 calc(100% - 50px)}
+  .mail .mh .wh{margin:2px auto 0;white-space:normal;max-width:100%;text-align:center;line-height:1.35;padding:5px 12px}
+  .mail .mb{padding:16px 16px 18px}
+  .mail .mbar{padding:9px 14px}
+  .mail a,.mail .ph{overflow-wrap:anywhere}
+  .mail .ph{white-space:normal}
+  #mailgroups{width:100%}
+  #mailgroups .tabbtn.grp{flex:1 1 auto;text-align:center}
+}
+
+.chip{display:inline-block;font-size:0.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:3px 8px}
+.chip.b{background:var(--o-soft);color:var(--oink);border:1px solid var(--o-line)}
+.chip.p{background:var(--panel);color:var(--muted);border:1px solid var(--line)}
+.pdfv{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:28px;align-items:center}
+@media(max-width:760px){.pdfv{grid-template-columns:1fr}}
+.pdfpage{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;cursor:zoom-in;box-shadow:0 18px 40px -24px rgba(27,34,54,.45)}
+.pdfpage img{width:100%;height:auto}
+.thumbs{margin-top:12px;display:flex;gap:8px}
+.thumbs button{flex:1;border:2px solid transparent;border-radius:6px;overflow:hidden;padding:0;background:#fff;cursor:pointer;opacity:.6;transition:all .2s}
+.thumbs button.on{border-color:var(--orange);opacity:1}
+.thumbs img{width:100%;height:auto;display:block}
+.pdfx h3{font-size:1.1rem}
+.pdfx p.sm{margin-top:8px;font-size:0.96rem}
+.pcount{margin-top:10px;font-size:0.9rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+/* hover: brand-colored border + soft lift on cards/containers */
+/* Build checklist + mindset closer */
+.chk{margin:0;padding:0;list-style:none;display:grid;gap:14px}
+.chk li{position:relative;padding-left:24px;font-size:0.98rem;line-height:1.6}
+.chk li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--orange)}
+.chk b{color:var(--ink)}
+.chk code{font-family:var(--mono,'JetBrains Mono',ui-monospace,monospace);font-size:0.84em;background:var(--code);border-radius:6px;padding:2px 6px}
+.mind{text-align:center}
+.mind .big{margin:16px auto 0;max-width:780px;font-size:clamp(1.6rem,4vw,2.3rem);line-height:1.18;font-weight:800;letter-spacing:-.02em;color:var(--text)}
+.mind .big em{font-style:normal;color:var(--orange)}
+.mind .sub{margin:18px auto 0;max-width:560px;font-size:1rem}
+.sig{margin-top:54px;padding-top:20px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;align-items:center;font-size:0.9rem;color:var(--muted);text-align:left}
+.sig span:first-child{display:inline-flex;align-items:center;gap:10px}
+.sig span:first-child::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--orange)}
+.sig b{color:var(--ink)}
+/* Step 7: workflow diagram (same behaviour as How it works) */
+#workflows .wflcard.rv{max-width:1180px}
+.wflbox{position:relative;margin-top:30px}
+.wflbox>.card{margin-top:0}
+.card.dia.wfl{background-color:var(--card);background-image:radial-gradient(rgba(120,140,155,.28) 1.1px,transparent 1.2px);background-size:22px 22px;padding:clamp(14px,2vw,24px);box-shadow:var(--sh-lg)}
+.card.dia.wfl:hover{transform:none;box-shadow:var(--sh-lg),0 0 0 1px var(--orange);border-color:var(--orange)}
+.wfl .scroll{overflow-x:auto}
+.wfl svg{display:block;width:100%;min-width:1100px;height:auto}
+.wfl .mono{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.wfl .ink{fill:var(--ink)}.wfl .mut{fill:var(--muted)}.wfl .acc{fill:var(--oink)}
+.wfl .lane{fill:rgba(120,140,155,.07);stroke:var(--dash);stroke-width:1.5;stroke-dasharray:6 5}
+.wfl .lbl{paint-order:stroke;stroke:var(--card);stroke-width:5px;stroke-linejoin:round}
+.wfl .wopen{cursor:pointer}.wfl .wopen .open{opacity:.7;transition:opacity .2s}.wfl .wopen:hover .open,.wfl .wopen:focus-visible .open{opacity:1;text-decoration:underline}.wfl .wopen:focus-visible{outline:none}
+.wfl .dash{animation:lcmarch 1s linear infinite}
+.wfl .nd{opacity:0;cursor:pointer;transition:opacity .25s ease}
+.wfl .nd rect:first-child{transition:stroke-width .2s}.wfl .nd:hover rect:first-child{stroke-width:3.2}
+.wfl .nd:focus-visible{outline:none}.wfl .nd:focus-visible rect:first-child{stroke:var(--ink);stroke-width:3}
+.wfl .ed{opacity:0;transition:opacity .4s ease}
+.wfl.play .nd{opacity:1;animation:lcpop .5s ease backwards;animation-delay:calc(var(--i)*45ms)}
+.wfl.play .ed{opacity:1;transition-delay:1.1s}
+.wfl.has-sel .nd:not(.on),.wfl.has-sel .ed:not(.on){opacity:.12}
+.wfl.has-sel.play .ed{transition-delay:0s;transition-duration:.25s}
+.wfl .nd.sel rect:first-child{stroke:#111;stroke-width:3.6;filter:drop-shadow(0 0 9px rgba(14,155,184,.6))}
+html[data-theme='dark'] .wfl .nd.sel rect:first-child{stroke:#fff}
+.wflbox .pp{bottom:auto}
+.pp .go{margin-top:10px;display:block;width:100%;text-align:center;font:inherit;font-size:0.9rem;font-weight:700;color:#fff;background:#0E8FA3;border:0;border-radius:8px;padding:8px 10px;cursor:pointer}
+.pp .go:hover{filter:brightness(1.08)}
+html[data-theme='dark'] .pp .go{color:#121D26}
+@media (max-width:900px){.wflbox .pp{position:static;width:auto;max-height:none;margin-top:12px}}
+@media (prefers-reduced-motion:reduce){.wfl .dash{animation:none}.wfl .dot{display:none}.wfl .nd,.wfl .ed{opacity:1;animation:none!important;transition:none}.wfl.has-sel .nd:not(.on),.wfl.has-sel .ed:not(.on){opacity:.12}.wflbox .pp{animation:none}}
+details.wf{scroll-margin-top:96px}
+/* Card shadows: layered (contact + ambient) so cards lift off the page. Hover glow below still wins. */
+:root{--sh-sm:0 1px 2px rgba(27,43,56,.06),0 4px 10px -4px rgba(27,43,56,.10);--sh-md:0 1px 2px rgba(27,43,56,.06),0 6px 14px -4px rgba(27,43,56,.10),0 22px 40px -22px rgba(27,43,56,.28);--sh-lg:0 2px 4px rgba(27,43,56,.06),0 10px 20px -6px rgba(27,43,56,.12),0 34px 60px -28px rgba(27,43,56,.34)}
+html[data-theme='dark']{--sh-sm:0 1px 2px rgba(0,0,0,.35),0 4px 10px -4px rgba(0,0,0,.4);--sh-md:0 1px 2px rgba(0,0,0,.4),0 8px 16px -4px rgba(0,0,0,.4),0 24px 44px -22px rgba(0,0,0,.6);--sh-lg:0 2px 4px rgba(0,0,0,.4),0 12px 24px -6px rgba(0,0,0,.45),0 36px 64px -28px rgba(0,0,0,.7)}
+.card,.stats,details.wf,.shot{box-shadow:var(--sh-md)}
+.hl,.col,.hs .row,.fact,.chips span{box-shadow:var(--sh-sm)}
+.mail,.pdfpage{box-shadow:var(--sh-lg)}
+.card,.hl,.hs .row,details.wf,.fact,.stats,.shot,.col,.mail,.chips span{transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease}
+.card:hover,.card.dia:hover,.hl:hover,.hs .row:hover,details.wf:hover,details.wf[open]:hover,.fact:hover,.stats:hover,.shot:hover,.col:hover,.mail:hover,.chips span:hover{border-color:var(--orange);box-shadow:0 0 0 1px var(--orange),0 14px 32px -20px var(--orange)}
+.card:hover,.hl:hover,.hs .row:hover,.fact:hover,.shot:hover{transform:translateY(-2px)}
+@media (prefers-reduced-motion:reduce){.card,.hl,.hs .row,details.wf,.fact,.stats,.shot,.col,.mail,.chips span{transition:none}.card:hover,.hl:hover,.hs .row:hover,.fact:hover,.shot:hover{transform:none}}
+
+/* readability: stronger text contrast, larger body, calmer background behind content */
+:root{--text:#1F2E3A;--muted:#3A4D5C}
+html[data-theme='dark']{--text:#E6EDF2;--muted:#B4C4D0;--card:rgba(34,50,63,.97)}
+body{font-size:1rem;line-height:1.75;color:var(--text)}
+p,li{color:var(--text)}
+h1,h2,h3{color:var(--ink)}
+section h2,.mind .big{color:var(--oink)}
+.hero h1{color:var(--ink)}
+.hero h1 .orange{color:var(--oink)}
+.wrap>p,.wrap>h1,.wrap>h2,.wrap>h3{text-shadow:0 0 14px var(--bg),0 0 4px var(--bg)}
+code,.tag{color:var(--ink)}
+@media (max-width:640px){body{font-size:17px}}
+
+/* workflows: details on the left, real screenshot on the right */
+#workflows .wrap{max-width:1180px}
+#workflows .rv:not(details){max-width:880px;margin-left:auto;margin-right:auto}
+.wbgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(18px,3vw,36px);align-items:start}
+.wbr{position:sticky;top:84px}
+.wbr .shot{max-height:78vh;overflow:auto}
+.wbr .shot img{width:100%;height:auto}
+.wbr .cap2{margin-top:10px;text-align:center}
+@media (max-width:900px){.wbgrid{grid-template-columns:minmax(0,1fr)}.wbr{position:static}}
+
+/* how it works: lifecycle-style diagram */
+.card.dia.lc{background-color:var(--card);background-image:radial-gradient(rgba(120,140,155,.28) 1.1px,transparent 1.2px);background-size:22px 22px;padding:clamp(14px,2vw,24px)}
+.lc svg{min-width:1050px}
+.lc .mono{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.lc .ink{fill:var(--ink)}.lc .sub{fill:var(--muted)}.lc .lane{fill:var(--muted)}
+.lc .sep{stroke:var(--line);stroke-width:1;stroke-dasharray:2 6;fill:none}
+.lc .pill{fill:var(--o-soft);stroke:var(--orange)}.lc .pilt{fill:var(--oink)}
+.lc .dash{animation:lcmarch 1s linear infinite}
+@keyframes lcmarch{to{stroke-dashoffset:-12}}
+.lc .nd{opacity:0;animation:lcpop .5s ease forwards;animation-delay:calc(var(--i)*90ms)}
+@keyframes lcpop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.lc .nd rect:first-child{transition:stroke-width .2s}.lc .nd:hover rect:first-child{stroke-width:3.2}
+@media (prefers-reduced-motion:reduce){.lc .dash{animation:none}.lc .nd{animation:none;opacity:1}.lc .dot{display:none}}
+
+#how .wrap{max-width:1180px}
+#how .rv:not(.card){max-width:880px;margin-left:auto;margin-right:auto}
+
+/* click-to-trace passport */
+.lcbox{position:relative}
+.lc .nd{opacity:1;animation:lcpop .5s ease backwards;animation-delay:calc(var(--i)*90ms);cursor:pointer;transition:opacity .25s ease}
+.lc .nd:focus-visible{outline:none}
+.lc .nd:focus-visible rect:first-child{stroke:var(--ink);stroke-width:3}
+.lc .ed{transition:opacity .25s ease}
+.lc.has-sel .nd:not(.on),.lc.has-sel .ed:not(.on){opacity:.12}
+.lc .nd.sel rect:first-child{stroke:#111;stroke-width:3.6;filter:drop-shadow(0 0 9px rgba(14,155,184,.6))}
+html[data-theme='dark'] .lc .nd.sel rect:first-child{stroke:#fff}
+.pp{position:absolute;left:clamp(40px,6vw,76px);bottom:76px;width:292px;max-height:min(430px,64%);overflow:auto;z-index:5;background:var(--card);color:var(--text);border:1.5px solid #0E9BB8;border-radius:14px;padding:14px 16px 12px;box-shadow:0 22px 50px -18px rgba(18,29,38,.45);font-size:0.9rem;line-height:1.45;animation:pppop .22s ease}
+html[data-theme='dark'] .pp{background:#22323F}
+.pp[hidden]{display:none}
+@keyframes pppop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pp .k{font:700 .62rem/1 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:#0E8FA3}
+.pp h4{margin:6px 22px 2px 0;font-size:1.05rem;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+.pp .sb{color:var(--muted);font-size:0.9rem}
+.pp .x{position:absolute;top:10px;right:10px;width:26px;height:26px;border:0;background:transparent;color:var(--muted);font-size:1.15rem;line-height:1;cursor:pointer;border-radius:50%}
+.pp .x:hover{background:var(--panel);color:var(--ink)}
+.pp .chips2{display:flex;flex-wrap:wrap;gap:5px;margin:9px 0 4px}
+.pp .chips2 span{font-size:0.9rem;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:2px 9px;color:var(--muted)}
+.pp .chips2 span.m{border-color:#0E9BB8;color:#0E8FA3;letter-spacing:.08em;text-transform:uppercase}
+.pp .why{margin:8px 0 0;color:var(--text);font-size:0.9rem}
+.pp .reach{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:11px 0 2px}
+.pp .reach div{border:1px solid var(--line);border-radius:8px;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;font-size:0.9rem;color:var(--muted)}
+.pp .reach b{color:var(--ink)}
+.pp .sec{margin:12px 0 4px;padding-top:10px;border-top:1px solid var(--line);font:700 .6rem/1 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.pp .it{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;font:inherit;color:inherit;background:transparent;border:0;border-radius:8px;padding:6px 6px;cursor:pointer}
+.pp .it:hover{background:var(--panel)}
+.pp .it i{flex:none;font:700 .6rem/1.7 "JetBrains Mono",ui-monospace,monospace;font-style:normal;letter-spacing:.08em;width:34px;color:#0E8FA3}
+.pp .it i.in{color:#7C3AED}
+.pp .it b{display:block;color:var(--ink);font-size:0.9rem}
+.pp .it span{display:block;color:var(--muted);font-size:0.9rem}
+.pp .cp{margin-top:6px;font:inherit;font-size:0.9rem;font-weight:700;color:#0E8FA3;background:none;border:0;cursor:pointer;padding:2px 0}
+@media (max-width:900px){.pp{position:static;width:auto;max-height:none;margin-top:12px}}
+@media (prefers-reduced-motion:reduce){.lc .nd{animation:none}.pp{animation:none}}
+
+.lchint{margin:0 0 6px;font-size:0.9rem;font-weight:600;color:var(--muted);text-align:center}
+
+/* how it works card: border color on hover only, no lift or glow */
+.card.dia.lc,.card.dia.lc:hover{transform:none}
+.card.dia.lc{box-shadow:var(--sh-lg)}
+.card.dia.lc:hover{box-shadow:var(--sh-lg),0 0 0 1px var(--orange)}
+.card.dia.lc:hover{border-color:var(--orange)}
+
+/* workflow list */
+.wl{padding:clamp(14px,2vw,22px)}
+.wlh{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.wlh h3{font-size:1.05rem}.wlh span{font-size:0.9rem;color:var(--muted);font-weight:600}
+.wlrow{display:flex;align-items:center;gap:14px;width:100%;text-align:left;font:inherit;color:var(--ink);background:transparent;border:0;border-top:1px solid var(--line);padding:14px 6px;cursor:pointer;border-radius:8px}
+.wlrow:first-of-type{border-top:0}
+.wlrow:hover{background:var(--panel)}
+.wlrow:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.wln{flex:none;width:30px;height:30px;border-radius:50%;background:var(--orange);color:#fff;font-weight:800;font-size:0.9rem;display:grid;place-items:center}
+html[data-theme='dark'] .wln{color:#121D26}
+.wlt{flex:1;font-weight:700;font-size:0.98rem;line-height:1.35}
+.wlp{flex:none;font-size:0.9rem;font-weight:700;color:var(--green);background:var(--g-soft);border:1px solid var(--g-line);border-radius:999px;padding:3px 12px}
+.wla{flex:none;font-size:1.4rem;color:var(--muted);line-height:1}
+/* Workflow cards on phones: the badge sits on top with the chevron on the
+   same row, and the title and description take the full width beneath. */
+@media (max-width:640px){
+  details.wf summary{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"wn plus" "wt wt";align-items:center;gap:14px 12px;padding:18px}
+  details.wf summary .wn{grid-area:wn;justify-self:start}
+  details.wf summary .plus{grid-area:plus}
+  details.wf summary .wt{grid-area:wt;min-width:0}
+  .wt b{font-size:1.02rem;line-height:1.3}
+  .wt span{margin-top:6px;line-height:1.55}
+  .wb{padding-left:18px;padding-right:18px}
+}
+@media (max-width:600px){.wlrow{flex-wrap:wrap}.wlt{flex-basis:calc(100% - 50px)}.wlp{margin-left:44px}.wla{display:none}}
+#sprog{position:fixed;top:0;left:0;height:4px;width:100%;z-index:100;background:rgba(120,140,155,.18);pointer-events:none}#sprog i{display:block;height:100%;width:100%;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .12s linear}#sprog b{position:fixed;top:10px;right:12px;font:700 .8rem/1 var(--font);color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 9px;box-shadow:var(--sh-sm)}
+/* Phones: hero side padding (the .hero shorthand zeroed the .wrap gutters),
+   a centred eyebrow pill, and a centred signature row above the footer. */
+@media (max-width:640px){
+  .wrap.hero{padding-left:clamp(18px,5vw,28px);padding-right:clamp(18px,5vw,28px);padding-top:40px}
+  .hero .pill{display:inline-block;max-width:100%;padding:8px 16px;font-size:0.68rem;letter-spacing:.12em;line-height:1.5;text-align:center}
+  .hero .pill::before{display:inline-block;vertical-align:middle;margin:-2px 8px 0 0}
+  .hero h1{margin-top:28px}
+  .hero p.sub{margin-top:22px;line-height:1.65}
+  .sig{margin-top:44px;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;line-height:1.55}
+  .sig span:first-child{display:block}
+  .sig span:first-child::before{display:none}
+  footer{padding:36px 0 48px}
+}
+
+/* ---- portfolio-automation additions ---- */
+.built{flex-wrap:wrap}
+.built b{gap:9px;padding:7px 16px}
+.built b img{height:22px;width:22px;object-fit:contain}
+.built b em{font-style:normal;font-weight:700;font-size:0.92rem;color:#1B2B38;line-height:1}
+.hs span b{display:inline}
+.pa-chips{margin-top:26px}
+.auto,.man,.hs .auto,.hs .man{display:inline-block;font-size:0.56rem;line-height:1.4;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:1px 7px;margin-left:8px;vertical-align:middle;position:relative;top:-1px}
+.auto{background:var(--g-soft);color:var(--green);border:1px solid var(--g-line)}
+.man{background:var(--o-soft);color:var(--oink);border:1px solid var(--o-line)}
+html[data-theme='dark'] .auto{color:#6fd4a0}
+.shot img{background:#fff}
+.dark-shot img{background:#0b0b0d}
+.sel{display:inline-block;font-weight:700;font-size:0.86rem;border-radius:8px;padding:4px 11px;white-space:nowrap;color:#1B2B38}
+.st-new{background:#C9E3F7}.st-booked{background:#BDE3D6}.st-resch{background:#F7E2B0}.st-lost{background:#F2C3C3}.st-maybe{background:#DAD2F5}.st-won{background:#9BD9B6}
+.tgwrap{margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;background:#0E1621;border-radius:18px;padding:clamp(16px,3vw,24px)}
+.tgm{background:#182533;color:#F5F7FA;border-radius:14px;padding:13px 15px;font-size:0.9rem;line-height:1.55}
+.tgm b{display:block;font-weight:700;margin-bottom:8px}
+.tgm div{color:#DDE6EE}
+.tgm em{display:block;margin-top:9px;font-style:normal;color:#9FB2C4;font-size:0.84rem}
+.tgnote{margin-top:12px;font-size:0.84rem;color:var(--muted);text-align:center}
+.tl{margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:700px){.tl{grid-template-columns:1fr}}
+.tl .card{margin-top:0}
+.tl .day{display:inline-block;font-size:0.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:var(--orange);border-radius:999px;padding:5px 11px;margin-bottom:10px}
+html[data-theme='dark'] .tl .day{color:#121D26}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+@media(max-width:640px){.cols2{grid-template-columns:1fr}}
+.mailpane[hidden]{display:none}
+.lane{margin-top:44px}
+.lane h3{font-size:1.02rem;margin-bottom:4px}
+.lane p.sm{font-size:0.92rem;margin-bottom:4px}
+</style>
+</head>
+<body>
+<div id="sprog" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100"><i></i><b>0%</b></div>
+
+<header>
+  <div class="hb">
+    <a class="brand" href="#top"><i>P</i>Portfolio Lead Automation</a>
+    <nav id="nav"><a href="#how">Overview</a><a href="#scenarios">Scenarios</a><a href="#crm">CRM</a><a href="#booking">Booking</a><a href="#comms">Messages</a><a href="#edge">Edge cases</a></nav>
+  </div>
+</header>
+
+<main id="top">
+<div class="wrap hero">
+  <span class="pill">Portfolio project &middot; Make.com</span>
+  <h1>Portfolio inquiries that <span class="orange">manage themselves</span></h1>
+  <p class="sub">Instead of checking my email for every new lead, the contact form on this portfolio now starts two Make.com scenarios. They log each lead in a Google Sheet CRM, reply with a booking link, keep the status up to date as people book, reschedule or cancel, and alert me on Telegram.</p>
+  <div class="stats">
+    <div><b>2</b><span>Scenarios</span></div><div><b>4</b><span>Telegram alerts</span></div><div><b>6</b><span>Lead statuses</span></div><div><b>3</b><span>Nurture emails</span></div>
+  </div>
+  <div class="built"><span>Built inside</span><b><img src="/icons/make.png" alt="" width="22" height="22"><em>Make.com</em></b><b><img src="/icons/googleappsscript.svg" alt="" width="22" height="22"><em>Apps Script</em></b><b><em>Cal.com</em></b></div>
+</div>
+
+<section id="how"><div class="wrap">
+  <span class="eye">The idea</span><h2>What it does</h2>
+  <p class="intro">Every inquiry follows the same path, and most of it needs no input from me. The two steps that need a human decision, sending the proposal and choosing the outcome, stay <b>manual on purpose</b>.</p>
+  <div class="hs">
+    <div class="row"><div class="n">1</div><div><b>A visitor sends the form <span class="auto" style="margin:0">Automatic</span></b><span>Make receives it and logs the lead in the Google Sheet with the status <b>New</b>.</span></div></div>
+    <div class="row"><div class="n">2</div><div><b>The lead gets a reply and I get a ping <span class="auto" style="margin:0">Automatic</span></b><span>An email with my booking link goes to the lead, and Cotton, my Telegram bot, tells me about the inquiry.</span></div></div>
+    <div class="row"><div class="n">3</div><div><b>The lead books a discovery call <span class="auto" style="margin:0">Automatic</span></b><span>A 30 minute Google Meet call on Cal.com. The sheet is updated to <b>Booked</b> and Cotton alerts me. Rescheduling and cancelling are tracked the same way.</span></div></div>
+    <div class="row"><div class="n">4</div><div><b>Cal.com sends reminders <span class="auto" style="margin:0">Automatic</span></b><span>One day before and one hour before the call, using Cal.com&rsquo;s default reminder content on the free tier.</span></div></div>
+    <div class="row"><div class="n">5</div><div><b>I hold the call and send the proposal <span class="man" style="margin:0">Manual</span></b><span>The proposal is written and sent by me after the call.</span></div></div>
+    <div class="row"><div class="n">6</div><div><b>I mark the outcome <span class="man" style="margin:0">Manual</span></b><span><b>Won</b>, <b>Maybe/Later</b> or <b>Lost</b>. Choosing Maybe/Later starts a nurture sequence at 3, 7 and 14 days.</span></div></div>
+  </div>
+</div></section>
+
+<section id="scenarios"><div class="wrap">
+  <span class="eye">The automation</span><h2>Two Make.com scenarios</h2>
+  <p class="intro">One handles the form. The other listens to Cal.com and routes each booking event to the right update.</p>
+
+  <div class="lane">
+    <h3>Scenario 1: Portfolio Website Form Submit</h3>
+    <p class="sm">Runs when a visitor submits the contact form.</p>
+    <div class="card flush"><div class="shot"><img src="portfolio-automation/make-form.jpg" width="1100" height="435" alt="Make.com scenario: Portfolio Website Form Submit" loading="lazy"></div></div>
+    <div class="card"><div class="flow"><div class="st k-trigger"><span class="bd">Trigger</span><span>A visitor submits the contact form on the portfolio. A custom webhook in Make receives it.</span></div><div class="st k-cond"><span class="bd">Filter</span><span>The <b>Real Person Only</b> filter sits between the webhook and the sheet, so only real submissions continue.</span></div><div class="st k-crm"><span class="bd">CRM</span><span>Google Sheets <b>Add a Row</b>: details saved to the CRM sheet with the status <b>New</b>.</span></div><div class="st k-email"><span class="bd">Email</span><span>Gmail <b>Send an email</b>: a personal reply with the discovery call booking link goes to the lead.</span></div><div class="st k-notify"><span class="bd">Notify</span><span>Cotton, my Telegram bot, sends me the new inquiry: name, email and message.</span></div></div></div>
+  </div>
+
+  <div class="lane">
+    <h3>Scenario 2: Booking Appointment in Cal.com</h3>
+    <p class="sm">Runs when someone books, reschedules or cancels a call. A router sends each event down its own route.</p>
+    <div class="card flush"><div class="shot"><img src="portfolio-automation/make-booking.jpg" width="1161" height="707" alt="Make.com scenario: Booking Appointment in Cal.com, with Booked, Cancelled and Reschedule routes" loading="lazy"></div></div>
+    <div class="card"><div class="flow"><div class="st k-trigger"><span class="bd">Trigger</span><span>Cal.com sends a webhook to Make when someone books, reschedules or cancels.</span></div><div class="st k-cond"><span class="bd">Router</span><span>Make sends the event down one of three routes: <b>Booked</b>, <b>Cancelled</b> or <b>Reschedule</b>.</span></div><div class="st k-crm"><span class="bd">CRM</span><span><b>Search Rows</b> finds the lead in the sheet, then <b>Update a Row</b> writes the new details and status.</span></div><div class="st k-notify"><span class="bd">Notify</span><span>Cotton sends a Telegram message that matches the event, with the name, email and call time or reason.</span></div></div></div>
+    <div class="tbl card"><table>
+      <thead><tr><th>Route</th><th>Sheet update</th><th>Telegram alert</th></tr></thead>
+      <tbody>
+        <tr><td><b>Booked</b></td><td>Call date and time saved, status set to <span class="sel st-booked">Booked</span>. A <b>Validate Record</b> filter sits between the search and the update.</td><td>Name, email and the call time</td></tr>
+        <tr><td><b>Reschedule</b></td><td>Call time updated to the new slot, status set to <span class="sel st-resch">Rescheduled</span></td><td>Name, email and the new time</td></tr>
+        <tr><td><b>Cancelled</b></td><td>Status set to <span class="sel st-lost">Lost</span> and the cancellation reason saved in Notes</td><td>Name, email and the reason</td></tr>
+      </tbody></table></div>
+  </div>
+
+  <div class="lane">
+    <h3>After the call: the manual decision and the nurture drip</h3>
+    <p class="sm">Not a Make scenario. This part is a Google Apps Script plus my own decision.</p>
+    <div class="card"><div class="flow"><div class="st k-trigger"><span class="bd">Trigger</span><span>The discovery call is held on Google Meet and I send the proposal myself.</span></div><div class="st k-cond"><span class="bd">Decision</span><span>I update the lead&rsquo;s status in the sheet by hand: <b>Won</b>, <b>Maybe/Later</b> or <b>Lost</b>.</span></div><div class="st k-wait"><span class="bd">Wait</span><span>If <b>Maybe/Later</b>, a Google Apps Script starts the nurture sequence.</span></div><div class="st k-email"><span class="bd">Email</span><span>Follow-up emails go out at <b>3 days</b>, <b>7 days</b> and <b>14 days</b>.</span></div></div></div>
+  </div>
+</div></section>
+
+<section id="crm"><div class="wrap">
+  <span class="eye">The CRM</span><h2>One Google Sheet, always current</h2>
+  <p class="intro">The sheet is the single source of truth. Make writes to it and I read it, so I never have to rebuild a lead&rsquo;s history from my inbox. Names and emails are blurred below.</p>
+  <div class="card flush"><div class="shot"><img src="portfolio-automation/sheet.jpg" width="1600" height="225" alt="Portfolio Client Inquiries Database in Google Sheets, personal details blurred" loading="lazy"></div></div>
+  <div class="card tbl"><table>
+    <thead><tr><th>Status</th><th>Set by</th><th>When</th></tr></thead>
+    <tbody>
+      <tr><td><span class="sel st-new">New</span></td><td><span class="auto" style="margin:0">Automatic</span></td><td>The contact form is submitted</td></tr>
+      <tr><td><span class="sel st-booked">Booked</span></td><td><span class="auto" style="margin:0">Automatic</span></td><td>The lead books a discovery call on Cal.com</td></tr>
+      <tr><td><span class="sel st-resch">Rescheduled</span></td><td><span class="auto" style="margin:0">Automatic</span></td><td>The lead picks a new time</td></tr>
+      <tr><td><span class="sel st-lost">Lost</span></td><td><span class="auto" style="margin:0">Automatic</span> <span class="man" style="margin:0">Manual</span></td><td>Set automatically when a booking is cancelled, or by me after the call</td></tr>
+      <tr><td><span class="sel st-maybe">Maybe/Later</span></td><td><span class="man" style="margin:0">Manual</span></td><td>The lead is interested but not ready. This starts the nurture sequence</td></tr>
+      <tr><td><span class="sel st-won">Won</span></td><td><span class="man" style="margin:0">Manual</span></td><td>The lead becomes a client</td></tr>
+    </tbody></table></div>
+  <div class="note o"><span class="lab">Columns</span><span>Submitted At &middot; First Name &middot; Last Name &middot; Email &middot; Message &middot; <b>Status</b> &middot; Call Date/Time &middot; Booking Link Sent &middot; Maybe/Later Date &middot; Nurture Step (0&ndash;3) &middot; Notes</span></div>
+</div></section>
+
+<section id="booking"><div class="wrap">
+  <span class="eye">Booking</span><h2>A discovery call on Cal.com</h2>
+  <p class="intro">Leads book a <b>30 minute Discovery Call</b> held on <b>Google Meet</b>. The Google Meet link is part of the booking details the lead receives.</p>
+  <div class="card flush"><div class="shot dark-shot"><img src="portfolio-automation/cal-event.jpg" width="1500" height="747" alt="Cal.com event type: Discovery Call (30 min) with Google Meet" loading="lazy"></div></div>
+  <div class="cols2">
+    <div class="fact"><i>Event</i>Discovery Call, 30 minutes, Google Meet</div>
+    <div class="fact"><i>Confirmation</i>Cal.com&rsquo;s default emails for booked, rescheduled and cancelled</div>
+    <div class="fact"><i>Reminders</i>1 day before and 1 hour before, default subject and content</div>
+    <div class="fact"><i>Plan</i>Cal.com free tier, so the reminder content is the default</div>
+  </div>
+</div></section>
+
+<section id="comms"><div class="wrap">
+  <span class="eye">Communication</span><h2>Every message in the journey</h2>
+  <p class="intro">Two audiences: the lead gets calm, personal emails, and I get short Telegram alerts from Cotton, named after my cat.</p>
+
+  <div class="flowhead">Telegram alerts from Cotton</div>
+  <div class="tgwrap">
+    <div class="tgm"><b>🐱 New inquiry</b><div>MEOW, BOSS! Cotton here. New inquiry received!</div><em>Name &middot; Email &middot; Message</em></div>
+    <div class="tgm"><b>😼 Call booked</b><div>BOSS!! A human booked a call and I stayed awake for this!</div><em>Name &middot; Email &middot; When</em></div>
+    <div class="tgm"><b>🔄 Call rescheduled</b><div>Plot twist! A call was rescheduled.</div><em>Name &middot; Email &middot; New time</em></div>
+    <div class="tgm"><b>😿 Call cancelled</b><div>Boss! An appointment was cancelled.</div><em>Name &middot; Email &middot; Reason</em></div>
+  </div>
+  <p class="tgnote">Message openers as configured. Name, email and time are filled in from the form and the booking.</p>
+
+  <div class="flowhead">Emails to the lead</div>
+  <div class="tabs" id="mailtabs">
+    <button class="tabbtn on" data-p="mp0" type="button">Instant reply</button>
+    <button class="tabbtn" data-p="mp1" type="button">Nurture &middot; day 3</button>
+    <button class="tabbtn" data-p="mp2" type="button">Nurture &middot; day 7</button>
+    <button class="tabbtn" data-p="mp3" type="button">Nurture &middot; day 14</button>
+  </div>
+  <div class="mail mailpane" id="mp0"><div class="mbar"><i></i><i></i><i></i><span>Instant reply</span></div><div class="mh"><div class="av">A</div><div class="mi"><b>Thanks for reaching out, <span class="ph">First name</span>. Here&rsquo;s my booking link</b><span>From Angelo Alob &middot; sent right after the form is submitted</span></div></div><div class="mb"><p>Hi <span class="ph">First name</span>,</p>
+<p>Thanks for getting in touch. I received your message and I&rsquo;d like to learn more about what you need.</p>
+<p>The next step is a short discovery call, where we can talk through your goals and how your leads and bookings work today. After the call, I&rsquo;ll send a clear proposal with the scope and price.</p>
+<p>You can pick a time that works for you here:<br><a href="#">Book your discovery call</a></p>
+<p>If none of the times work, just reply to this email and we&rsquo;ll find another one.</p>
+<p>Talk soon,<br>Angelo</p></div></div><div class="mail mailpane" id="mp1" hidden><div class="mbar"><i></i><i></i><i></i><span>Nurture &middot; day 3</span></div><div class="mh"><div class="av">A</div><div class="mi"><b>A gentle follow-up</b><span>From Angelo Alob &middot; nurture email 1 of 3 (day 3)</span></div></div><div class="mb"><p>Hi <span class="ph">First name</span>,</p>
+<p>I wanted to follow up on our previous conversation about your business. I understand that the timing may not be right just yet.</p>
+<p>If you&rsquo;d like to explore how GoHighLevel could support your business through CRM setup, automation, or funnels, you&rsquo;re welcome to book a short discovery call below.</p>
+<p><a href="#">Book a Discovery Call</a></p>
+<p>If you have any questions in the meantime, feel free to reply to this email.</p><div class="sg">Best regards,<br><b>Angelo Alob</b><br>GHL Specialist | CRM, Automation &amp; Funnels</div><p style="margin-top:14px;font-size:0.82rem;font-style:italic;color:var(--muted)">If you&rsquo;d prefer not to receive further follow-ups, simply reply &ldquo;stop.&rdquo;</p></div></div><div class="mail mailpane" id="mp2" hidden><div class="mbar"><i></i><i></i><i></i><span>Nurture &middot; day 7</span></div><div class="mh"><div class="av">A</div><div class="mi"><b>What a discovery call is</b><span>From Angelo Alob &middot; nurture email 2 of 3 (day 7)</span></div></div><div class="mb"><p>Hi <span class="ph">First name</span>,</p>
+<p>A discovery call is simply an opportunity to discuss your business, understand your current challenges, and explore whether GoHighLevel is the right fit for your needs.</p>
+<p>We can talk through potential solutions, whether that&rsquo;s improving lead follow-up, streamlining appointment bookings, organizing your CRM, or building a funnel.</p>
+<p>If there&rsquo;s a good fit, I&rsquo;ll outline the recommended approach, scope, and pricing so you can decide how you&rsquo;d like to proceed.</p>
+<p>You can book a convenient time here:<br><a href="#">Book a Discovery Call</a></p>
+<p>Looking forward to connecting whenever the timing works for you.</p><div class="sg">Best regards,<br><b>Angelo Alob</b><br>GHL Specialist | CRM, Automation &amp; Funnels</div><p style="margin-top:14px;font-size:0.82rem;font-style:italic;color:var(--muted)">If you&rsquo;d prefer not to receive further follow-ups, simply reply &ldquo;stop.&rdquo;</p></div></div><div class="mail mailpane" id="mp3" hidden><div class="mbar"><i></i><i></i><i></i><span>Nurture &middot; day 14</span></div><div class="mh"><div class="av">A</div><div class="mi"><b>One final follow-up</b><span>From Angelo Alob &middot; nurture email 3 of 3 (day 14)</span></div></div><div class="mb"><p>Hi <span class="ph">First name</span>,</p>
+<p>I wanted to send one final follow-up and leave things here for now.</p>
+<p>If improving your business processes with GoHighLevel, CRM systems, or automation becomes a priority, I&rsquo;d be happy to explore how I can help.</p>
+<p>You can reach out anytime or book a discovery call whenever you&rsquo;re ready.</p>
+<p><a href="#">Book a Discovery Call</a></p>
+<p>Wishing you and your business all the best.</p><div class="sg">Best regards,<br><b>Angelo Alob</b><br>GHL Specialist | CRM, Automation &amp; Funnels</div><p style="margin-top:14px;font-size:0.82rem;font-style:italic;color:var(--muted)">If you&rsquo;d prefer not to receive further follow-ups, simply reply &ldquo;stop.&rdquo;</p></div></div>
+
+  <div class="tl">
+    <div class="card"><span class="day">Day 3</span><h3>A gentle check-in</h3><p class="sm">Acknowledges the timing may not be right and leaves the booking link.</p></div>
+    <div class="card"><span class="day">Day 7</span><h3>What a call involves</h3><p class="sm">Explains what a discovery call is and what happens if there is a fit.</p></div>
+    <div class="card"><span class="day">Day 14</span><h3>One final follow-up</h3><p class="sm">Closes the sequence politely and keeps the door open.</p></div>
+  </div>
+</div></section>
+
+<section id="edge"><div class="wrap">
+  <span class="eye">Beyond the happy path</span><h2>Edge cases the system handles</h2>
+  <div class="tbl card"><table>
+    <thead><tr><th>Situation</th><th>What happens</th></tr></thead>
+    <tbody>
+      <tr><td><b>Lead cancels</b></td><td>The sheet status becomes <span class="sel st-lost">Lost</span>, the reason is saved in Notes and Cotton tells me why.</td></tr>
+      <tr><td><b>Lead reschedules</b></td><td>The existing row is found and its call time and status are updated, then I get an alert with the new time.</td></tr>
+      <tr><td><b>Lead submits but never books</b></td><td>They stay at <span class="sel st-new">New</span> with the booking link already sent, and the reply invites them to write back if no time works.</td></tr>
+      <tr><td><b>Lead is interested but not ready</b></td><td>I mark <span class="sel st-maybe">Maybe/Later</span> and the 3, 7 and 14 day sequence takes over. Each email includes a simple way to opt out.</td></tr>
+      <tr><td><b>Non-genuine submission</b></td><td>A <b>Real Person Only</b> filter sits between the form webhook and the sheet.</td></tr>
+    </tbody></table></div>
+  <div class="note g"><span class="lab">Scope</span><span>Not part of this build: no-show handling. Proposals and final outcomes are handled by hand.</span></div>
+</div></section>
+
+<section id="built"><div class="wrap">
+  <span class="eye">My part</span><h2>What I built</h2>
+  <div class="grid3">
+    <div class="hl"><span class="no">01</span><b>Two Make.com scenarios</b><span>A form scenario and a Cal.com scenario with a three-route router.</span></div>
+    <div class="hl"><span class="no">02</span><b>A Google Sheet CRM</b><span>Status and call details kept current automatically, with a clear split between automatic and manual statuses.</span></div>
+    <div class="hl"><span class="no">03</span><b>Cal.com booking</b><span>A 30 minute Google Meet discovery call with default confirmations and 1 day and 1 hour reminders.</span></div>
+    <div class="hl"><span class="no">04</span><b>Telegram bot alerts</b><span>Four in-character alerts for new inquiries, bookings, reschedules and cancellations.</span></div>
+    <div class="hl"><span class="no">05</span><b>An instant email reply</b><span>A personal response with the booking link, sent through Gmail.</span></div>
+    <div class="hl"><span class="no">06</span><b>A nurture sequence</b><span>A Google Apps Script follow-up at 3, 7 and 14 days for leads marked Maybe/Later.</span></div>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><p><b>Built for this portfolio</b> on the free tiers of Make.com and Cal.com, with Google Sheets, Gmail, Google Apps Script and a Telegram bot. Personal details in the screenshots are blurred.</p></div></footer>
+
+<div class="lb" id="lb" role="dialog" aria-label="Image preview"><button class="x" type="button" aria-label="Close">&times;</button><div class="t"></div><img alt=""></div>
+<script>(function(){
+function parentTheme(){try{if(window.parent!==window)return window.parent.document.documentElement.dataset.theme}catch(e){}try{return localStorage.getItem('theme')}catch(e){}return 'light'}
+function applyTheme(){document.documentElement.dataset.theme=parentTheme()==='dark'?'dark':'light'}
+applyTheme();
+try{if(window.parent!==window)new MutationObserver(applyTheme).observe(window.parent.document.documentElement,{attributes:true,attributeFilter:['data-theme']})}catch(e){}
+window.addEventListener('storage',applyTheme);
+try{if(window.self!==window.top)document.documentElement.classList.add('framed')}catch(e){document.documentElement.classList.add('framed')}
+var lb=document.getElementById('lb'),lbi=lb.querySelector('img'),lbt=lb.querySelector('.t');
+document.querySelectorAll('.shot').forEach(function(s){s.addEventListener('click',function(){var im=s.querySelector('img');lbi.src=im.src;lbi.alt=im.alt;lbt.textContent=im.alt;lb.classList.add('on')})});
+lb.addEventListener('click',function(){lb.classList.remove('on')});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('on')});
+var tabs=document.querySelectorAll('#mailtabs .tabbtn'),panes=document.querySelectorAll('.mailpane');
+tabs.forEach(function(t){t.addEventListener('click',function(){tabs.forEach(function(x){x.classList.toggle('on',x===t)});panes.forEach(function(p){p.hidden=p.id!==t.dataset.p})})});
+var w=document.getElementById('sprog'),bar=w.querySelector('i'),pc=w.querySelector('b');
+function u(){var h=document.documentElement,m=h.scrollHeight-h.clientHeight,p=m>0?Math.min(1,Math.max(0,h.scrollTop/m)):0;bar.style.transform='scaleX('+p+')';pc.textContent=Math.round(p*100)+'%';w.setAttribute('aria-valuenow',Math.round(p*100))}
+window.addEventListener('scroll',u,{passive:true});window.addEventListener('resize',u);u();
+})();</script>
+</body>
+</html>

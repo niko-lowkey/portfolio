@@ -93,7 +93,7 @@ type Build = { id: string; label: string; src: string; path: string; Icon: Icon 
 
 const BUILDS: Build[] = [
   { id: 'ticketing', label: 'Crownwell Dental Clinic', src: '/featured/crownwell-case-study.html', path: '/crownwell-dental-clinic', Icon: Ticket },
-  { id: 'framework', label: 'Featured Project Two', src: '/placeholders/sample-plan.html?doc=2', path: '/featured-two', Icon: Robot },
+  { id: 'framework', label: 'Portfolio Lead Automation', src: '/featured/portfolio-automation-case-study.html', path: '/portfolio-lead-automation', Icon: Robot },
   { id: 'workflow', label: 'Featured Project Three', src: '/placeholders/sample-plan.html?doc=3', path: '/featured-three', Icon: FlowArrow },
 ]
 

@@ -100,7 +100,7 @@ export const profile: Profile = {
  */
 export const hidden = {
   aiBuilds: true,
-  projects: ['plan', 'ai', 'apps', 'framework', 'workflow'] as string[],
+  projects: ['plan', 'ai', 'apps', 'workflow'] as string[],
 }
 
 export const sections = {

@@ -56,6 +56,7 @@ const HERMES = '/icons/ai/hermes.svg'
 const PLAY = '/icons/ai/googleplay.svg'
 const CHROME = '/icons/ai/googlechrome.svg'
 const EXPO = '/icons/ai/expo.svg'
+const MAKE = '/icons/make.png'
 
 // Real GoHighLevel workflow screenshots in one uniform frame (the workflow name
 // is at the top of each image). w/h reserve the space so the reel never jumps.
@@ -83,14 +84,14 @@ const APP_SHOTS = [
 ]
 
 const CROWNWELL_DESC = 'Two funnels, a booking calendar, a five stage pipeline and four connected workflows that confirm, remind and follow up automatically. A portfolio demonstration.'
-
+const PORTFOLIO_AUTO_DESC = 'My portfolio form logs each lead in a Google Sheet CRM, sends a booking link and alerts me on Telegram. Cal.com bookings keep the status current, and a nurture drip follows up with maybe-later leads.'
 const BUILD_DESC = 'PLACEHOLDER - tell me what to put here: two lines on what this project is and the result it got.'
 
 /** The three featured builds: each its own card in the stack, each its own
  *  pop-up. */
 const BUILDS: Project[] = [
   { id: 'ticketing', cat: 'work', index: '03', kicker: 'GoHighLevel automation', title: 'Crownwell Dental Clinic', subtitle: 'Booking, reminders and follow-up automation', image: '/featured/crownwell-card.jpg', desc: CROWNWELL_DESC, Icon: () => <Ticket size={20} weight="duotone" />, logos: [GHL], eyebrow: 'Featured build', Section: TicketingPanel, Preview: () => null },
-  { id: 'framework', cat: 'ai', index: '04', kicker: 'Placeholder category', title: 'Featured Project Two', desc: BUILD_DESC, Icon: () => <Robot size={20} weight="duotone" />, logos: [CLAUDE_CODE], eyebrow: 'Featured build', Section: FrameworkPanel, Preview: () => null },
+  { id: 'framework', cat: 'work', index: '04', kicker: 'Make.com automation', title: 'Portfolio Lead Automation', subtitle: 'Form to booking to follow-up, on free tools', desc: PORTFOLIO_AUTO_DESC, Icon: () => <Robot size={20} weight="duotone" />, logos: [MAKE], eyebrow: 'Featured build', Section: FrameworkPanel, Preview: () => null },
   { id: 'workflow', cat: 'ai', index: '05', kicker: 'Placeholder category', title: 'Featured Project Three', desc: BUILD_DESC, Icon: () => <FlowArrow size={20} weight="duotone" />, logos: [CLAUDE_CODE, CODEX, HERMES], eyebrow: 'Featured build', Section: WorkflowPanel, Preview: () => null },
 ]
 
