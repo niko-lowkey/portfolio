@@ -205,9 +205,9 @@ export default function ServicesGrid() {
           <header className="sgrid__flow-head">
             <div className="sgrid__flow-copy">
               <span className="sgrid__flow-eyebrow">Live automation</span>
-              <h2 className="sgrid__flow-title">Your automation headline.</h2>
+              <h2 className="sgrid__flow-title">From first message to follow-up, automated.</h2>
               <p className="sgrid__flow-sub">
-                PLACEHOLDER - tell me what to put here: one sentence on what this example automation does for a client.
+                A visitor sends the form. The system logs the lead, emails the booking link, alerts me on Telegram, tracks every booking change, and follows up with anyone who is not ready yet. Built on free tools.
               </p>
             </div>
             <ul className="sgrid__flow-tools" role="list" aria-label="Tools that power this flow">

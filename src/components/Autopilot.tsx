@@ -13,8 +13,9 @@ import {
   XCircle,
   Hourglass,
   Heart,
-  Plug,
-  Sparkle,
+  TreeStructure,
+  Table,
+  PaperPlaneTilt,
 } from '@/components/slab'
 import type { Icon } from '@/components/slab'
 
@@ -51,17 +52,17 @@ type FlowNode = {
 // Two tiers: the chain across the top, the outcomes fanning out just below.
 const NODES: FlowNode[] = [
   // top chain
-  { id: 'n-form',     Icon: Lightning,     title: 'Trigger',        subtitle: 'Form submitted',    x: 6,   y: 36,  variant: 'trigger' },
-  { id: 'n-email',    Icon: EnvelopeSimple, title: 'Send Email',    subtitle: 'Action',            x: 176, y: 36 },
-  { id: 'n-booked',   Icon: CalendarCheck, title: 'Update CRM',     subtitle: 'Action',            x: 346, y: 36 },
-  { id: 'n-24hr',     Icon: Clock,         title: 'Wait',           subtitle: 'Delay step',        x: 516, y: 36 },
-  { id: 'n-1hr',      Icon: BellRinging,   title: 'Reminder',       subtitle: 'Email & SMS',       x: 686, y: 36 },
-  { id: 'n-call',     Icon: VideoCamera,   title: 'Decision',       subtitle: 'Condition gate',    x: 866, y: 36, variant: 'gate' },
+  { id: 'n-form',     Icon: Lightning,     title: 'Submit Form',    subtitle: 'Website trigger',    x: 6,   y: 36,  variant: 'trigger' },
+  { id: 'n-email',    Icon: EnvelopeSimple, title: 'Booking Email',  subtitle: 'Link sent by Gmail',            x: 176, y: 36 },
+  { id: 'n-booked',   Icon: CalendarCheck, title: 'Client Booked',   subtitle: 'Cal.com webhook',            x: 346, y: 36 },
+  { id: 'n-24hr',     Icon: Clock,         title: '24hr Reminder',   subtitle: 'Cal.com email',        x: 516, y: 36 },
+  { id: 'n-1hr',      Icon: BellRinging,   title: '1hr Reminder',    subtitle: 'Cal.com email',       x: 686, y: 36 },
+  { id: 'n-call',     Icon: VideoCamera,   title: 'Discovery Call', subtitle: 'Qualify the lead',    x: 866, y: 36, variant: 'gate' },
   // outcomes (one tier, fanning out of the decision gate)
-  { id: 'n-proposal', Icon: FileText,      title: 'Outcome A',      subtitle: 'Next action',       x: 56,  y: 268 },
-  { id: 'n-won',      Icon: Trophy,        title: 'Won',            subtitle: 'Goal reached',      x: 240, y: 268, variant: 'win' },
-  { id: 'n-maybe',    Icon: Hourglass,     title: 'Outcome B',      subtitle: 'Not ready yet',     x: 468, y: 268 },
-  { id: 'n-nurture',  Icon: Heart,         title: 'AI Step',        subtitle: 'Follow-up drip',    x: 652, y: 268 },
+  { id: 'n-proposal', Icon: FileText,      title: 'Proposal Sent',   subtitle: 'Scope + price',       x: 56,  y: 268 },
+  { id: 'n-won',      Icon: Trophy,        title: 'Won',            subtitle: 'Deal closed',      x: 240, y: 268, variant: 'win' },
+  { id: 'n-maybe',    Icon: Hourglass,     title: 'Maybe / Later',   subtitle: 'Not ready yet',     x: 468, y: 268 },
+  { id: 'n-nurture',  Icon: Heart,         title: 'Nurture Drip',    subtitle: 'Day 3 · 7 · 14',    x: 652, y: 268 },
   { id: 'n-lost',     Icon: XCircle,       title: 'Lost',           subtitle: 'Closed out',        x: 866, y: 268, variant: 'lost' },
 ]
 
@@ -76,7 +77,7 @@ const LINKS: Link[] = [
   { from: 'n-24hr',   to: 'n-1hr' },
   { from: 'n-1hr',    to: 'n-call' },
   // a loop back to an earlier step
-  { from: 'n-1hr',    to: 'n-booked', kind: 'loop', label: 'Loop Back' },
+  { from: 'n-1hr',    to: 'n-booked', kind: 'loop', label: 'Booking Rescheduled' },
   // decision outcomes (dashed dispatch)
   { from: 'n-call',   to: 'n-proposal', kind: 'dash' },
   { from: 'n-call',   to: 'n-maybe',    kind: 'dash' },
@@ -87,9 +88,10 @@ const LINKS: Link[] = [
 ]
 
 export const TOOLS: { Icon: Icon; label: string }[] = [
-  { Icon: Plug,           label: 'Your CRM' },
-  { Icon: EnvelopeSimple, label: 'Email & SMS' },
-  { Icon: Sparkle,        label: 'AI Assistant' },
+  { Icon: TreeStructure,  label: 'Make Automation' },
+  { Icon: CalendarCheck,  label: 'Cal.com Booking' },
+  { Icon: Table,          label: 'Sheets + Apps Script' },
+  { Icon: PaperPlaneTilt, label: 'Telegram Alerts' },
 ]
 
 const SVGNS = 'http://www.w3.org/2000/svg'
@@ -327,7 +329,10 @@ export default function Autopilot({ compact = false, maxScale = 1 }: AutopilotPr
     if (!el) return
     const io = new IntersectionObserver(
       ([entry]) => {
-        for (const t of tweensRef.current) entry.isIntersecting ? t.play() : t.pause()
+        for (const t of tweensRef.current) {
+          if (entry.isIntersecting) t.play()
+          else t.pause()
+        }
       },
       { threshold: 0 },
     )
@@ -348,11 +353,11 @@ export default function Autopilot({ compact = false, maxScale = 1 }: AutopilotPr
       <header className="autopilot__head">
         <span className="autopilot__eyebrow">Live automation</span>
         <h2 id="autopilot-heading" className="autopilot__headline">
-          Your workflow, end to end.
+          From first message to follow-up, automated.
         </h2>
         <p className="autopilot__intro">
-          PLACEHOLDER - tell me what to put here: two or three sentences walking
-          through this example automation, from the trigger to each outcome.
+          A visitor sends the form. The system logs the lead, emails the booking link, alerts me on
+          Telegram, tracks every booking change, and follows up with anyone who is not ready yet.
         </p>
       </header>
       )}
