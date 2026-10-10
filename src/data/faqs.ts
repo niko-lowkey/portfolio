@@ -17,7 +17,7 @@ export const FAQS: QA[] = [
   },
   {
     q: "Do I need to already have GoHighLevel?",
-    a: "No. I can build everything inside a GoHighLevel account, whether you already have one or are starting from scratch.",
+    a: "No, but you will need one. If you already have a GoHighLevel account, I build inside it. If not, I’ll guide you through setting one up under your own name, so you own your pages, contacts and data.",
   },
   {
     q: "How much do you charge?",
