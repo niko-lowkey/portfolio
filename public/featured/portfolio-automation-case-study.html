@@ -492,10 +492,32 @@ html[data-theme='dark'] .tl .day{color:#121D26}
 .lane{margin-top:44px}
 .lane h3{font-size:1.02rem;margin-bottom:4px}
 .lane p.sm{font-size:0.92rem;margin-bottom:4px}
+
+
+.mkbar{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line)}
+.mkt{display:flex;gap:8px}.mkreplay{margin-top:0;padding:6px 13px;font-size:0.8rem}
+.mkscroll{overflow-x:auto}.mkscroll svg{display:block;width:100%;height:auto;min-width:760px}
+.mkpane .shot{border:0;border-radius:0}
+.mk .cv{fill:#F5F5F5}html[data-theme='dark'] .mk .cv{fill:#22323F}
+.mk .mlb{fill:var(--ink)}.mk .sb{fill:var(--muted)}.mk .nb{fill:rgba(120,130,140,.28)}.mk .nt{fill:var(--text)}
+.mk .d{fill:var(--c);transition:fill .3s}
+.mk .bub{opacity:0}
+.mk .ring{opacity:0;transform-box:fill-box;transform-origin:center}
+.mk.arm .mod{opacity:.28;transition:opacity .45s}
+.mk.arm .mod.on{opacity:1}
+.mk.arm .mod.on .bub{opacity:1;transition:opacity .4s .25s}
+.mk.arm .mod.on .ring{animation:mkring 1.1s ease-out 1}
+.mk.arm .cn .d{fill:#CFCFCF;transition:fill .3s}
+html[data-theme='dark'] .mk.arm .cn .d{fill:#455767}
+.mk.arm .cn.on .d{fill:var(--c);transform-box:fill-box;transform-origin:center;animation:mkdot .9s ease-in-out 2;animation-delay:calc(var(--k)*.09s)}
+@keyframes mkring{0%{opacity:.7;transform:scale(1)}100%{opacity:0;transform:scale(1.45)}}
+@keyframes mkdot{0%,100%{transform:scale(1)}45%{transform:scale(1.7)}}
+@media (prefers-reduced-motion:reduce){.mk .mod{opacity:1!important}.mk .bub{opacity:1}.mk .ring{display:none}.mk .cn .d{animation:none!important}}
 </style>
 </head>
 <body>
 <div id="sprog" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100"><i></i><b>0%</b></div>
+<canvas id="bgv" class="bgv" aria-hidden="true"></canvas>
 
 <header>
   <div class="hb">
@@ -506,13 +528,13 @@ html[data-theme='dark'] .tl .day{color:#121D26}
 
 <main id="top">
 <div class="wrap hero">
-  <span class="pill">Portfolio project &middot; Make.com</span>
+  <span class="pill">Portfolio Lead Automation &middot; Make.com</span>
   <h1>Portfolio inquiries that <span class="orange">manage themselves</span></h1>
   <p class="sub">Instead of checking my email for every new lead, the contact form on this portfolio now starts two Make.com scenarios. They log each lead in a Google Sheet CRM, reply with a booking link, keep the status up to date as people book, reschedule or cancel, and alert me on Telegram.</p>
   <div class="stats">
     <div><b>2</b><span>Scenarios</span></div><div><b>4</b><span>Telegram alerts</span></div><div><b>6</b><span>Lead statuses</span></div><div><b>3</b><span>Nurture emails</span></div>
   </div>
-  <div class="built"><span>Built inside</span><b><img src="/icons/make.png" alt="" width="22" height="22"><em>Make.com</em></b><b><img src="/icons/googleappsscript.svg" alt="" width="22" height="22"><em>Apps Script</em></b><b><em>Cal.com</em></b></div>
+  <div class="built"><span>Built inside</span><b><img src="/icons/make.png" alt="" width="22" height="22"><em>Make.com</em></b><b><img src="/icons/googleappsscript.png" alt="" width="22" height="22"><em>Apps Script</em></b><b><img src="/icons/calcom.png" alt="Cal.com" width="86" height="18" style="height:18px;width:auto;object-fit:contain"></b></div>
 </div>
 
 <section id="how"><div class="wrap">
@@ -532,17 +554,18 @@ html[data-theme='dark'] .tl .day{color:#121D26}
   <span class="eye">The automation</span><h2>Two Make.com scenarios</h2>
   <p class="intro">One handles the form. The other listens to Cal.com and routes each booking event to the right update.</p>
 
+
   <div class="lane">
     <h3>Scenario 1: Portfolio Website Form Submit</h3>
     <p class="sm">Runs when a visitor submits the contact form.</p>
-    <div class="card flush"><div class="shot"><img src="portfolio-automation/make-form.jpg" width="1100" height="435" alt="Make.com scenario: Portfolio Website Form Submit" loading="lazy"></div></div>
+    <div class="card flush mkcard" id="mk1"><div class="mkbar"><div class="mkt"><button type="button" class="tabbtn on" data-p="anim">Animated</button><button type="button" class="tabbtn" data-p="shot">Original screenshot</button></div><button type="button" class="btn mkreplay">&#8635; Replay</button></div><div class="mkpane" data-p="anim"><div class="mkscroll mk"><svg viewBox="0 0 1100 400" role="img" aria-label="Animated replica of the Make.com scenario Portfolio Website Form Submit: webhook, Google Sheets Add a Row, Gmail Send an email, Telegram message."><rect class="cv" width="1100" height="400"/><g class="mod" data-s="0"><path d="M0 -26.400000000000002A26.400000000000002 26.400000000000002 0 0 1 0 26.400000000000002Z" transform="translate(226.0 190.0) rotate(0)" fill="#C93C66" fill-opacity=".5"/><circle class="ring" cx="160" cy="190" r="66" fill="none" stroke="#C93C66" stroke-width="3"/><circle cx="160" cy="190" r="66" fill="#C93C66"/><g transform="translate(160 190) scale(1.065) translate(-160 -190)"><g stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"><circle cx="160" cy="168" r="8"/><circle cx="136" cy="206" r="8"/><circle cx="184" cy="206" r="8"/><path d="M156 176L140 198M144 206H174M166 176L182 196"/></g></g><circle cx="119.1" cy="230.9" r="19.8" fill="#C93C66" stroke="#fff" stroke-width="3"/><path d="M121.1 221.9L112.1 232.9H118.1L116.1 240.9L126.1 228.9H120.1Z" fill="#fff"/><g class="bub"><circle cx="207.5" cy="142.5" r="11" fill="#27343F"/><text x="207.5" y="146.5" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1</text></g><text x="160" y="282" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">Submit form in</text><text x="160" y="301" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">Portfolio Website</text><rect x="241.9" y="288" width="16" height="17" rx="4" class="nb"/><text x="245.9" y="301" font-size="11" class="nt">1</text><text x="160" y="320" text-anchor="middle" class="sb" font-size="11">Custom webhook</text></g><g class="cn" data-s="1"><circle class="d" cx="269.0" cy="190.0" r="6.5" style="--c:#C93C66;--k:0"/><circle class="d" cx="290.0" cy="190.0" r="6.5" style="--c:#6d7264;--k:1"/><circle class="d" cx="311.0" cy="190.0" r="6.5" style="--c:#11A862;--k:2"/></g><g class="mod" data-s="2"><path d="M0 -26.400000000000002A26.400000000000002 26.400000000000002 0 0 1 0 26.400000000000002Z" transform="translate(354.0 190.0) rotate(180)" fill="#11A862" fill-opacity=".5"/><path d="M0 -26.400000000000002A26.400000000000002 26.400000000000002 0 0 1 0 26.400000000000002Z" transform="translate(486.0 190.0) rotate(0)" fill="#11A862" fill-opacity=".5"/><circle class="ring" cx="420" cy="190" r="66" fill="none" stroke="#11A862" stroke-width="3"/><circle cx="420" cy="190" r="66" fill="#11A862"/><g transform="translate(420 190) scale(1.065) translate(-420 -190)"><path d="M401 167a4 4 0 0 1 4-4H427L439 175V213a4 4 0 0 1-4 4H405a4 4 0 0 1-4-4Z" fill="#fff"/><rect x="408" y="185" width="24" height="22" rx="2" fill="none" stroke="#11A862" stroke-width="3"/><path d="M408 192H432M408 199H432M420 185V207" stroke="#11A862" stroke-width="2.4"/></g><g class="bub"><circle cx="467.5" cy="142.5" r="11" fill="#27343F"/><text x="467.5" y="146.5" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1</text></g><text x="420" y="282" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">Details Stored in</text><text x="420" y="301" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">Google Sheet</text><rect x="480.2" y="288" width="16" height="17" rx="4" class="nb"/><text x="484.2" y="301" font-size="11" class="nt">6</text><text x="420" y="320" text-anchor="middle" class="sb" font-size="11">Add a Row</text></g><g class="cn" data-s="3"><circle class="d" cx="529.0" cy="190.0" r="6.5" style="--c:#11A862;--k:0"/><circle class="d" cx="550.0" cy="190.0" r="6.5" style="--c:#82754c;--k:1"/><circle class="d" cx="571.0" cy="190.0" r="6.5" style="--c:#F44336;--k:2"/></g><g class="mod" data-s="4"><path d="M0 -26.400000000000002A26.400000000000002 26.400000000000002 0 0 1 0 26.400000000000002Z" transform="translate(614.0 190.0) rotate(180)" fill="#F44336" fill-opacity=".5"/><path d="M0 -26.400000000000002A26.400000000000002 26.400000000000002 0 0 1 0 26.400000000000002Z" transform="translate(746.0 190.0) rotate(0)" fill="#F44336" fill-opacity=".5"/><circle class="ring" cx="680" cy="190" r="66" fill="none" stroke="#F44336" stroke-width="3"/><circle cx="680" cy="190" r="66" fill="#F44336"/><g transform="translate(680 190) scale(1.065) translate(-680 -190)"><path d="M656 207V174L680 193L704 174V207" stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="7"/></g><g class="bub"><circle cx="727.5" cy="142.5" r="11" fill="#27343F"/><text x="727.5" y="146.5" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1</text></g><text x="680" y="282" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">Send email response and</text><text x="680" y="301" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">booking link</text><rect x="740.2" y="288" width="16" height="17" rx="4" class="nb"/><text x="744.2" y="301" font-size="11" class="nt">7</text><text x="680" y="320" text-anchor="middle" class="sb" font-size="11">Send an email</text></g><g class="cn" data-s="5"><circle class="d" cx="789.0" cy="190.0" r="6.5" style="--c:#F44336;--k:0"/><circle class="d" cx="810.0" cy="190.0" r="6.5" style="--c:#877088;--k:1"/><circle class="d" cx="831.0" cy="190.0" r="6.5" style="--c:#1B9DDB;--k:2"/></g><g class="mod" data-s="6"><path d="M0 -26.400000000000002A26.400000000000002 26.400000000000002 0 0 1 0 26.400000000000002Z" transform="translate(874.0 190.0) rotate(180)" fill="#1B9DDB" fill-opacity=".5"/><path d="M0 -26.400000000000002A26.400000000000002 26.400000000000002 0 0 1 0 26.400000000000002Z" transform="translate(1006.0 190.0) rotate(0)" fill="#1B9DDB" fill-opacity=".5"/><circle cx="1036" cy="190" r="14" fill="#1B9DDB" fill-opacity=".5"/><path d="M1030 190H1042M1036 184V196" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><circle class="ring" cx="940" cy="190" r="66" fill="none" stroke="#1B9DDB" stroke-width="3"/><circle cx="940" cy="190" r="66" fill="#1B9DDB"/><g transform="translate(940 190) scale(1.065) translate(-940 -190)"><path d="M910 188L970 163L958 217L942 202L930 212L928 198Z" fill="#fff"/><path d="M928 198L970 163" stroke="#1B9DDB" stroke-width="2" fill="none"/></g><g class="bub"><circle cx="987.5" cy="142.5" r="11" fill="#27343F"/><text x="987.5" y="146.5" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1</text></g><text x="940" y="282" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">Cotton will notify me</text><rect x="1039.3" y="269" width="16" height="17" rx="4" class="nb"/><text x="1043.3" y="282" font-size="11" class="nt">9</text><text x="940" y="301" text-anchor="middle" class="sb" font-size="11">Send a Text Message or a Reply</text></g><g class="pl"><rect x="228.0" y="117" width="132" height="22" rx="11" fill="#fff" stroke="#dcdcdc"/><text x="239.0" y="132" font-size="10.5" fill="#222"><tspan fill="#222" font-weight="500">Real Person Only</tspan></text><g transform="translate(342.0 123)" style="color:#444"><path d="M0 0h8l-3 4v4l-2 1V4Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></g></g><g transform="translate(542.0 212) scale(.68)" class="wr"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z" fill="none" stroke="#777" stroke-width="2.2" stroke-linejoin="round"/></g><g transform="translate(802.0 212) scale(.68)" class="wr"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z" fill="none" stroke="#777" stroke-width="2.2" stroke-linejoin="round"/></g></svg></div></div><div class="mkpane" data-p="shot" hidden><div class="shot"><img src="portfolio-automation/make-form.jpg" width="1100" height="435" alt="Make.com scenario: Portfolio Website Form Submit" loading="lazy"></div></div></div>
     <div class="card"><div class="flow"><div class="st k-trigger"><span class="bd">Trigger</span><span>A visitor submits the contact form on the portfolio. A custom webhook in Make receives it.</span></div><div class="st k-cond"><span class="bd">Filter</span><span>The <b>Real Person Only</b> filter sits between the webhook and the sheet, so only real submissions continue.</span></div><div class="st k-crm"><span class="bd">CRM</span><span>Google Sheets <b>Add a Row</b>: details saved to the CRM sheet with the status <b>New</b>.</span></div><div class="st k-email"><span class="bd">Email</span><span>Gmail <b>Send an email</b>: a personal reply with the discovery call booking link goes to the lead.</span></div><div class="st k-notify"><span class="bd">Notify</span><span>Cotton, my Telegram bot, sends me the new inquiry: name, email and message.</span></div></div></div>
   </div>
 
   <div class="lane">
     <h3>Scenario 2: Booking Appointment in Cal.com</h3>
     <p class="sm">Runs when someone books, reschedules or cancels a call. A router sends each event down its own route.</p>
-    <div class="card flush"><div class="shot"><img src="portfolio-automation/make-booking.jpg" width="1161" height="707" alt="Make.com scenario: Booking Appointment in Cal.com, with Booked, Cancelled and Reschedule routes" loading="lazy"></div></div>
+    <div class="card flush mkcard" id="mk2"><div class="mkbar"><div class="mkt"><button type="button" class="tabbtn on" data-p="anim">Animated</button><button type="button" class="tabbtn" data-p="shot">Original screenshot</button></div><button type="button" class="btn mkreplay">&#8635; Replay</button></div><div class="mkpane" data-p="anim"><div class="mkscroll mk"><svg viewBox="0 0 1160 720" role="img" aria-label="Animated replica of the Make.com scenario Booking Appointment in Cal.com: webhook, router with Booked, Cancelled and Reschedule routes, each running Search Rows, Update a Row and a Telegram message."><rect class="cv" width="1160" height="720"/><g class="mod" data-s="0"><path d="M0 -22.400000000000002A22.400000000000002 22.400000000000002 0 0 1 0 22.400000000000002Z" transform="translate(171.0 340.0) rotate(0)" fill="#C93C66" fill-opacity=".5"/><circle class="ring" cx="115" cy="340" r="56" fill="none" stroke="#C93C66" stroke-width="3"/><circle cx="115" cy="340" r="56" fill="#C93C66"/><g transform="translate(115 340) scale(0.903) translate(-115 -340)"><g stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"><circle cx="115" cy="318" r="8"/><circle cx="91" cy="356" r="8"/><circle cx="139" cy="356" r="8"/><path d="M111 326L95 348M99 356H129M121 326L137 346"/></g></g><circle cx="80.3" cy="374.7" r="16.8" fill="#C93C66" stroke="#fff" stroke-width="3"/><path d="M82.3 365.7L73.3 376.7H79.3L77.3 384.7L87.3 372.7H81.3Z" fill="#fff"/><g class="bub"><circle cx="155.3" cy="299.7" r="11" fill="#27343F"/><text x="155.3" y="303.7" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1</text></g><text x="115" y="422" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">Booked an Appointment in</text><text x="115" y="441" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">Cal.com</text><rect x="153.4" y="428" width="16" height="17" rx="4" class="nb"/><text x="157.4" y="441" font-size="11" class="nt">1</text><text x="115" y="460" text-anchor="middle" class="sb" font-size="11">Cal.com webhook</text></g><g class="cn" data-s="1"><circle class="d" cx="209.0" cy="336.0" r="6.5" style="--c:#C93C66;--k:0"/><circle class="d" cx="225.0" cy="336.0" r="6.5" style="--c:#b68962;--k:1"/><circle class="d" cx="241.0" cy="336.0" r="6.5" style="--c:#A4D65E;--k:2"/></g><g transform="translate(219.0 366) scale(.68)" class="wr"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z" fill="none" stroke="#777" stroke-width="2.2" stroke-linejoin="round"/></g><g class="mod" data-s="2"><path d="M0 -22.400000000000002A22.400000000000002 22.400000000000002 0 0 1 0 22.400000000000002Z" transform="translate(279.0 330.0) rotate(180)" fill="#A4D65E" fill-opacity=".5"/><circle class="ring" cx="335" cy="330" r="56" fill="none" stroke="#A4D65E" stroke-width="3"/><circle cx="335" cy="330" r="56" fill="#A4D65E"/><g transform="translate(335 330) scale(0.903) translate(-335 -330)"><g stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"><circle cx="335" cy="330" r="9" stroke-width="6"/><path d="M295 330L319 330M313.2 334.0L319 330L313.2 326.0"/><path d="M349 330L371 330M365.2 334.0L371 330L365.2 326.0"/><path d="M345 320L363 302M361.7 308.9L363 302L356.1 303.3"/><path d="M345 340L363 358M356.1 356.7L363 358L361.7 351.1"/></g></g><g class="bub"><circle cx="375.3" cy="289.7" r="11" fill="#27343F"/><text x="375.3" y="293.7" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1</text></g><text x="335" y="412" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">Router</text><rect x="369.1" y="399" width="16" height="17" rx="4" class="nb"/><text x="373.1" y="412" font-size="11" class="nt">2</text><text x="335" y="431" text-anchor="middle" class="sb" font-size="11"></text></g><path d="M0 -20A20 20 0 0 1 0 20Z" transform="translate(372.5 288.4) rotate(-48)" fill="#A4D65E" fill-opacity=".5"/><path d="M0 -20A20 20 0 0 1 0 20Z" transform="translate(391.0 330.0) rotate(0)" fill="#A4D65E" fill-opacity=".5"/><path d="M0 -20A20 20 0 0 1 0 20Z" transform="translate(372.5 371.6) rotate(48)" fill="#A4D65E" fill-opacity=".5"/><g class="cn" data-s="3" data-r="0"><circle class="d" cx="380.5" cy="281.4" r="6.5" style="--c:#A4D65E;--k:0"/><circle class="d" cx="399.9" cy="265.3" r="6.5" style="--c:#A4D65E;--k:1"/><circle class="d" cx="412.6" cy="244.0" r="6.5" style="--c:#A4D65E;--k:2"/><circle class="d" cx="421.4" cy="218.9" r="6.5" style="--c:#5abf60;--k:3"/><circle class="d" cx="428.8" cy="191.7" r="6.5" style="--c:#5abf60;--k:4"/><circle class="d" cx="437.5" cy="163.9" r="6.5" style="--c:#5abf60;--k:5"/><circle class="d" cx="450.0" cy="137.1" r="6.5" style="--c:#11A862;--k:6"/><circle class="d" cx="469.0" cy="113.0" r="6.5" style="--c:#11A862;--k:7"/></g><g class="mod" data-s="4" data-r="0"><path d="M0 -22.400000000000002A22.400000000000002 22.400000000000002 0 0 1 0 22.400000000000002Z" transform="translate(497.0 113.0) rotate(180)" fill="#11A862" fill-opacity=".5"/><path d="M0 -22.400000000000002A22.400000000000002 22.400000000000002 0 0 1 0 22.400000000000002Z" transform="translate(609.0 113.0) rotate(0)" fill="#11A862" fill-opacity=".5"/><circle class="ring" cx="553" cy="113" r="56" fill="none" stroke="#11A862" stroke-width="3"/><circle cx="553" cy="113" r="56" fill="#11A862"/><g transform="translate(553 113) scale(0.903) translate(-553 -113)"><path d="M534 90a4 4 0 0 1 4-4H560L572 98V136a4 4 0 0 1-4 4H538a4 4 0 0 1-4-4Z" fill="#fff"/><rect x="541" y="108" width="24" height="22" rx="2" fill="none" stroke="#11A862" stroke-width="3"/><path d="M541 115H565M541 122H565M553 108V130" stroke="#11A862" stroke-width="2.4"/></g><g class="bub"><circle cx="593.3" cy="72.7" r="11" fill="#27343F"/><text x="593.3" y="76.7" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1</text></g><text x="553" y="195" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">Find - Lead Details</text><rect x="643.6" y="182" width="16" height="17" rx="4" class="nb"/><text x="647.6" y="195" font-size="11" class="nt">7</text><text x="553" y="214" text-anchor="middle" class="sb" font-size="11">Search Rows</text></g><g class="cn" data-s="5" data-r="0"><circle class="d" cx="646.2" cy="113.0" r="6.5" style="--c:#11A862;--k:0"/><circle class="d" cx="661.5" cy="113.0" r="6.5" style="--c:#11a862;--k:1"/><circle class="d" cx="676.8" cy="113.0" r="6.5" style="--c:#11A862;--k:2"/></g><g class="mod" data-s="6" data-r="0"><path d="M0 -22.400000000000002A22.400000000000002 22.400000000000002 0 0 1 0 22.400000000000002Z" transform="translate(714.0 113.0) rotate(180)" fill="#11A862" fill-opacity=".5"/><path d="M0 -22.400000000000002A22.400000000000002 22.400000000000002 0 0 1 0 22.400000000000002Z" transform="translate(826.0 113.0) rotate(0)" fill="#11A862" fill-opacity=".5"/><circle class="ring" cx="770" cy="113" r="56" fill="none" stroke="#11A862" stroke-width="3"/><circle cx="770" cy="113" r="56" fill="#11A862"/><g transform="translate(770 113) scale(0.903) translate(-770 -113)"><path d="M751 90a4 4 0 0 1 4-4H777L789 98V136a4 4 0 0 1-4 4H755a4 4 0 0 1-4-4Z" fill="#fff"/><rect x="758" y="108" width="24" height="22" rx="2" fill="none" stroke="#11A862" stroke-width="3"/><path d="M758 115H782M758 122H782M770 108V130" stroke="#11A862" stroke-width="2.4"/></g><g class="bub"><circle cx="810.3" cy="72.7" r="11" fill="#27343F"/><text x="810.3" y="76.7" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1</text></g><text x="770" y="195" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">Update Lead Details</text><text x="770" y="214" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">and Status</text><rect x="821.5" y="201" width="16" height="17" rx="4" class="nb"/><text x="825.5" y="214" font-size="11" class="nt">8</text><text x="770" y="233" text-anchor="middle" class="sb" font-size="11">Update a Row</text></g><g class="cn" data-s="7" data-r="0"><circle class="d" cx="864.0" cy="113.0" r="6.5" style="--c:#11A862;--k:0"/><circle class="d" cx="880.0" cy="113.0" r="6.5" style="--c:#16a29e;--k:1"/><circle class="d" cx="896.0" cy="113.0" r="6.5" style="--c:#1B9DDB;--k:2"/></g><g class="mod" data-s="8" data-r="0"><path d="M0 -22.400000000000002A22.400000000000002 22.400000000000002 0 0 1 0 22.400000000000002Z" transform="translate(934.0 113.0) rotate(180)" fill="#1B9DDB" fill-opacity=".5"/><path d="M0 -22.400000000000002A22.400000000000002 22.400000000000002 0 0 1 0 22.400000000000002Z" transform="translate(1046.0 113.0) rotate(0)" fill="#1B9DDB" fill-opacity=".5"/><circle cx="1076" cy="113" r="14" fill="#1B9DDB" fill-opacity=".5"/><path d="M1070 113H1082M1076 107V119" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><circle class="ring" cx="990" cy="113" r="56" fill="none" stroke="#1B9DDB" stroke-width="3"/><circle cx="990" cy="113" r="56" fill="#1B9DDB"/><g transform="translate(990 113) scale(0.903) translate(-990 -113)"><path d="M960 111L1020 86L1008 140L992 125L980 135L978 121Z" fill="#fff"/><path d="M978 121L1020 86" stroke="#1B9DDB" stroke-width="2" fill="none"/></g><g class="bub"><circle cx="1030.3" cy="72.7" r="11" fill="#27343F"/><text x="1030.3" y="76.7" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1</text></g><text x="990" y="195" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">Cotton will notify me</text><text x="990" y="214" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">(Booked Appointment)</text><rect x="1085.0" y="201" width="16" height="17" rx="4" class="nb"/><text x="1089.0" y="214" font-size="11" class="nt">9</text><text x="990" y="233" text-anchor="middle" class="sb" font-size="11">Send a Text Message or a Reply</text></g><g transform="translate(653.5 129) scale(.68)" class="wr"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z" fill="none" stroke="#777" stroke-width="2.2" stroke-linejoin="round"/></g><g transform="translate(872.0 129) scale(.68)" class="wr"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z" fill="none" stroke="#777" stroke-width="2.2" stroke-linejoin="round"/></g><g class="pl"><rect x="328.8035783792215" y="180.6583822722767" width="132" height="22" rx="11" fill="#fff" stroke="#dcdcdc"/><text x="339.8035783792215" y="195.6583822722767" font-size="10.5" fill="#222"><tspan fill="#6aa33a" font-weight="700">1st </tspan><tspan fill="#222" font-weight="500">Booked</tspan></text><g transform="translate(442.8035783792215 186.6583822722767)" style="color:#444"><path d="M0 0h8l-3 4v4l-2 1V4Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></g></g><g class="cn" data-s="9" data-r="1"><circle class="d" cx="429.5" cy="330.0" r="6.5" style="--c:#A4D65E;--k:0"/><circle class="d" cx="444.0" cy="330.0" r="6.5" style="--c:#5abf60;--k:1"/><circle class="d" cx="458.5" cy="330.0" r="6.5" style="--c:#11A862;--k:2"/></g><g class="mod" data-s="10" data-r="1"><path d="M0 -22.400000000000002A22.400000000000002 22.400000000000002 0 0 1 0 22.400000000000002Z" transform="translate(497.0 330.0) rotate(180)" fill="#11A862" fill-opacity=".5"/><path d="M0 -22.400000000000002A22.400000000000002 22.400000000000002 0 0 1 0 22.400000000000002Z" transform="translate(609.0 330.0) rotate(0)" fill="#11A862" fill-opacity=".5"/><circle class="ring" cx="553" cy="330" r="56" fill="none" stroke="#11A862" stroke-width="3"/><circle cx="553" cy="330" r="56" fill="#11A862"/><g transform="translate(553 330) scale(0.903) translate(-553 -330)"><path d="M534 307a4 4 0 0 1 4-4H560L572 315V353a4 4 0 0 1-4 4H538a4 4 0 0 1-4-4Z" fill="#fff"/><rect x="541" y="325" width="24" height="22" rx="2" fill="none" stroke="#11A862" stroke-width="3"/><path d="M541 332H565M541 339H565M553 325V347" stroke="#11A862" stroke-width="2.4"/></g><g class="bub"><circle cx="593.3" cy="289.7" r="11" fill="#27343F"/><text x="593.3" y="293.7" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1</text></g><text x="553" y="412" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">Find - Lead Details</text><rect x="643.6" y="399" width="24" height="17" rx="4" class="nb"/><text x="647.6" y="412" font-size="11" class="nt">13</text><text x="553" y="431" text-anchor="middle" class="sb" font-size="11">Search Rows</text></g><g class="cn" data-s="11" data-r="1"><circle class="d" cx="646.2" cy="330.0" r="6.5" style="--c:#11A862;--k:0"/><circle class="d" cx="661.5" cy="330.0" r="6.5" style="--c:#11a862;--k:1"/><circle class="d" cx="676.8" cy="330.0" r="6.5" style="--c:#11A862;--k:2"/></g><g class="mod" data-s="12" data-r="1"><path d="M0 -22.400000000000002A22.400000000000002 22.400000000000002 0 0 1 0 22.400000000000002Z" transform="translate(714.0 330.0) rotate(180)" fill="#11A862" fill-opacity=".5"/><path d="M0 -22.400000000000002A22.400000000000002 22.400000000000002 0 0 1 0 22.400000000000002Z" transform="translate(826.0 330.0) rotate(0)" fill="#11A862" fill-opacity=".5"/><circle class="ring" cx="770" cy="330" r="56" fill="none" stroke="#11A862" stroke-width="3"/><circle cx="770" cy="330" r="56" fill="#11A862"/><g transform="translate(770 330) scale(0.903) translate(-770 -330)"><path d="M751 307a4 4 0 0 1 4-4H777L789 315V353a4 4 0 0 1-4 4H755a4 4 0 0 1-4-4Z" fill="#fff"/><rect x="758" y="325" width="24" height="22" rx="2" fill="none" stroke="#11A862" stroke-width="3"/><path d="M758 332H782M758 339H782M770 325V347" stroke="#11A862" stroke-width="2.4"/></g><g class="bub"><circle cx="810.3" cy="289.7" r="11" fill="#27343F"/><text x="810.3" y="293.7" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1</text></g><text x="770" y="412" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">Update Lead Details</text><text x="770" y="431" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">and Status</text><rect x="821.5" y="418" width="24" height="17" rx="4" class="nb"/><text x="825.5" y="431" font-size="11" class="nt">14</text><text x="770" y="450" text-anchor="middle" class="sb" font-size="11">Update a Row</text></g><g class="cn" data-s="13" data-r="1"><circle class="d" cx="864.0" cy="330.0" r="6.5" style="--c:#11A862;--k:0"/><circle class="d" cx="880.0" cy="330.0" r="6.5" style="--c:#16a29e;--k:1"/><circle class="d" cx="896.0" cy="330.0" r="6.5" style="--c:#1B9DDB;--k:2"/></g><g class="mod" data-s="14" data-r="1"><path d="M0 -22.400000000000002A22.400000000000002 22.400000000000002 0 0 1 0 22.400000000000002Z" transform="translate(934.0 330.0) rotate(180)" fill="#1B9DDB" fill-opacity=".5"/><path d="M0 -22.400000000000002A22.400000000000002 22.400000000000002 0 0 1 0 22.400000000000002Z" transform="translate(1046.0 330.0) rotate(0)" fill="#1B9DDB" fill-opacity=".5"/><circle cx="1076" cy="330" r="14" fill="#1B9DDB" fill-opacity=".5"/><path d="M1070 330H1082M1076 324V336" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><circle class="ring" cx="990" cy="330" r="56" fill="none" stroke="#1B9DDB" stroke-width="3"/><circle cx="990" cy="330" r="56" fill="#1B9DDB"/><g transform="translate(990 330) scale(0.903) translate(-990 -330)"><path d="M960 328L1020 303L1008 357L992 342L980 352L978 338Z" fill="#fff"/><path d="M978 338L1020 303" stroke="#1B9DDB" stroke-width="2" fill="none"/></g><g class="bub"><circle cx="1030.3" cy="289.7" r="11" fill="#27343F"/><text x="1030.3" y="293.7" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1</text></g><text x="990" y="412" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">Cotton will notify me</text><text x="990" y="431" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">(Cancelled Appointment)</text><rect x="1098.0" y="418" width="24" height="17" rx="4" class="nb"/><text x="1102.0" y="431" font-size="11" class="nt">15</text><text x="990" y="450" text-anchor="middle" class="sb" font-size="11">Send a Text Message or a Reply</text></g><g transform="translate(653.5 346) scale(.68)" class="wr"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z" fill="none" stroke="#777" stroke-width="2.2" stroke-linejoin="round"/></g><g transform="translate(872.0 346) scale(.68)" class="wr"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z" fill="none" stroke="#777" stroke-width="2.2" stroke-linejoin="round"/></g><g class="pl"><rect x="380.0" y="285" width="132" height="22" rx="11" fill="#fff" stroke="#dcdcdc"/><text x="391.0" y="300" font-size="10.5" fill="#222"><tspan fill="#6aa33a" font-weight="700">2nd </tspan><tspan fill="#222" font-weight="500">Cancelled</tspan></text><g transform="translate(494.0 291)" style="color:#444"><path d="M0 0h8l-3 4v4l-2 1V4Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></g></g><g class="cn" data-s="15" data-r="2"><circle class="d" cx="380.5" cy="378.6" r="6.5" style="--c:#A4D65E;--k:0"/><circle class="d" cx="399.9" cy="394.7" r="6.5" style="--c:#A4D65E;--k:1"/><circle class="d" cx="412.6" cy="416.2" r="6.5" style="--c:#A4D65E;--k:2"/><circle class="d" cx="421.4" cy="441.5" r="6.5" style="--c:#5abf60;--k:3"/><circle class="d" cx="428.8" cy="468.9" r="6.5" style="--c:#5abf60;--k:4"/><circle class="d" cx="437.5" cy="496.9" r="6.5" style="--c:#5abf60;--k:5"/><circle class="d" cx="450.0" cy="523.8" r="6.5" style="--c:#11A862;--k:6"/><circle class="d" cx="469.0" cy="548.0" r="6.5" style="--c:#11A862;--k:7"/></g><g class="mod" data-s="16" data-r="2"><path d="M0 -22.400000000000002A22.400000000000002 22.400000000000002 0 0 1 0 22.400000000000002Z" transform="translate(497.0 548.0) rotate(180)" fill="#11A862" fill-opacity=".5"/><path d="M0 -22.400000000000002A22.400000000000002 22.400000000000002 0 0 1 0 22.400000000000002Z" transform="translate(609.0 548.0) rotate(0)" fill="#11A862" fill-opacity=".5"/><circle class="ring" cx="553" cy="548" r="56" fill="none" stroke="#11A862" stroke-width="3"/><circle cx="553" cy="548" r="56" fill="#11A862"/><g transform="translate(553 548) scale(0.903) translate(-553 -548)"><path d="M534 525a4 4 0 0 1 4-4H560L572 533V571a4 4 0 0 1-4 4H538a4 4 0 0 1-4-4Z" fill="#fff"/><rect x="541" y="543" width="24" height="22" rx="2" fill="none" stroke="#11A862" stroke-width="3"/><path d="M541 550H565M541 557H565M553 543V565" stroke="#11A862" stroke-width="2.4"/></g><g class="bub"><circle cx="593.3" cy="507.7" r="11" fill="#27343F"/><text x="593.3" y="511.7" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1</text></g><text x="553" y="630" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">Find - Lead Details</text><rect x="643.6" y="617" width="24" height="17" rx="4" class="nb"/><text x="647.6" y="630" font-size="11" class="nt">16</text><text x="553" y="649" text-anchor="middle" class="sb" font-size="11">Search Rows</text></g><g class="cn" data-s="17" data-r="2"><circle class="d" cx="646.2" cy="548.0" r="6.5" style="--c:#11A862;--k:0"/><circle class="d" cx="661.5" cy="548.0" r="6.5" style="--c:#11a862;--k:1"/><circle class="d" cx="676.8" cy="548.0" r="6.5" style="--c:#11A862;--k:2"/></g><g class="mod" data-s="18" data-r="2"><path d="M0 -22.400000000000002A22.400000000000002 22.400000000000002 0 0 1 0 22.400000000000002Z" transform="translate(714.0 548.0) rotate(180)" fill="#11A862" fill-opacity=".5"/><path d="M0 -22.400000000000002A22.400000000000002 22.400000000000002 0 0 1 0 22.400000000000002Z" transform="translate(826.0 548.0) rotate(0)" fill="#11A862" fill-opacity=".5"/><circle class="ring" cx="770" cy="548" r="56" fill="none" stroke="#11A862" stroke-width="3"/><circle cx="770" cy="548" r="56" fill="#11A862"/><g transform="translate(770 548) scale(0.903) translate(-770 -548)"><path d="M751 525a4 4 0 0 1 4-4H777L789 533V571a4 4 0 0 1-4 4H755a4 4 0 0 1-4-4Z" fill="#fff"/><rect x="758" y="543" width="24" height="22" rx="2" fill="none" stroke="#11A862" stroke-width="3"/><path d="M758 550H782M758 557H782M770 543V565" stroke="#11A862" stroke-width="2.4"/></g><g class="bub"><circle cx="810.3" cy="507.7" r="11" fill="#27343F"/><text x="810.3" y="511.7" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1</text></g><text x="770" y="630" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">Update Lead Details</text><text x="770" y="649" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">and Status</text><rect x="821.5" y="636" width="24" height="17" rx="4" class="nb"/><text x="825.5" y="649" font-size="11" class="nt">17</text><text x="770" y="668" text-anchor="middle" class="sb" font-size="11">Update a Row</text></g><g class="cn" data-s="19" data-r="2"><circle class="d" cx="864.0" cy="548.0" r="6.5" style="--c:#11A862;--k:0"/><circle class="d" cx="880.0" cy="548.0" r="6.5" style="--c:#16a29e;--k:1"/><circle class="d" cx="896.0" cy="548.0" r="6.5" style="--c:#1B9DDB;--k:2"/></g><g class="mod" data-s="20" data-r="2"><path d="M0 -22.400000000000002A22.400000000000002 22.400000000000002 0 0 1 0 22.400000000000002Z" transform="translate(934.0 548.0) rotate(180)" fill="#1B9DDB" fill-opacity=".5"/><path d="M0 -22.400000000000002A22.400000000000002 22.400000000000002 0 0 1 0 22.400000000000002Z" transform="translate(1046.0 548.0) rotate(0)" fill="#1B9DDB" fill-opacity=".5"/><circle cx="1076" cy="548" r="14" fill="#1B9DDB" fill-opacity=".5"/><path d="M1070 548H1082M1076 542V554" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/><circle class="ring" cx="990" cy="548" r="56" fill="none" stroke="#1B9DDB" stroke-width="3"/><circle cx="990" cy="548" r="56" fill="#1B9DDB"/><g transform="translate(990 548) scale(0.903) translate(-990 -548)"><path d="M960 546L1020 521L1008 575L992 560L980 570L978 556Z" fill="#fff"/><path d="M978 556L1020 521" stroke="#1B9DDB" stroke-width="2" fill="none"/></g><g class="bub"><circle cx="1030.3" cy="507.7" r="11" fill="#27343F"/><text x="1030.3" y="511.7" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1</text></g><text x="990" y="630" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">Cotton will notify me</text><text x="990" y="649" text-anchor="middle" class="mlb" font-size="14.5" font-weight="700">(Rescheduled Appointment)</text><rect x="1106.8" y="636" width="24" height="17" rx="4" class="nb"/><text x="1110.8" y="649" font-size="11" class="nt">18</text><text x="990" y="668" text-anchor="middle" class="sb" font-size="11">Send a Text Message or a Reply</text></g><g transform="translate(653.5 564) scale(.68)" class="wr"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z" fill="none" stroke="#777" stroke-width="2.2" stroke-linejoin="round"/></g><g transform="translate(872.0 564) scale(.68)" class="wr"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z" fill="none" stroke="#777" stroke-width="2.2" stroke-linejoin="round"/></g><g class="pl"><rect x="328.8035783792215" y="457.9480317218924" width="132" height="22" rx="11" fill="#fff" stroke="#dcdcdc"/><text x="339.8035783792215" y="472.9480317218924" font-size="10.5" fill="#222"><tspan fill="#6aa33a" font-weight="700">3rd </tspan><tspan fill="#222" font-weight="500">Reschedule</tspan></text><g transform="translate(442.8035783792215 463.9480317218924)" style="color:#444"><path d="M0 0h8l-3 4v4l-2 1V4Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></g></g><g class="pl"><rect x="600.5" y="49" width="122" height="22" rx="11" fill="#fff" stroke="#dcdcdc"/><text x="611.5" y="64" font-size="10.5" fill="#222"><tspan fill="#222" font-weight="500">Validate Record</tspan></text><g transform="translate(704.5 55)" style="color:#444"><path d="M0 0h8l-3 4v4l-2 1V4Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></g></g></svg></div></div><div class="mkpane" data-p="shot" hidden><div class="shot"><img src="portfolio-automation/make-booking.jpg" width="1161" height="707" alt="Make.com scenario: Booking Appointment in Cal.com, with Booked, Cancelled and Reschedule routes" loading="lazy"></div></div></div>
     <div class="card"><div class="flow"><div class="st k-trigger"><span class="bd">Trigger</span><span>Cal.com sends a webhook to Make when someone books, reschedules or cancels.</span></div><div class="st k-cond"><span class="bd">Router</span><span>Make sends the event down one of three routes: <b>Booked</b>, <b>Cancelled</b> or <b>Reschedule</b>.</span></div><div class="st k-crm"><span class="bd">CRM</span><span><b>Search Rows</b> finds the lead in the sheet, then <b>Update a Row</b> writes the new details and status.</span></div><div class="st k-notify"><span class="bd">Notify</span><span>Cotton sends a Telegram message that matches the event, with the name, email and call time or reason.</span></div></div></div>
     <div class="tbl card"><table>
       <thead><tr><th>Route</th><th>Sheet update</th><th>Telegram alert</th></tr></thead>
@@ -662,6 +685,13 @@ html[data-theme='dark'] .tl .day{color:#121D26}
     <div class="hl"><span class="no">06</span><b>A nurture sequence</b><span>A Google Apps Script follow-up at 3, 7 and 14 days for leads marked Maybe/Later.</span></div>
   </div>
 </div></section>
+
+<section id="mindset" class="mind"><div class="wrap">
+  <div><span class="eye">The mindset</span>
+  <p class="big">One sheet is the record. <em>Every inquiry, booking and change updates it by itself.</em> I only set the statuses that need a human call.</p>
+  <p class="sub">A clear record of every lead, and an alert or email ready for every moment that follows.</p></div>
+  <div class="sig"><span>Portfolio Lead Automation &middot; 2 scenarios + 1 sheet CRM + 4 alerts + 3 nurture emails</span><span>Built in <b>Make.com</b></span></div>
+</div></section>
 </main>
 
 <footer><div class="wrap"><p><b>Built for this portfolio</b> on the free tiers of Make.com and Cal.com, with Google Sheets, Gmail, Google Apps Script and a Telegram bot. Personal details in the screenshots are blurred.</p></div></footer>
@@ -669,7 +699,7 @@ html[data-theme='dark'] .tl .day{color:#121D26}
 <div class="lb" id="lb" role="dialog" aria-label="Image preview"><button class="x" type="button" aria-label="Close">&times;</button><div class="t"></div><img alt=""></div>
 <script>(function(){
 function parentTheme(){try{if(window.parent!==window)return window.parent.document.documentElement.dataset.theme}catch(e){}try{return localStorage.getItem('theme')}catch(e){}return 'light'}
-function applyTheme(){document.documentElement.dataset.theme=parentTheme()==='dark'?'dark':'light'}
+function applyTheme(){var d=parentTheme()==='dark';document.documentElement.dataset.theme=d?'dark':'light';if(window.__bgSetDark)window.__bgSetDark(d)}
 applyTheme();
 try{if(window.parent!==window)new MutationObserver(applyTheme).observe(window.parent.document.documentElement,{attributes:true,attributeFilter:['data-theme']})}catch(e){}
 window.addEventListener('storage',applyTheme);
@@ -683,6 +713,185 @@ tabs.forEach(function(t){t.addEventListener('click',function(){tabs.forEach(func
 var w=document.getElementById('sprog'),bar=w.querySelector('i'),pc=w.querySelector('b');
 function u(){var h=document.documentElement,m=h.scrollHeight-h.clientHeight,p=m>0?Math.min(1,Math.max(0,h.scrollTop/m)):0;bar.style.transform='scaleX('+p+')';pc.textContent=Math.round(p*100)+'%';w.setAttribute('aria-valuenow',Math.round(p*100))}
 window.addEventListener('scroll',u,{passive:true});window.addEventListener('resize',u);u();
+})();</script>
+<script>
+(function(){
+var cv=document.getElementById('bgv');if(!cv)return;
+var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches,touch='ontouchstart' in window||matchMedia('(pointer: coarse)').matches||navigator.maxTouchPoints>0;
+if(reduced)return;
+var gl=cv.getContext('webgl2',{antialias:false});if(!gl)return;
+var VS='#version 300 es\nin vec2 p;out vec2 vUv;void main(){vUv=p*.5+.5;gl_Position=vec4(p,0.,1.);}';
+var FS=`#version 300 es
+precision highp float;
+
+  uniform float uTime;
+  uniform vec2  uMouse;       // [-1, 1]
+  uniform float uMousePace;   // [0, ~1] eased mouse velocity
+  uniform float uAspect;      // viewport.width / viewport.height
+  uniform float uDarkMix;     // 0 = light/cream, 1 = dark/navy
+  in vec2 vUv;
+  out vec4 outColor;
+  
+  vec3 mod289(vec3 x){return x-floor(x*(1./289.))*289.;}
+  vec4 mod289(vec4 x){return x-floor(x*(1./289.))*289.;}
+  vec4 permute(vec4 x){return mod289(((x*34.)+1.)*x);}
+  vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-.85373472095314*r;}
+  float snoise(vec3 v){
+    const vec2 C=vec2(1./6.,1./3.);const vec4 D=vec4(0.,.5,1.,2.);
+    vec3 i=floor(v+dot(v,C.yyy));vec3 x0=v-i+dot(i,C.xxx);
+    vec3 g=step(x0.yzx,x0.xyz);vec3 l=1.-g;
+    vec3 i1=min(g.xyz,l.zxy);vec3 i2=max(g.xyz,l.zxy);
+    vec3 x1=x0-i1+C.xxx;vec3 x2=x0-i2+C.yyy;vec3 x3=x0-D.yyy;
+    i=mod289(i);
+    vec4 p=permute(permute(permute(i.z+vec4(0.,i1.z,i2.z,1.))+i.y+vec4(0.,i1.y,i2.y,1.))+i.x+vec4(0.,i1.x,i2.x,1.));
+    float n_=.142857142857;vec3 ns=n_*D.wyz-D.xzx;
+    vec4 j=p-49.*floor(p*ns.z*ns.z);vec4 x_=floor(j*ns.z);vec4 y_=floor(j-7.*x_);
+    vec4 x=x_*ns.x+ns.yyyy;vec4 y=y_*ns.x+ns.yyyy;vec4 h=1.-abs(x)-abs(y);
+    vec4 b0=vec4(x.xy,y.xy);vec4 b1=vec4(x.zw,y.zw);
+    vec4 s0=floor(b0)*2.+1.;vec4 s1=floor(b1)*2.+1.;
+    vec4 sh=-step(h,vec4(0.));
+    vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;
+    vec3 p0=vec3(a0.xy,h.x);vec3 p1=vec3(a0.zw,h.y);vec3 p2=vec3(a1.xy,h.z);vec3 p3=vec3(a1.zw,h.w);
+    vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));
+    p0*=norm.x;p1*=norm.y;p2*=norm.z;p3*=norm.w;
+    vec4 m=max(.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.);m=m*m;
+    return 42.*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));
+  }
+
+
+  // Tuning constants. Tune these to taste.
+  // Tuned from full-HD screenshots of landonorris.com - the contours are
+  // BIG sweeping curves (only 2-4 visible across a 1920px viewport), not
+  // dense topographic detail. SCALE drives that.
+  const float SCALE             = 0.72;  // base noise scale - LOWER = larger cells = fewer, sparser blobs across the viewport
+  const float NOISE_DETAIL      = 3.0;   // number of contour bands per noise cell - LOWER = fewer parallel lines (less busy / fewer blobs)
+  const float DISTORT_SCALE     = 0.55;  // size of the slow underlying blobs
+  const float DISTORT_INTENSITY = 0.50;  // how much the slow blobs warp the contours
+  const float HAIRLINE_PIXELS   = 1.5;   // contour line width in screen pixels (fwidth-driven)
+  const float CURSOR_SCALE      = 1.5;   // falloff sharpness around the cursor
+  const float CURSOR_INTENSITY  = 0.05;  // how much the cursor drags contour UVs
+
+  // Near-isotropic noise sampling - contours form in all directions like a
+  // real topographic map. NOT stretched into horizontal stripes.
+  const vec2  ANISOTROPY        = vec2(1.0, 1.0);
+
+  void main(){
+    // Aspect-corrected UV so contours stay circular at any window ratio.
+    vec2 uv = vUv;
+    uv.x *= uAspect;
+
+    // Mouse in the same UV space as the noise sample.
+    vec2 mouse = uMouse * 0.5 + 0.5;
+    mouse.x *= uAspect;
+    float cursor = 1.0 - distance(mouse, uv) * CURSOR_SCALE;
+    cursor *= uMousePace;
+    cursor = clamp(cursor, 0.0, 1.0);
+
+    // Layer 1: slow, large-scale noise.
+    float noiseDistort = 0.5 + snoise(vec3(uv * DISTORT_SCALE, uTime * 0.1)) * 0.5;
+
+    // Layer 2: low-frequency noise whose UV is warped by layer 1 + the cursor.
+    vec2 warpedUv = (uv + cursor * CURSOR_INTENSITY + noiseDistort * DISTORT_INTENSITY) * SCALE * ANISOTROPY;
+    float n = snoise(vec3(warpedUv, uTime));
+
+    // Multiply by NOISE_DETAIL BEFORE fract() - this is the topographic-map
+    // trick. With NOISE_DETAIL = 1, fract(n) wraps once per noise cell and
+    // produces small closed loops around peaks/valleys. With NOISE_DETAIL = 4,
+    // fract wraps four times per cell, producing FOUR PARALLEL contours that
+    // flow along the noise gradient over long distances - exactly what makes
+    // Lando's lines look like real elevation contours instead of pebbles.
+    float bands = (n * 0.5 + 0.5) * NOISE_DETAIL;
+
+    // Hairline contour lines using GLSL derivatives (fwidth) - resolution
+    // independent. fwidth(bands) tracks per-pixel change in bands, so the
+    // line stays HAIRLINE_PIXELS thick regardless of NOISE_DETAIL or SCALE.
+    float contour = fract(bands);
+    float dist    = abs(contour - 0.5);
+    float w       = fwidth(bands) * HAIRLINE_PIXELS * 0.5;
+    float line    = 1.0 - smoothstep(0.0, w, dist);
+
+    // Theme colors (kept identical to v1 so the rest of the page does not shift).
+    vec3 bgLight   = vec3(0.984, 0.992, 0.996); // #FBFDFE near white
+    vec3 lineLight = vec3(0.46,  0.46,  0.46);  // soft neutral gray contour on cream
+    vec3 bgDark    = vec3(0.106, 0.169, 0.220); // #1B2B38 deep blue-charcoal
+    vec3 lineDark  = vec3(1.0,   1.0,   1.0);   // solid white on navy (black would be invisible)
+
+    vec3 bg      = mix(bgLight, bgDark, uDarkMix);
+    vec3 lineCol = mix(lineLight, lineDark, uDarkMix);
+
+    // Tiny cursor-velocity highlight so flicks leave a faint glow.
+    lineCol += cursor * 0.04;
+
+    // Line opacity: soft, tonal beige hairlines - lower alpha so
+    // the contours read as a warm beige tint rather than stark black. The lower
+    // contrast also hides most of the half-res upscale aliasing. Dark sections
+    // use white lines on navy, kept legible at a similar low alpha.
+    float lineAlpha = line * mix(0.55, 0.45, uDarkMix);
+    vec3 color = mix(bg, lineCol, lineAlpha);
+
+    outColor = vec4(color, 1.0);
+  }
+`;
+function sh(t,s){var o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return o}
+var pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,VS));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,FS));gl.linkProgram(pr);
+if(!gl.getProgramParameter(pr,gl.LINK_STATUS))return;
+gl.useProgram(pr);
+var b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+var loc=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+var U=function(n){return gl.getUniformLocation(pr,n)};var uT=U('uTime'),uM=U('uMouse'),uP=U('uMousePace'),uA=U('uAspect'),uD=U('uDarkMix');
+function size(){cv.width=innerWidth;cv.height=innerHeight;gl.viewport(0,0,cv.width,cv.height)}size();addEventListener('resize',size);
+var tgt={x:0,y:0},cur={x:0,y:0},lx=0,ly=0,pace=0,time=0,last=performance.now(),dark=0,td=0;
+addEventListener('mousemove',function(e){tgt.x=e.clientX/innerWidth*2-1;tgt.y=-(e.clientY/innerHeight)*2+1});
+window.__bgSetDark=function(d){td=d?1:0};
+if(document.documentElement.dataset.theme==='dark'){dark=td=1}
+function loop(now){requestAnimationFrame(loop);if(document.hidden||now-last<1000/30-1)return;
+var dt=Math.min(.05,(now-last)/1000);last=now;time+=.09*dt;
+var fk=1-Math.exp(-4*dt);cur.x+=(tgt.x-cur.x)*fk;cur.y+=(tgt.y-cur.y)*fk;
+var dx=(cur.x-lx)/Math.max(dt,.001),dy=(cur.y-ly)/Math.max(dt,.001);
+pace+=(Math.min(1,Math.sqrt(dx*dx+dy*dy)*.4)-pace)*(1-Math.exp(-8*dt));lx=cur.x;ly=cur.y;
+dark+=(td-dark)*(1-Math.exp(-7*dt));
+gl.uniform1f(uT,time);gl.uniform2f(uM,cur.x,cur.y);gl.uniform1f(uP,pace);gl.uniform1f(uA,innerWidth/innerHeight);gl.uniform1f(uD,dark);
+gl.drawArrays(gl.TRIANGLE_STRIP,0,4)}
+requestAnimationFrame(loop);
+})();
+</script>
+
+<script>(function(){
+var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('.mkcard').forEach(function(card){
+  var mk=card.querySelector('.mk'),panes=card.querySelectorAll('.mkpane'),tabs=card.querySelectorAll('.mkt .tabbtn'),btn=card.querySelector('.mkreplay');
+  var els=[].slice.call(mk.querySelectorAll('[data-s]')),timers=[],visible=false,active=true,DT=620;
+  var maxS=0;els.forEach(function(e){maxS=Math.max(maxS,+e.dataset.s)});
+  function clear(){timers.forEach(clearTimeout);timers=[]}
+  function reset(){els.forEach(function(e){e.classList.remove('on')})}
+  function later(fn,t){timers.push(setTimeout(fn,t))}
+  function run(){
+    clear();reset();
+    els.forEach(function(e){
+      var s=+e.dataset.s;
+      later(function(){
+        e.classList.add('on');
+        if(e.dataset.r!==undefined&&+e.dataset.r>0){
+          var first=3+6*(+e.dataset.r);
+          if(s===first)els.forEach(function(o){if(o.dataset.r!==undefined&&+o.dataset.r===+e.dataset.r-1)o.classList.remove('on')});
+        }
+      },s*DT+300);
+    });
+    later(function(){reset();later(run,900)},(maxS+1)*DT+2600);
+  }
+  if(reduced){return}
+  mk.classList.add('arm');
+  tabs.forEach(function(t){t.addEventListener('click',function(){
+    tabs.forEach(function(x){x.classList.toggle('on',x===t)});
+    panes.forEach(function(p){p.hidden=p.dataset.p!==t.dataset.p});
+    active=t.dataset.p==='anim';btn.style.visibility=active?'visible':'hidden';
+    if(active&&visible)run();else clear();
+  })});
+  btn.addEventListener('click',run);
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(en){visible=en[0].isIntersecting;if(visible&&active)run();else if(!visible)clear()},{threshold:.3}).observe(card);
+  }else{visible=true;run()}
+});
 })();</script>
 </body>
 </html>

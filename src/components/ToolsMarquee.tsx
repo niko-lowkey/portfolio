@@ -39,7 +39,7 @@ type Tool = {
 
 export const tools: Tool[] = [
   { name: 'Google Workspace', iconPath: '/icons/googleworkspace.svg' },
-  { name: 'Google Apps Script', iconPath: '/icons/googleappsscript.svg' },
+  { name: 'Google Apps Script', iconPath: '/icons/googleappsscript.png' },
   { name: 'GoHighLevel',      iconPath: '/icons/gohighlevel.png' },
   { name: 'Make.com',         iconPath: '/icons/make.png' },
   { name: 'Zapier',           iconPath: '/icons/ai/zapier.svg' },

@@ -20,7 +20,7 @@ const ZAPIER = { src: '/icons/ai/zapier.svg', name: 'Zapier' }
 const CLAUDE = { src: '/icons/ai/claude-color.svg', name: 'Claude' }
 const OPENAI = { src: '/icons/openai.svg', name: 'ChatGPT' }
 const GWS = { src: '/icons/googleworkspace.svg', name: 'Google Workspace' }
-const APPS_SCRIPT = { src: '/icons/googleappsscript.svg', name: 'Google Apps Script' }
+const APPS_SCRIPT = { src: '/icons/googleappsscript.png', name: 'Google Apps Script' }
 const SLACK = { src: '/icons/ai/slack-color.svg', name: 'Slack' }
 
 type Capability = {
