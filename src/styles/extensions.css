@@ -5979,3 +5979,7 @@ img.about__stat-badge {
   .wfs__track { animation: none; }
   .wfs__strip { overflow-x: auto; }
 }
+
+/* Tall Zapier screenshots: show at readable width and scroll, instead of shrinking to fit */
+.wfs__imgwrap--tall { align-items: flex-start; }
+.wfs__full--tall { width: min(520px, 100%); max-height: none; height: auto; }

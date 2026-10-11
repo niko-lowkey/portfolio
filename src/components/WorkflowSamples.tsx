@@ -29,6 +29,16 @@ const SAMPLES: Sample[] = [
   { file: 'workflow-3.jpg', label: '3. Appointment Completed + Follow-Up & Review Request', w: 864, h: 905 },
   { file: 'workflow-4.jpg', label: '4. Appointment Status Cancelled / No Show & Lead Nurture', w: 1263, h: 910 },
   { file: 'workflow-5.jpg', label: 'Workflows list', w: 1578, h: 628, pos: 'left top' },
+  { file: 'make-form-framed.jpg', label: 'Make.com · Scenario 1: Portfolio Website Form Submit', w: 1200, h: 800 },
+  { file: 'make-booking-framed.jpg', label: 'Make.com · Scenario 2: Booking Appointment in Cal.com', w: 1200, h: 800 },
+  { file: 'make-list.jpg', label: 'Make.com · Scenarios list', w: 1526, h: 347, pos: 'left top' },
+  { file: 'zapier-1-framed.jpg', label: 'Zapier · Zap 1: Online Store Main Zap', w: 1200, h: 800 },
+  { file: 'zapier-2-framed.jpg', label: 'Zapier · Zap 2: Online Store Invoice Sub-Zap', w: 1200, h: 800 },
+  { file: 'zapier-3-framed.jpg', label: 'Zapier · Zap 3: Online Store Trello Path Sub-Zap', w: 1200, h: 800 },
+  { file: 'zapier-4-framed.jpg', label: 'Zapier · Zap 4: Online Store Trello Processing Pipeline', w: 1200, h: 800 },
+  { file: 'zapier-5-framed.jpg', label: 'Zapier · Zap 5: Online Store Trello Delivered Pipeline', w: 1200, h: 800 },
+  { file: 'zapier-6-framed.jpg', label: 'Zapier · Zap 6: Online Store Trello Cancelled Pipeline', w: 1200, h: 800 },
+  { file: 'zapier-list.jpg', label: 'Zapier · Zaps list', w: 1410, h: 365, pos: 'left top' },
 ]
 
 const srcOf = (s: Sample) => `/automations/${encodeURIComponent(s.file)}`
@@ -67,7 +77,7 @@ export default function WorkflowSamples() {
   return (
     <section className="wfs" id="workflow-samples" aria-labelledby="wfs-heading" data-reveal>
       <p className="wfs__caption" id="wfs-heading">
-        Real screenshots from the GoHighLevel workflows I build.
+        Real screenshots from the GoHighLevel, Make.com and Zapier workflows I build.
       </p>
 
       <div className="wfs__strip">

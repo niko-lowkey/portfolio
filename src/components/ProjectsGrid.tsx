@@ -68,6 +68,12 @@ const WF_SHOTS = [
   { src: '/automations/workflow-3.jpg', w: 864, h: 905 },
   { src: '/automations/workflow-4.jpg', w: 1263, h: 910 },
   { src: '/automations/workflow-5.jpg', w: 1578, h: 628, pos: 'left top' },
+  { src: '/automations/make-form-framed.jpg', w: 1200, h: 800 },
+  { src: '/automations/make-booking-framed.jpg', w: 1200, h: 800 },
+  { src: '/automations/make-list.jpg', w: 1526, h: 347, pos: 'left top' },
+  { src: '/automations/zapier-1-framed.jpg', w: 1200, h: 800 },
+  { src: '/automations/zapier-3-framed.jpg', w: 1200, h: 800 },
+  { src: '/automations/zapier-list.jpg', w: 1410, h: 365, pos: 'left top' },
 ]
 
 // The stacked preview on the "Pages and sites" card: your real pages first
@@ -187,7 +193,7 @@ function AppsPreview() {
 }
 
 const PROJECTS: Project[] = [
-  { id: 'workflows', cat: 'work', index: '01', title: 'Automations', desc: 'Real screenshots from the GoHighLevel workflows I build.', Icon: FlowIcon, logos: [GHL], eyebrow: 'Screenshots', Section: AutomationsPanel, span: 2, Preview: WorkflowsPreview },
+  { id: 'workflows', cat: 'work', index: '01', title: 'Automations', desc: 'Real screenshots from the GoHighLevel, Make.com and Zapier workflows I build.', Icon: FlowIcon, logos: [GHL, MAKE, ZAPIER], eyebrow: 'Screenshots', Section: AutomationsPanel, span: 2, Preview: WorkflowsPreview },
   { id: 'plan', cat: 'work', index: '02', title: 'Sample Document', desc: 'PLACEHOLDER - tell me what to put here: the document this opens.', Icon: PlanIcon, logos: [GHL], eyebrow: 'Sample document', Section: PlanPanel, Preview: PlanPreview },
   { id: 'funnels', cat: 'sites', index: '06', title: 'Funnels and sites', desc: 'Lead capture funnels, booking pages and full websites I have built. Spin the reel to browse them.', Icon: GlobeIcon, logos: [GHL], eyebrow: 'Funnels and sites', Section: BarrelPanel, Preview: FunnelsPreview },
   { id: 'ai', cat: 'ai', index: '07', title: 'Your systems title here', desc: 'PLACEHOLDER - tell me what to put here: the systems you run.', Icon: SparkIcon, logos: [CLAUDE_CODE, CODEX, HERMES], eyebrow: 'Your systems', Section: AIWindow, Preview: AIPreview },
