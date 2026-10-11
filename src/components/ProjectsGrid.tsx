@@ -53,6 +53,7 @@ const GHL = '/icons/gohighlevel.png'
 const CLAUDE_CODE = '/icons/claude-code-logo.png'
 const CODEX = '/icons/ai/codex.svg'
 const HERMES = '/icons/ai/hermes.svg'
+const ZAPIER = '/icons/ai/zapier.svg'
 const PLAY = '/icons/ai/googleplay.svg'
 const CHROME = '/icons/ai/googlechrome.svg'
 const EXPO = '/icons/ai/expo.svg'
@@ -85,14 +86,14 @@ const APP_SHOTS = [
 
 const CROWNWELL_DESC = 'Two funnels, a booking calendar, a five stage pipeline and four connected workflows that confirm, remind and follow up automatically. A portfolio demonstration.'
 const PORTFOLIO_AUTO_DESC = 'My portfolio form logs each lead in a Google Sheet CRM, sends a booking link and alerts me on Telegram. Cal.com bookings keep the status current, and a nurture drip follows up with maybe-later leads.'
-const BUILD_DESC = 'PLACEHOLDER - tell me what to put here: two lines on what this project is and the result it got.'
+const ONLINE_STORE_DESC = 'A customer fills in an order form and six connected Zaps take over: they check the stock, log the order in Google Sheets, alert the team on Slack, create and email an invoice, track the order on a Trello board and keep the customer updated.'
 
 /** The three featured builds: each its own card in the stack, each its own
  *  pop-up. */
 const BUILDS: Project[] = [
   { id: 'ticketing', cat: 'work', index: '03', kicker: 'GoHighLevel automation', title: 'Crownwell Dental Clinic', subtitle: 'Booking, reminders and follow-up automation', image: '/featured/crownwell-card.jpg', desc: CROWNWELL_DESC, Icon: () => <Ticket size={20} weight="duotone" />, logos: [GHL], eyebrow: 'Featured build', Section: TicketingPanel, Preview: () => null },
   { id: 'framework', cat: 'work', index: '04', kicker: 'Make.com automation', title: 'Portfolio Lead Automation', subtitle: 'Form to booking to follow-up, on free tools', desc: PORTFOLIO_AUTO_DESC, Icon: () => <Robot size={20} weight="duotone" />, logos: [MAKE], eyebrow: 'Featured build', Section: FrameworkPanel, Preview: () => null },
-  { id: 'workflow', cat: 'ai', index: '05', kicker: 'Placeholder category', title: 'Featured Project Three', desc: BUILD_DESC, Icon: () => <FlowArrow size={20} weight="duotone" />, logos: [CLAUDE_CODE, CODEX, HERMES], eyebrow: 'Featured build', Section: WorkflowPanel, Preview: () => null },
+  { id: 'workflow', cat: 'work', index: '05', kicker: 'Zapier automation', title: 'Online Store Order Automation', subtitle: 'Order form to stock check, invoice and delivery tracking', image: '/featured/online-store-card.jpg', desc: ONLINE_STORE_DESC, Icon: () => <FlowArrow size={20} weight="duotone" />, logos: [ZAPIER], eyebrow: 'Featured build', Section: WorkflowPanel, Preview: () => null },
 ]
 
 const leaves = (n: StackNode): StackNode[] => (n.children?.length ? n.children.flatMap(leaves) : [n])
