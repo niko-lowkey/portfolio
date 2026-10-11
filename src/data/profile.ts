@@ -96,11 +96,11 @@ export const profile: Profile = {
  * to bring it back. Nothing is deleted, only not shown.
  *   Projects page ids: 'plan' (Sample Document), 'ai' (Your systems title
  *   here), 'apps' (Apps and tools), 'framework' (Featured Project Two),
- *   'workflow' (Featured Project Three).
+ *   'workflow' (Featured Project Three, now shown).
  */
 export const hidden = {
   aiBuilds: true,
-  projects: ['plan', 'ai', 'apps', 'workflow'] as string[],
+  projects: ['plan', 'ai', 'apps'] as string[],
 }
 
 export const sections = {

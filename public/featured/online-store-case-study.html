@@ -434,6 +434,55 @@ html[data-theme='dark'] .wln{color:#121D26}
 .cat.run{background:#1F5FA8}.cat.cas{background:#1E7A4F}.cat.gen{background:#5B3A8C}
 .lcbox .pp{width:262px;max-height:min(320px,58%);bottom:44px}
 .hero h1.long{max-width:21ch;font-size:clamp(2.1rem,5.2vw,3.2rem)}
+
+/* responsive spacing: .hero's padding shorthand was wiping the .wrap side padding, so the intro ran edge to edge */
+.hero{padding-left:clamp(18px,4vw,28px);padding-right:clamp(18px,4vw,28px)}
+@media(min-width:561px) and (max-width:900px){
+  .hero h1.long{max-width:19ch}
+  .hero p.sub{max-width:560px}
+  .chips.logos{max-width:520px}
+}
+@media(max-width:560px){
+  .hero{padding-top:40px;padding-bottom:28px}
+  .hero p.sub{font-size:1rem;margin-top:18px}
+  .stats{display:flex;width:100%;margin-top:26px}
+  .stats div{padding:14px 6px}
+  .stats div:nth-child(3){border-right:0}
+  .stats div:nth-child(n+4){border-bottom:0}
+  .stats span{letter-spacing:.1em}
+  .chips.logos{max-width:none;gap:8px;margin-top:22px}
+  section{padding:40px 0}
+}
+
+/* size pass: tablet and mobile only (desktop untouched) */
+@media(max-width:900px){
+  .pill{font-size:.72rem;padding:6px 13px}
+  .hero h1.long{font-size:clamp(1.7rem,6.4vw,2.4rem)}
+  .hero p.sub{font-size:.96rem;line-height:1.6}
+  .stats b{font-size:1.35rem}
+  .stats span{font-size:.66rem}
+  .chips.logos span{min-height:30px;padding:4px 10px;gap:5px}
+  .chips.logos img{zoom:.82}
+  .chips.logos em{font-size:.7rem}
+  section h2{font-size:clamp(1.4rem,4.6vw,1.8rem)}
+  .intro{font-size:.92rem}
+}
+@media(max-width:560px){
+  body{font-size:15.5px}
+  .hero h1.long{font-size:1.65rem;line-height:1.15}
+  .hero p.sub{font-size:.9rem}
+  .stats{margin-top:22px;border-radius:14px}
+  .stats div{padding:10px 4px}
+  .stats b{font-size:1.15rem}
+  .stats span{font-size:.58rem;letter-spacing:.08em;margin-top:4px}
+  .chips.logos{gap:6px;margin-top:18px}
+  .chips.logos span{min-height:26px;padding:3px 8px}
+  .chips.logos img{zoom:.7}
+  .chips.logos em{font-size:.64rem}
+  section h2{font-size:1.4rem}
+  .intro{font-size:.88rem}
+  .card{padding:16px}
+}
 </style>
 </head>
 <body>

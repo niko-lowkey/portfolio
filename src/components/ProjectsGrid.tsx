@@ -268,6 +268,10 @@ export default function ProjectsGrid() {
   /* With the placeholder cards hidden, the featured build runs full width on top
      and the two real work cards share the row underneath at equal width. */
   const pair = projects.length === 2 && builds.length > 0
+  /* Desktop layout: Crownwell featured top-left (with its thumbnail), the three
+     builds stacked small on the right, Automations and Funnels side by side below. */
+  const featured = builds.find((b) => b.id === 'ticketing')
+  const trio = !!featured && builds.length > 1
   const wide = (p: Project) => p.span === 2 || pair
 
   const show = useCallback((p: Project, el: HTMLElement) => {
@@ -389,7 +393,37 @@ export default function ProjectsGrid() {
           <CursorClick size={14} weight="duotone" />
           Click a card to open it
         </span>
-        <div className="bento bento--projects">
+        <div className={`bento bento--projects${trio ? ' bento--trio' : ''}`}>
+          {trio && featured && (
+            <button
+              type="button"
+              className="bento__card bento__card--btn bento__feature"
+              data-id="featured"
+              onClick={(e) => show(featured, e.currentTarget)}
+              aria-haspopup="dialog"
+            >
+              {featured.image && (
+                <span className="bento__feature-media" aria-hidden="true">
+                  <img src={featured.image} alt="" loading="lazy" decoding="async" />
+                </span>
+              )}
+              <span className="bento__feature-body">
+                <span className="bento__feature-top">
+                  <span className="bento__feature-tile">
+                    {featured.logos?.length ? <img src={featured.logos[0]} alt="" width={22} height={22} /> : <featured.Icon />}
+                  </span>
+                  <span className="bento__feature-kicker">Featured project</span>
+                </span>
+                <span className="bento__feature-title">{featured.title}</span>
+                {featured.subtitle && <span className="bento__feature-sub">{featured.subtitle}</span>}
+                <span className="bento__feature-desc">{featured.desc}</span>
+                <span className="bento__feature-cta">
+                  View project
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                </span>
+              </span>
+            </button>
+          )}
           {stack}
           {projects.map((p) => (
             <Fragment key={p.id}>
