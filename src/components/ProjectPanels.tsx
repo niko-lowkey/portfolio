@@ -79,7 +79,7 @@ export function PlanPanel() {
   return (
     <div className="ppanel ppanel--frame">
       <FrameBar
-        host="yourdomain.com"
+        host="angeloalobportfolio.vercel.app"
         path="/sample-plan"
       />
       <LiveFrame src="/placeholders/sample-plan.html" title="Sample document" />
@@ -101,7 +101,7 @@ const BUILDS: Build[] = [
 function BuildPanel({ build }: { build: Build }) {
   return (
     <div className="ppanel ppanel--frame">
-      <FrameBar host="yourdomain.com" path={build.path} />
+      <FrameBar host="angeloalobportfolio.vercel.app" path={build.path} />
       <LiveFrame src={build.src} title={build.label} />
     </div>
   )

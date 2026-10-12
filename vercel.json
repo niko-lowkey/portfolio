@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/crownwell-dental-clinic", "destination": "/featured/crownwell-case-study.html" },
+    { "source": "/portfolio-lead-automation", "destination": "/featured/portfolio-automation-case-study.html" },
+    { "source": "/online-store-automation", "destination": "/featured/online-store-case-study.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
