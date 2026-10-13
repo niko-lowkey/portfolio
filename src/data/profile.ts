@@ -54,14 +54,14 @@ export const profile: Profile = {
   role: 'GHL Specialist (CRM Automation, Funnel & Website Builder)',
   avatarSrc: '/avatar.png',
   aboutPortraitSrc: '/about/portrait.png',
-  verifiedLabel: 'PLACEHOLDER - what the tick means (e.g. a certification)',
+  verifiedLabel: 'GoHighLevel specialist',
   email: 'nikzalob@gmail.com',
   location: 'Based in the Philippines',
   // Pick any icon from https://phosphoricons.com and import it above.
   stats: [
-    { value: '0 yrs', label: 'PLACEHOLDER', Icon: Briefcase },
-    { value: '#000', label: 'PLACEHOLDER', Icon: SealCheck },
-    { value: 'GMT+0', label: 'PLACEHOLDER', Icon: Clock },
+    { value: '5 yrs', label: 'Support and admin', Icon: Briefcase },
+    { value: '3', label: 'Automation projects', Icon: SealCheck },
+    { value: 'GMT+8', label: 'US hours friendly', Icon: Clock },
   ],
   // The intro types this line, then flies it into the Home headline.
   // Keep it short: two halves, 5-8 words total.
@@ -72,7 +72,7 @@ export const profile: Profile = {
     line2: 'Grow\u00a0the\u00a0Business.',
   },
   hero: {
-    body: 'I help businesses build funnels, websites, eCommerce stores, CRM setup, and automations in GoHighlevel that streamline operations and turn more leads into customers.',
+    body: 'I help businesses build funnels, websites, eCommerce stores, CRM setup, and automations in GoHighLevel that streamline operations and turn more leads into customers.',
     portraitSrc: '/avatar.png',
     portraitAlt: 'Portrait of Angelo Alob',
   },
